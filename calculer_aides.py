@@ -109,6 +109,39 @@ def variable_revenu(types_revenus):
     return "salaire_net"
 
 
+# statut_professionnel (enum_multi, mêmes valeurs que le schéma) -> valeur
+# OpenFisca "activite" (actif/chomeur/etudiant/retraite/inactif). Même
+# logique de priorité que pour les revenus : si plusieurs statuts sont
+# cochés, on retient celui qui a le plus d'impact sur l'éligibilité.
+MAPPING_ACTIVITE = {
+    "demandeur·se d'emploi": "chomeur",
+    "étudiant·e": "etudiant",
+    "retraité·e": "retraite",
+    "salarié·e": "actif",
+    "indépendant·e-auto-entrepreneur·se": "actif",
+    "apprenti·e-alternant·e": "actif",
+    "sans activité": "inactif",
+}
+PRIORITE_ACTIVITE = ["demandeur·se d'emploi", "étudiant·e", "retraité·e", "salarié·e",
+                     "indépendant·e-auto-entrepreneur·se", "apprenti·e-alternant·e", "sans activité"]
+
+MAPPING_STATUT_MARITAL = {
+    "célibataire": "celibataire",
+    "concubinage": "celibataire",  # le concubinage n'est pas un statut marital légal en France
+    "pacsé·e": "pacse",
+    "marié·e": "marie",
+    "divorcé·e": "divorce",
+    "veuf·ve": "veuf",
+}
+
+
+def variable_activite(statuts):
+    for valeur_prioritaire in PRIORITE_ACTIVITE:
+        if valeur_prioritaire in (statuts or []):
+            return MAPPING_ACTIVITE[valeur_prioritaire]
+    return None
+
+
 def mois_glissants(mois_reference, n=MOIS_FENETRE):
     annee, mois = mois_reference.year, mois_reference.month
     resultat = []
@@ -120,19 +153,26 @@ def mois_glissants(mois_reference, n=MOIS_FENETRE):
     return resultat
 
 
-def resoudre_localisation(code_postal, commune=None):
-    """geo.api.gouv.fr : code postal -> commune(s) + code INSEE + EPCI +
-    département + région. None si injoignable ou introuvable."""
+def communes_pour_code_postal(code_postal):
+    """Appel brut geo.api.gouv.fr : liste des communes correspondant à un
+    code postal (un code postal peut couvrir plusieurs communes, ou une
+    commune plusieurs codes postaux). [] si injoignable/introuvable."""
     if not code_postal:
-        return None
+        return []
     try:
         url = ("https://geo.api.gouv.fr/communes?codePostal=" +
                urllib.parse.quote(code_postal) +
                "&fields=departement,region,codeEpci,nom&format=json")
         with urllib.request.urlopen(url, timeout=5) as reponse:
-            resultats = json.loads(reponse.read())
+            return json.loads(reponse.read())
     except Exception:
-        return None
+        return []
+
+
+def resoudre_localisation(code_postal, commune=None):
+    """code postal (+ commune pour désambiguïser) -> code INSEE + EPCI +
+    département + région. None si injoignable ou introuvable."""
+    resultats = communes_pour_code_postal(code_postal)
     if not resultats:
         return None
     choix = resultats[0]
@@ -210,10 +250,22 @@ def construire_situation(valeurs, personnes, depcom, mois_ref, avertissements=No
     }
     if valeurs.get("situation_handicap"):
         individus["declarant"]["handicap"] = {mois_courant: True}
+    if valeurs.get("taux_incapacite"):
+        individus["declarant"]["taux_incapacite"] = {mois_courant: valeurs["taux_incapacite"]}
     if valeurs.get("pension_alimentaire_recue"):
         individus["declarant"]["pensions_alimentaires_percues"] = {
             m: valeurs["pension_alimentaire_recue"] for m in fenetre
         }
+    if valeurs.get("pension_alimentaire_versee"):
+        individus["declarant"]["pensions_alimentaires_versees_individu"] = {
+            m: valeurs["pension_alimentaire_versee"] for m in fenetre
+        }
+    activite = variable_activite(valeurs.get("statut_professionnel"))
+    if activite:
+        individus["declarant"]["activite"] = {mois_courant: activite}
+    statut_marital = MAPPING_STATUT_MARITAL.get(valeurs.get("situation_familiale"))
+    if statut_marital:
+        individus["declarant"]["statut_marital"] = {mois_courant: statut_marital}
 
     enfants = []
     for i, p in enumerate(personnes):

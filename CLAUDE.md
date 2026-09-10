@@ -205,6 +205,59 @@ plus un appel au module vélo Node en subprocess. Points de conception non
   modélisée en "month" mais versée une fois) — le front affiche donc les
   montants avec un avertissement général plutôt que de prétendre à une
   périodicité exacte par dispositif.
+- **Source citée systématiquement** (`lien_source`) : URL OpenFisca
+  (`variable.reference`) quand elle existe — attention, cette liste mélange
+  parfois un intitulé de texte de loi et une vraie URL (ex. Cambrai), donc
+  on filtre sur ce qui commence par "http" (`premiere_url`), jamais
+  `reference[0]` à l'aveugle. Sinon, lien de recherche service-public.fr
+  généré à la volée (`url_est_recherche: true`) — jamais d'URL fabriquée à
+  la main pour un dispositif précis, un lien inventé/faux serait pire que
+  pas de lien.
+- **Commune déduite du code postal, pas saisie libre** (`/api/communes`,
+  `configurerCommuneDynamique` dans `app.js`) : un texte libre pour la
+  commune était source d'erreurs et faisait doublon avec le code postal.
+  Le champ est maintenant un menu déroulant peuplé dynamiquement (gère le
+  cas où un code postal recouvre plusieurs communes, ex. `07100` →
+  Annonay/Boulieu-lès-Annonay/Roiffieux/Saint-Marcel-lès-Annonay).
+
+### Audit des champs du profil réellement utilisés dans le calcul
+
+Retour d'usage : beaucoup de champs du formulaire n'étaient pas exploités
+par `calculer_aides.py`, malgré une correspondance OpenFisca disponible.
+Vérifié avec `grep -oE 'valeurs\.get\("[a-z_]+"\)' calculer_aides.py` (à
+relancer après tout ajout de champ pour vérifier qu'il est bien câblé, ou
+consciemment laissé de côté).
+
+**Câblés au calcul** (via OpenFisca sauf mention contraire) : `date_naissance`,
+`situation_familiale` (→ `statut_marital`), `code_postal`/`commune` (→
+localisation), `statut_logement`, `loyer_mensuel`, `revenu_net_mensuel_foyer`,
+`revenu_fiscal_reference` (vélo uniquement), `type_revenus`, `situation_handicap`,
+`taux_incapacite`, `pension_alimentaire_recue`, `pension_alimentaire_versee`,
+`statut_professionnel` (→ `activite`), `nombre_parts_fiscales` (cohérence +
+vélo, pas injecté dans OpenFisca qui le recalcule lui-même — normal),
+`projet_velo`/`type_velo`/`etat_velo`/`prix_velo`.
+
+**Pas encore câblés** — délibérément, réservés au futur catalogue
+Publicodes (véhicule électrique, logement, réductions, emploi...) déjà
+identifié comme non commencé : `residence`, `mensualite_pret_immobilier`,
+`zone_faibles_emissions`, `epargne_liquide`, `autre_bien_immobilier`,
+`aides_deja_percues`, `frais_garde_enfants`, `anciennete_statut`,
+`inscrit_france_travail`, `indemnise_chomage`, `niveau_etudes`, `boursier`,
+`echelon_bourse`, `entreprise_secteur`, `situation_perte_autonomie`,
+`utilise_transports_commun`, `reseau_transport_principal`,
+`carte_etudiante_scolaire`, `projet_vehicule_electrique`,
+`type_projet_vehicule`, `vehicule_actuel_a_mettre_a_la_casse`,
+`projet_achat_logement`, `primo_accedant`, `projet_renovation_energetique`,
+`type_travaux_envisages`, `pratique_sportive_reguliere`,
+`frequentation_culturelle`.
+
+Note pour `epargne_liquide`/`autre_bien_immobilier` spécifiquement : pas de
+variable OpenFisca "patrimoine total" en entrée directe trouvée (seulement
+des variables très spécifiques comme `livret_a`, ou des variables déjà
+calculées comme `rsa_base_ressources_patrimoine_individu`) — contrairement
+aux autres champs de cette liste, ce n'est pas juste "pas encore fait", il
+faudrait d'abord clarifier comment OpenFisca attend cette donnée avant de
+pouvoir la câbler correctement.
 
 ## Prochaines étapes
 

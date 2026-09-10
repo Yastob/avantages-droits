@@ -11,7 +11,7 @@ import logging
 import yaml
 from flask import Flask, jsonify, request, send_from_directory
 
-from calculer_aides import calculer_aides
+from calculer_aides import calculer_aides, communes_pour_code_postal
 from lire_profil import analyser_profil
 from schema_profil import (
     AIDE, CHAMPS_PERSONNE_A_CHARGE, DEPENDANCES, LIBELLES, ORDRE_CATEGORIES, SCHEMA,
@@ -51,6 +51,13 @@ def analyser_profil_endpoint():
 @app.get("/api/sante")
 def sante():
     return jsonify({"statut": "ok"})
+
+
+@app.get("/api/communes")
+def communes_endpoint():
+    code_postal = (request.args.get("code_postal") or "").strip()
+    communes = communes_pour_code_postal(code_postal)
+    return jsonify({"communes": [{"nom": c["nom"], "code": c["code"]} for c in communes]})
 
 
 @app.get("/api/schema")

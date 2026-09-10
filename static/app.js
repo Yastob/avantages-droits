@@ -34,6 +34,19 @@ function construireChampSaisie(champ, idPrefix) {
       groupe.appendChild(ligne);
     });
     wrap.appendChild(groupe);
+  } else if (champ.nom === "commune") {
+    // Cas spécial : plutôt que de laisser saisir un nom de commune à la
+    // main (source d'erreurs, et double emploi avec le code postal), on
+    // peuple ce menu dynamiquement depuis le code postal (voir
+    // configurerCommuneDynamique). Un code postal peut correspondre à
+    // plusieurs communes (ou l'inverse) -- d'où la désambiguïsation.
+    const input = document.createElement("select");
+    input.id = id;
+    input.name = champ.nom;
+    input.dataset.type = "enum";
+    input.disabled = true;
+    input.innerHTML = `<option value="">Renseignez d'abord le code postal</option>`;
+    wrap.appendChild(input);
   } else {
     let input;
     if (champ.type === "bool") {
@@ -89,11 +102,58 @@ function construireFormulaire() {
   }
   document.getElementById("ajouter-personne").addEventListener("click", () => ajouterPersonne());
   document.getElementById("telecharger-rempli").addEventListener("click", telechargerProfilRempli);
+  configurerCommuneDynamique();
 
   const formulaire = document.getElementById("formulaire-profil");
   formulaire.addEventListener("input", surChangementFormulaire);
   formulaire.addEventListener("change", surChangementFormulaire);
   surChangementFormulaire();
+}
+
+// ============================================================================
+// Commune déduite du code postal plutôt que saisie librement : un code
+// postal recouvre parfois plusieurs communes (et une commune peut avoir
+// plusieurs codes postaux), d'où le menu déroulant peuplé dynamiquement
+// plutôt qu'un texte libre source d'erreurs de frappe/orthographe.
+// ============================================================================
+
+let minuteurCommune = null;
+
+function configurerCommuneDynamique() {
+  const champCodePostal = document.getElementById("champ_code_postal");
+  const champCommune = document.getElementById("champ_commune");
+  if (!champCodePostal || !champCommune) return;
+
+  champCodePostal.addEventListener("input", () => {
+    clearTimeout(minuteurCommune);
+    const code = champCodePostal.value.trim();
+    if (!/^\d{5}$/.test(code)) {
+      champCommune.disabled = true;
+      champCommune.innerHTML = `<option value="">Renseignez d'abord le code postal</option>`;
+      return;
+    }
+    champCommune.disabled = true;
+    champCommune.innerHTML = `<option value="">Recherche…</option>`;
+    minuteurCommune = setTimeout(() => chargerCommunes(code, champCommune), 400);
+  });
+}
+
+async function chargerCommunes(codePostal, champCommune) {
+  try {
+    const r = await fetch(`/api/communes?code_postal=${codePostal}`);
+    const donnees = await r.json();
+    const communes = donnees.communes || [];
+    if (!communes.length) {
+      champCommune.innerHTML = `<option value="">Code postal non reconnu</option>`;
+      champCommune.disabled = true;
+      return;
+    }
+    champCommune.innerHTML = communes.map((c) => `<option value="${c.nom}">${c.nom}</option>`).join("");
+    champCommune.disabled = false;
+    mettreAJourProgression();
+  } catch (e) {
+    champCommune.innerHTML = `<option value="">Recherche indisponible, réessayez</option>`;
+  }
 }
 
 function surChangementFormulaire() {
