@@ -59,6 +59,29 @@ Le récap de relecture du profil affiche 4 états par champ : ✅ capturé,
 ⚠️ non renseigné, ❌ mal saisi (format), 🔶 incohérence détectée
 (cross-champ, non bloquant).
 
+**Schéma (`schema_profil.py`)** — source de vérité unique, consommée à la
+fois par le back-end (validation) et le front-end (formulaire, via
+`/api/schema`) :
+- Types : `date`, `float`, `float_positif` (rejette les négatifs — ex.
+  épargne), `bool`, `enum` (un seul choix), `enum_multi` (plusieurs choix,
+  rendu en cases à cocher côté front, stocké en liste YAML/JSON côté
+  données), `text`, `code_postal`.
+- `AIDE` : texte d'aide affiché sous certains champs quand le libellé seul
+  prête à confusion (ex. préciser "net avant impôt, primes régulières
+  incluses" pour le revenu).
+- `DEPENDANCES` : quels champs ne sont pertinents que si un autre champ a
+  une certaine valeur (ex. `echelon_bourse` seulement si `boursier=oui`).
+  Utilisé à deux endroits : le front grise/désactive ces champs en direct
+  (`appliquerDependances` dans `app.js`), et `lire_profil.py` a une règle de
+  cohérence générique (`regle_champs_dependants`) qui rattrape le cas où le
+  YAML est édité à la main en contournant le formulaire.
+
+Note historique : `type_revenus` a été texte libre au tout début (le
+matching par mots-clés n'était pas fiable), puis converti en `enum_multi`
+— beaucoup plus robuste, mais introduit son propre compromis (voir
+`calculer_aides.py` ci-dessous : un seul revenu total, pas de ventilation
+par source).
+
 ## Partage avec des amis — architecture web
 
 **Contrainte qui a tranché le design** : un Artifact Claude ne peut pas
@@ -79,7 +102,10 @@ en veille après inactivité, 30-50s de redémarrage au premier accès.
   dynamiquement (une seule source de vérité : `schema_profil.py`). **Sans
   état** : rien n'est journalisé ni persisté côté serveur.
 - `static/` — front-end (formulaire généré depuis `/api/schema`, affichage
-  des résultats). Vanilla JS, pas de framework.
+  des résultats). Vanilla JS, pas de framework. `js-yaml` (CDN cdnjs) pour
+  le bouton "Télécharger mon profil (YAML)" — sérialise `collecterProfil()`
+  côté client, aucun aller-retour serveur. Le modèle vierge est servi tel
+  quel par `GET /modele-profil.yml` (fichier `data/profil_template.yml`).
 - `calculer_aides.py` — le moteur d'éligibilité, voir section dédiée
   ci-dessous.
 
@@ -112,10 +138,13 @@ plus un appel au module vélo Node en subprocess. Points de conception non
   seul mois donnait un RSA de 569€, alors qu'il tombe à 0€ correctement une
   fois le même revenu étalé sur 4 mois — l'algorithme "regarde en arrière"
   sur des mois non renseignés, donc vides, donc sous-évalués).
-- **`type_revenus` est un champ texte libre** (pas un enum) : mappé vers la
-  bonne variable OpenFisca (`salaire_net`/`chomage_net`/`retraite_nette`/
-  `rpns_auto_entrepreneur_benefice`) par recherche de mots-clés, repli sur
-  `salaire_net` si rien ne correspond (proxy générique le plus large).
+- **`type_revenus` (enum_multi) → une seule variable OpenFisca retenue**
+  (`PRIORITE_REVENU` : salaire > indépendant > chômage > retraite). Le
+  profil ne capture qu'un montant total (`revenu_net_mensuel_foyer`), pas de
+  ventilation par source — si plusieurs cases sont cochées, impossible de
+  savoir combien vient de chaque source, donc tout est attribué à la
+  source prioritaire et un avertissement explicite est ajouté au résultat.
+  `pension_alimentaire_recue` est ajoutée séparément (`pensions_alimentaires_percues`).
 - **Couples non modélisés individuellement** : le profil ne capture qu'une
   personne + ses personnes à charge, pas de deuxième adulte. Pour un couple,
   tout le revenu du foyer est attribué au déclarant — correct pour les
@@ -146,6 +175,31 @@ plus un appel au module vélo Node en subprocess. Points de conception non
   prix du vélo envisagé (`prix_velo`, optionnel) ; à défaut, un prix par
   défaut (1200€) est utilisé pour l'estimation, avec avertissement explicite
   à l'utilisateur.
+- **Vélo : `type_velo`/`etat_velo` en `enum_multi`** (on peut hésiter entre
+  plusieurs types/états) → `calculer_velo` calcule le **produit cartésien**
+  des combinaisons choisies (électrique+cargo × neuf+occasion = 4 scénarios)
+  en un seul appel au sous-processus Node (`velo/calculer.mjs` accepte des
+  listes `veloTypes`/`veloEtats`), pour éviter de relancer Node plusieurs
+  fois. Chaque scénario est présenté séparément côté front.
+- **Source et méthode de calcul affichées pour chaque aide** (national,
+  local, vélo) — pas seulement le montant :
+  - National/local : `variable.reference` d'OpenFisca (URL légale si
+    disponible) + un texte d'institution générique ("Prestation nationale,
+    calculée avec OpenFisca-France" / la collectivité identifiée via
+    `institution_locale`, qui recoupe le nom de variable avec le nom de
+    commune/EPCI/département/région de la personne).
+  - Local : `variable.label` (texte officiel du dispositif, bien plus lisible
+    que le nom de variable) utilisé comme libellé plutôt que le nom dérivé.
+  - Vélo : `description`/`url`/`collectivity` renvoyés directement par
+    `aides-velo` (`computeAides()` renvoie bien plus que `title`/`amount` —
+    à vérifier avant de jeter des champs qu'on ne pense pas utiliser).
+- **Unité € vs % pour les variables locales** : certaines variables
+  openfisca-france-local ne sont pas un montant en euros mais un pourcentage
+  (ex. `nouvelle_aquitaine_carte_solidaire` = "réduction obtenue en %").
+  Aucune métadonnée fiable (`variable.unit` est `None` partout, y compris
+  pour de vrais montants) → détection best-effort sur la présence de "%"
+  dans `variable.label`. Sans ce garde-fou, on afficherait "80,00 €" pour ce
+  qui est en fait "80 %".
 - **Libellé de périodicité approximatif** : une variable OpenFisca "month"
   n'est pas forcément une aide versée chaque mois (ex. aide au permis,
   modélisée en "month" mais versée une fois) — le front affiche donc les

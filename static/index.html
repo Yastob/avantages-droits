@@ -32,6 +32,11 @@
       <button type="submit" class="bouton-principal" id="bouton-analyser">Analyser mon profil</button>
       <span class="statut" id="statut-envoi"></span>
     </div>
+
+    <div class="barre-telechargements">
+      <button type="button" class="bouton-lien-discret" id="telecharger-rempli">⬇ Télécharger mon profil (YAML)</button>
+      <a class="bouton-lien-discret" href="/modele-profil.yml" download>⬇ Télécharger un modèle vierge</a>
+    </div>
   </form>
 
   <section class="bloc" id="resultats" hidden>
@@ -51,6 +56,7 @@
 
   <footer class="note">Les aides et droits affichés sont calculés à partir des barèmes en vigueur — ce sont des estimations, pas des décisions officielles. La périodicité indiquée (mois/an) reflète la granularité du calcul, pas forcément la fréquence réelle de versement (une aide "/ mois" peut être versée une seule fois). Vérifiez toujours les conditions exactes auprès de l'organisme concerné avant toute démarche.</footer>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>

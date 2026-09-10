@@ -13,7 +13,9 @@ from flask import Flask, jsonify, request, send_from_directory
 
 from calculer_aides import calculer_aides
 from lire_profil import analyser_profil
-from schema_profil import CHAMPS_PERSONNE_A_CHARGE, LIBELLES, ORDRE_CATEGORIES, SCHEMA
+from schema_profil import (
+    AIDE, CHAMPS_PERSONNE_A_CHARGE, DEPENDANCES, LIBELLES, ORDRE_CATEGORIES, SCHEMA,
+)
 
 app = Flask(__name__, static_folder="static", static_url_path="")
 
@@ -62,6 +64,8 @@ def schema_endpoint():
             {"nom": n, "type": t, "choix": c} for n, t, c in CHAMPS_PERSONNE_A_CHARGE
         ],
         "libelles": LIBELLES,
+        "aide": AIDE,
+        "dependances": DEPENDANCES,
         "ordre_categories": ORDRE_CATEGORIES,
     })
 
@@ -69,6 +73,12 @@ def schema_endpoint():
 @app.get("/")
 def index():
     return send_from_directory(app.static_folder, "index.html")
+
+
+@app.get("/modele-profil.yml")
+def modele_profil():
+    return send_from_directory("data", "profil_template.yml", as_attachment=True,
+                                download_name="profil_template.yml")
 
 
 if __name__ == "__main__":

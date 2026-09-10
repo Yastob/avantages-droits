@@ -191,6 +191,7 @@ function formatValeur(champ) {
   const v = champ.valeur;
   if (v === true) return "oui";
   if (v === false) return "non";
+  if (Array.isArray(v)) return v.length ? v.join(", ") : "—";
   if (v === null || v === undefined) return "—";
   return String(v);
 }

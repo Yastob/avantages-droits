@@ -41,11 +41,16 @@ NATIONAL_VARIABLES = [
 MOIS_FENETRE = 4  # RSA/PPA utilisent une moyenne glissante sur plusieurs mois :
 # fournir un revenu sur un seul mois fausserait le calcul (voir CLAUDE.md).
 
-MAPPING_REVENU = [
-    (("chômage", "chomage"), "chomage_net"),
-    (("retraite",), "retraite_nette"),
-    (("indépendant", "independant", "auto-entrepreneur", "auto entrepreneur"), "rpns_auto_entrepreneur_benefice"),
-    (("salaire", "salarié", "salarie"), "salaire_net"),
+# type_revenus est un champ à choix multiples (on peut cocher plusieurs
+# sources) mais revenu_net_mensuel_foyer reste un montant total unique -> on
+# ne peut pas répartir précisément entre plusieurs sources. On retient donc
+# la source "principale" par ordre de priorité ci-dessous, et on avertit
+# l'utilisateur si plusieurs cases sont cochées (voir calculer_aides.py::calculer_national_et_local).
+PRIORITE_REVENU = [
+    ("salaire", "salaire_net"),
+    ("indépendant / auto-entrepreneur", "rpns_auto_entrepreneur_benefice"),
+    ("chômage", "chomage_net"),
+    ("retraite", "retraite_nette"),
 ]
 
 MAPPING_STATUT_LOGEMENT = {
@@ -74,12 +79,10 @@ def tax_benefit_system():
     return _TBS, _NOMS_LOCAUX
 
 
-def variable_revenu(type_revenus):
-    if not type_revenus:
-        return "salaire_net"
-    t = type_revenus.lower()
-    for mots, variable in MAPPING_REVENU:
-        if any(m in t for m in mots):
+def variable_revenu(types_revenus):
+    types_revenus = types_revenus or []
+    for valeur_enum, variable in PRIORITE_REVENU:
+        if valeur_enum in types_revenus:
             return variable
     return "salaire_net"
 
@@ -161,12 +164,21 @@ def slugs_localisation(localisation):
     return slugs
 
 
-def construire_situation(valeurs, personnes, depcom, mois_ref):
+def construire_situation(valeurs, personnes, depcom, mois_ref, avertissements=None):
     fenetre = mois_glissants(mois_ref)
     mois_courant = fenetre[0]
 
-    var_revenu = variable_revenu(valeurs.get("type_revenus"))
+    types_revenus = valeurs.get("type_revenus") or []
+    var_revenu = variable_revenu(types_revenus)
     revenu = valeurs.get("revenu_net_mensuel_foyer") or 0
+    if avertissements is not None and len(types_revenus) > 1:
+        source_retenue = next((v for v, _ in PRIORITE_REVENU if v in types_revenus), types_revenus[0])
+        avertissements.append(
+            f"Plusieurs types de revenus cochés ({', '.join(types_revenus)}) — le revenu total "
+            f"déclaré est pris en compte au titre de « {source_retenue} » uniquement (priorité : "
+            f"{' > '.join(p[0] for p in PRIORITE_REVENU)}), la répartition exacte entre plusieurs "
+            f"sources n'est pas encore modélisée."
+        )
 
     individus = {
         "declarant": {
@@ -176,6 +188,10 @@ def construire_situation(valeurs, personnes, depcom, mois_ref):
     }
     if valeurs.get("situation_handicap"):
         individus["declarant"]["handicap"] = {mois_courant: True}
+    if valeurs.get("pension_alimentaire_recue"):
+        individus["declarant"]["pensions_alimentaires_percues"] = {
+            m: valeurs["pension_alimentaire_recue"] for m in fenetre
+        }
 
     enfants = []
     for i, p in enumerate(personnes):
@@ -215,7 +231,7 @@ def calculer_national_et_local(valeurs, personnes, localisation, avertissements)
     depcom = localisation["depcom"] if localisation else None
     tbs, noms_locaux = tax_benefit_system()
     mois_ref = date.today()
-    situation, mois_courant = construire_situation(valeurs, personnes, depcom, mois_ref)
+    situation, mois_courant = construire_situation(valeurs, personnes, depcom, mois_ref, avertissements)
     annee_courante = str(mois_ref.year)
 
     try:
@@ -232,7 +248,15 @@ def calculer_national_et_local(valeurs, personnes, localisation, avertissements)
         except Exception:
             continue
         if valeur > 0:
-            nationales.append({"nom": nom_var, "libelle": libelle, "montant": round(valeur, 2), "periode": periode})
+            variable = tbs.variables.get(nom_var)
+            reference = getattr(variable, "reference", None) if variable else None
+            nationales.append({
+                "nom": nom_var, "libelle": libelle, "montant": round(valeur, 2), "periode": periode,
+                "unite": "€",
+                "institution": "Prestation nationale (calculée avec OpenFisca-France, le même moteur "
+                                "que mes-aides.1jeune1solution.beta.gouv.fr)",
+                "url": reference[0] if reference else None,
+            })
 
     locales = []
     if not depcom:
@@ -261,11 +285,42 @@ def calculer_national_et_local(valeurs, personnes, localisation, avertissements)
         except Exception:
             continue
         if valeur > 0:
-            libelle = nom_var.replace("_", " ")
-            libelle = libelle[0].upper() + libelle[1:]
-            locales.append({"nom": nom_var, "libelle": libelle, "montant": round(valeur, 2), "periode": periode})
+            if variable.label:
+                libelle = variable.label.replace("\\%", "%")
+            else:
+                libelle = nom_var.replace("_", " ")
+                libelle = libelle[0].upper() + libelle[1:]
+            # Pas de métadonnée fiable pour distinguer un montant en € d'un
+            # pourcentage/taux côté OpenFisca -> détection best-effort sur le
+            # libellé (ex: "Réduction obtenue en %") pour éviter d'afficher
+            # "80,00 €" quand c'est en fait "80 %".
+            unite = "%" if ("%" in libelle or "pourcentage" in libelle.lower()) else "€"
+            reference = getattr(variable, "reference", None)
+            locales.append({
+                "nom": nom_var, "libelle": libelle, "montant": round(valeur, 2), "periode": periode,
+                "unite": unite,
+                "institution": institution_locale(nom_var, localisation)
+                or "Collectivité locale (calculé avec openfisca-france-local)",
+                "url": reference[0] if reference else None,
+            })
 
     return nationales, locales
+
+
+def institution_locale(nom_var, localisation):
+    """Devine à quelle collectivité un dispositif local appartient, en
+    recoupant le nom de la variable avec le nom de la commune/EPCI/
+    département/région de la personne (même logique que slugs_localisation)."""
+    if not localisation:
+        return None
+    for cle, etiquette in (
+        ("commune_nom", "Commune"), ("epci_nom", "Intercommunalité"),
+        ("departement_nom", "Département"), ("region_nom", "Région"),
+    ):
+        valeur = localisation.get(cle)
+        if valeur and _slugifier(valeur) in nom_var:
+            return f"{etiquette} : {valeur}"
+    return None
 
 
 def calculer_velo(valeurs, localisation, avertissements):
@@ -274,7 +329,9 @@ def calculer_velo(valeurs, localisation, avertissements):
     if not localisation:
         avertissements.append("Localisation introuvable : impossible de calculer les aides vélo.")
         return []
-    velo_type = MAPPING_TYPE_VELO.get(valeurs.get("type_velo"), "électrique")
+    types_choisis = valeurs.get("type_velo") or ["électrique"]
+    velo_types = [MAPPING_TYPE_VELO.get(t, t) for t in types_choisis]
+    velo_etats = valeurs.get("etat_velo") or ["neuf"]
     prix = valeurs.get("prix_velo")
     if not prix:
         avertissements.append(
@@ -288,8 +345,8 @@ def calculer_velo(valeurs, localisation, avertissements):
         "epci": localisation.get("epci_nom"),
         "departement": localisation.get("departement_code"),
         "region": localisation.get("region_code"),
-        "veloType": velo_type,
-        "veloEtat": valeurs.get("etat_velo") or "neuf",
+        "veloTypes": velo_types,
+        "veloEtats": velo_etats,
         "veloPrix": prix,
         "revenuReference": valeurs.get("revenu_fiscal_reference") or 0,
         "nombreParts": valeurs.get("nombre_parts_fiscales") or 1,
@@ -297,16 +354,25 @@ def calculer_velo(valeurs, localisation, avertissements):
     try:
         resultat = subprocess.run(
             ["node", "velo/calculer.mjs"], input=entree, capture_output=True,
-            text=True, timeout=15, encoding="utf-8",
+            text=True, timeout=20, encoding="utf-8",
         )
         if resultat.returncode != 0:
             avertissements.append(f"Erreur dans le calcul des aides vélo : {resultat.stderr[:300]}")
             return []
-        aides = json.loads(resultat.stdout)
+        scenarios = json.loads(resultat.stdout)
     except Exception as e:
         avertissements.append(f"Impossible de calculer les aides vélo : {e}")
         return []
-    return [{"nom": a["title"], "libelle": a["title"], "montant": round(a["amount"], 2), "periode": "ponctuel"} for a in aides]
+
+    resultats = []
+    for scenario in scenarios:
+        aides = [{
+            "libelle": a["title"], "montant": round(a["amount"], 2), "unite": "€",
+            "description": a.get("description"), "url": a.get("url"),
+            "institution": a.get("institution"),
+        } for a in scenario["aides"]]
+        resultats.append({"scenario": scenario["scenario"], "aides": aides})
+    return resultats
 
 
 def calculer_aides(rapport):

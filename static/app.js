@@ -7,37 +7,67 @@ async function chargerSchema() {
   construireFormulaire();
 }
 
-function construireChampSaisie(champ) {
+function construireChampSaisie(champ, idPrefix) {
   const wrap = document.createElement("div");
   wrap.className = "champ-saisie";
+  wrap.dataset.champ = champ.nom;
+  const id = idPrefix + champ.nom;
   const label = document.createElement("label");
   label.textContent = SCHEMA.libelles[champ.nom] || champ.nom;
-  label.htmlFor = "champ_" + champ.nom;
+  label.htmlFor = id;
   wrap.appendChild(label);
 
-  let input;
-  if (champ.type === "bool") {
-    input = document.createElement("select");
-    input.innerHTML = `<option value="">—</option><option value="oui">Oui</option><option value="non">Non</option>`;
-  } else if (champ.type === "enum") {
-    input = document.createElement("select");
-    input.innerHTML = `<option value="">—</option>` + champ.choix.map((c) => `<option value="${c}">${c}</option>`).join("");
-  } else if (champ.type === "date") {
-    input = document.createElement("input");
-    input.type = "date";
-  } else if (champ.type === "float") {
-    input = document.createElement("input");
-    input.type = "number";
-    input.step = "any";
+  if (champ.type === "enum_multi") {
+    const groupe = document.createElement("div");
+    groupe.className = "cases-a-cocher";
+    groupe.id = id;
+    champ.choix.forEach((c, i) => {
+      const ligne = document.createElement("label");
+      ligne.className = "case-a-cocher";
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.value = c;
+      cb.id = `${id}__${i}`;
+      cb.dataset.type = "enum_multi";
+      ligne.appendChild(cb);
+      ligne.append(" " + c);
+      groupe.appendChild(ligne);
+    });
+    wrap.appendChild(groupe);
   } else {
-    input = document.createElement("input");
-    input.type = "text";
-    if (champ.type === "code_postal") { input.maxLength = 5; input.pattern = "\\d{5}"; }
+    let input;
+    if (champ.type === "bool") {
+      input = document.createElement("select");
+      input.innerHTML = `<option value="">Je ne sais pas</option><option value="oui">Oui</option><option value="non">Non</option>`;
+    } else if (champ.type === "enum") {
+      input = document.createElement("select");
+      input.innerHTML = `<option value="">—</option>` + champ.choix.map((c) => `<option value="${c}">${c}</option>`).join("");
+    } else if (champ.type === "date") {
+      input = document.createElement("input");
+      input.type = "date";
+    } else if (champ.type === "float" || champ.type === "float_positif") {
+      input = document.createElement("input");
+      input.type = "number";
+      input.step = "any";
+      if (champ.type === "float_positif") input.min = "0";
+    } else {
+      input = document.createElement("input");
+      input.type = "text";
+      if (champ.type === "code_postal") { input.maxLength = 5; input.pattern = "\\d{5}"; }
+    }
+    input.id = id;
+    input.name = champ.nom;
+    input.dataset.type = champ.type;
+    wrap.appendChild(input);
   }
-  input.id = "champ_" + champ.nom;
-  input.name = champ.nom;
-  input.dataset.type = champ.type;
-  wrap.appendChild(input);
+
+  const aide = SCHEMA.aide && SCHEMA.aide[champ.nom];
+  if (aide) {
+    const p = document.createElement("p");
+    p.className = "aide-champ";
+    p.textContent = aide;
+    wrap.appendChild(p);
+  }
   return wrap;
 }
 
@@ -53,26 +83,92 @@ function construireFormulaire() {
     section.appendChild(h2);
     const grille = document.createElement("div");
     grille.className = "grille-champs";
-    for (const champ of champsCat) grille.appendChild(construireChampSaisie(champ));
+    for (const champ of champsCat) grille.appendChild(construireChampSaisie(champ, "champ_"));
     section.appendChild(grille);
     conteneur.appendChild(section);
   }
   document.getElementById("ajouter-personne").addEventListener("click", () => ajouterPersonne());
+  document.getElementById("telecharger-rempli").addEventListener("click", telechargerProfilRempli);
 
   const formulaire = document.getElementById("formulaire-profil");
-  formulaire.addEventListener("input", mettreAJourProgression);
-  formulaire.addEventListener("change", mettreAJourProgression);
+  formulaire.addEventListener("input", surChangementFormulaire);
+  formulaire.addEventListener("change", surChangementFormulaire);
+  surChangementFormulaire();
+}
+
+function surChangementFormulaire() {
+  appliquerDependances();
   mettreAJourProgression();
 }
 
+// ============================================================================
+// Lecture générique de la valeur d'un champ, quel que soit son type de saisie
+// (select, input, ou groupe de cases à cocher) — utilisée par la progression
+// et par le grisage conditionnel.
+// ============================================================================
+
+function valeurBruteChamp(nom, idPrefix) {
+  const groupe = document.getElementById(idPrefix + nom);
+  if (groupe && groupe.classList.contains("cases-a-cocher")) {
+    return Array.from(groupe.querySelectorAll("input:checked")).map((c) => c.value);
+  }
+  const input = document.getElementById(idPrefix + nom);
+  return input ? input.value.trim() : "";
+}
+
+function champEstRempli(nom, idPrefix) {
+  const v = valeurBruteChamp(nom, idPrefix);
+  return Array.isArray(v) ? v.length > 0 : v !== "";
+}
+
 function mettreAJourProgression() {
-  const champs = document.querySelectorAll("#formulaire-profil input, #formulaire-profil select");
   let remplis = 0;
-  champs.forEach((c) => { if (c.value.trim() !== "") remplis++; });
-  const total = champs.length;
+  let total = 0;
+  for (const champ of SCHEMA.champs) {
+    total++;
+    if (champEstRempli(champ.nom, "champ_")) remplis++;
+  }
   const pourcentage = total ? Math.round((remplis / total) * 100) : 0;
   document.getElementById("progression-remplie").style.width = pourcentage + "%";
   document.getElementById("progression-texte").textContent = `${remplis} / ${total} champs`;
+}
+
+// ============================================================================
+// Grisage conditionnel : un champ n'a de sens que si un autre champ a une
+// certaine valeur (cf. schema_profil.DEPENDANCES). On désactive et grise
+// visuellement ces champs tant que la condition n'est pas remplie, pour ne
+// pas laisser saisir une info qui ne sera pas utilisée sans que ce soit clair.
+// ============================================================================
+
+function conditionRemplie(parent, valeursActivantes, idPrefix) {
+  const v = valeurBruteChamp(parent, idPrefix);
+  if (Array.isArray(v)) return v.some((x) => valeursActivantes.includes(x));
+  return valeursActivantes.includes(v);
+}
+
+function appliquerDependancesSur(idPrefix) {
+  if (!SCHEMA.dependances) return;
+  for (const [champ, [parent, valeursActivantes]] of Object.entries(SCHEMA.dependances)) {
+    const actif = conditionRemplie(parent, valeursActivantes, idPrefix);
+    const wrap = document.querySelector(`[data-champ="${champ}"]`);
+    // Pour les personnes à charge, wrap ci-dessus ne cible que le formulaire
+    // principal ; les cartes de personnes gèrent leurs propres dépendances
+    // (aucune pour l'instant côté personne_a_charge, donc rien à faire ici).
+    if (!wrap) continue;
+    wrap.classList.toggle("champ-grise", !actif);
+    const elements = wrap.querySelectorAll("input, select");
+    elements.forEach((el) => {
+      el.disabled = !actif;
+      if (!actif) {
+        if (el.type === "checkbox") el.checked = false;
+        else el.value = "";
+      }
+    });
+  }
+}
+
+function appliquerDependances() {
+  appliquerDependancesSur("champ_");
 }
 
 function ajouterPersonne() {
@@ -87,42 +183,39 @@ function ajouterPersonne() {
   retirer.type = "button";
   retirer.className = "bouton-lien";
   retirer.textContent = "Retirer";
-  retirer.addEventListener("click", () => carte.remove());
+  retirer.addEventListener("click", () => { carte.remove(); mettreAJourProgression(); });
   entete.appendChild(retirer);
   carte.appendChild(entete);
 
   const grille = document.createElement("div");
   grille.className = "grille-champs";
   for (const champ of SCHEMA.champs_personne_a_charge) {
-    const c = construireChampSaisie(champ);
-    c.querySelector("input, select").id = `personne_${index}_${champ.nom}`;
-    c.querySelector("input, select").dataset.personneIndex = index;
-    grille.appendChild(c);
+    grille.appendChild(construireChampSaisie(champ, `personne_${index}_`));
   }
   carte.appendChild(grille);
   document.getElementById("personnes").appendChild(carte);
 }
 
-function valeurChamp(input) {
-  const v = input.value.trim();
+function valeurChamp(nom, idPrefix) {
+  const v = valeurBruteChamp(nom, idPrefix);
+  if (Array.isArray(v)) return v;
   if (v === "") return null;
-  if (input.dataset.type === "float") return parseFloat(v);
+  const champDef = SCHEMA.champs.concat(SCHEMA.champs_personne_a_charge).find((c) => c.nom === nom);
+  if (champDef && (champDef.type === "float" || champDef.type === "float_positif")) return parseFloat(v);
   return v;
 }
 
 function collecterProfil() {
   const profil = {};
   for (const champ of SCHEMA.champs) {
-    const input = document.getElementById("champ_" + champ.nom);
-    profil[champ.nom] = valeurChamp(input);
+    profil[champ.nom] = valeurChamp(champ.nom, "champ_");
   }
   const personnes = [];
   document.querySelectorAll(".personne-carte").forEach((carte) => {
     const index = carte.dataset.index;
     const personne = {};
     for (const champ of SCHEMA.champs_personne_a_charge) {
-      const input = document.getElementById(`personne_${index}_${champ.nom}`);
-      personne[champ.nom] = valeurChamp(input);
+      personne[champ.nom] = valeurChamp(champ.nom, `personne_${index}_`);
     }
     personnes.push(personne);
   });
@@ -130,51 +223,91 @@ function collecterProfil() {
   return profil;
 }
 
-function formatValeur(champ) {
-  if (champ.etat === "non_renseigne") return "—";
-  if (champ.etat === "mal_saisi") return champ.erreur || "format invalide";
-  const v = champ.valeur;
-  if (v === true) return "oui";
-  if (v === false) return "non";
-  if (v === null || v === undefined) return "—";
-  return String(v);
+function telechargerProfilRempli() {
+  const profil = collecterProfil();
+  const texte = jsyaml.dump(profil, { skipInvalid: true });
+  const blob = new Blob([texte], { type: "text/yaml" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "mon_profil.yml";
+  a.click();
+  URL.revokeObjectURL(url);
 }
 
 function formatMontant(montant) {
   return montant.toLocaleString("fr-FR", { maximumFractionDigits: 2 });
 }
 
+function rendreAideCarte(aide, periode) {
+  const carte = document.createElement("div");
+  carte.className = "aide-carte";
+  const unite = aide.unite || "€";
+  const suffixe = unite === "%" || periode === undefined || periode === "ponctuel" ? ""
+    : periode.length === 4 ? " / an" : " / mois";
+  const valeurAffichee = unite === "%" ? `${formatMontant(aide.montant)} %` : `${formatMontant(aide.montant)} €${suffixe}`;
+  let details = "";
+  if (aide.institution) details += `<div class="aide-institution">${aide.institution}</div>`;
+  if (aide.description) details += `<div class="aide-description">${aide.description}</div>`;
+  details += aide.url
+    ? `<a class="aide-lien" href="${aide.url}" target="_blank" rel="noopener">Voir la source ↗</a>`
+    : `<span class="aide-lien aide-lien-absent">Source précise non disponible — vérifiez auprès de l'organisme.</span>`;
+  carte.innerHTML = `
+    <div class="aide-carte-entete">
+      <span class="aide-nom">${aide.libelle}</span>
+      <span class="aide-montant">${valeurAffichee}</span>
+    </div>
+    <div class="aide-details">${details}</div>
+  `;
+  return carte;
+}
+
 function afficherAides(aides) {
-  const groupes = [
-    ["aides_nationales", "Aides nationales"],
-    ["aides_locales", "Aides locales"],
-    ["aides_velo", "Aides vélo"],
-  ];
   const bloc = document.getElementById("bloc-aides");
   bloc.innerHTML = "";
   let total = 0;
   let nombre = 0;
 
-  for (const [cle, titre] of groupes) {
+  for (const [cle, titre] of [["aides_nationales", "Aides nationales"], ["aides_locales", "Aides locales"]]) {
     const liste = aides[cle] || [];
     if (!liste.length) continue;
     nombre += liste.length;
     const groupe = document.createElement("div");
     groupe.className = "groupe-aides";
-    const h3 = document.createElement("h3");
-    h3.textContent = titre;
-    groupe.appendChild(h3);
+    groupe.innerHTML = `<h3>${titre}</h3>`;
     const conteneurListe = document.createElement("div");
     conteneurListe.className = "liste-aides";
     for (const aide of liste) {
       total += aide.montant;
-      const carte = document.createElement("div");
-      carte.className = "aide-carte";
-      const periode = aide.periode === "ponctuel" ? "" : aide.periode.length === 4 ? " / an" : " / mois";
-      carte.innerHTML = `<span class="aide-nom">${aide.libelle}</span><span class="aide-montant">${formatMontant(aide.montant)} €${periode}</span>`;
-      conteneurListe.appendChild(carte);
+      conteneurListe.appendChild(rendreAideCarte(aide, aide.periode));
     }
     groupe.appendChild(conteneurListe);
+    bloc.appendChild(groupe);
+  }
+
+  const scenarios = aides.aides_velo || [];
+  if (scenarios.length) {
+    const groupe = document.createElement("div");
+    groupe.className = "groupe-aides";
+    const multiScenarios = scenarios.length > 1;
+    groupe.innerHTML = `<h3>Aides vélo</h3>`;
+    for (const scenario of scenarios) {
+      if (!scenario.aides.length) continue;
+      if (multiScenarios) {
+        const sousTitre = document.createElement("div");
+        sousTitre.className = "sous-titre-scenario";
+        sousTitre.textContent = scenario.scenario;
+        groupe.appendChild(sousTitre);
+      }
+      const conteneurListe = document.createElement("div");
+      conteneurListe.className = "liste-aides";
+      for (const aide of scenario.aides) {
+        total += aide.montant;
+        nombre++;
+        conteneurListe.appendChild(rendreAideCarte(aide, "ponctuel"));
+      }
+      groupe.appendChild(conteneurListe);
+    }
     bloc.appendChild(groupe);
   }
 
@@ -199,6 +332,17 @@ function afficherAides(aides) {
   } else {
     blocAvert.hidden = true;
   }
+}
+
+function formatValeurRecap(champ) {
+  if (champ.etat === "non_renseigne") return "—";
+  if (champ.etat === "mal_saisi") return champ.erreur || "format invalide";
+  const v = champ.valeur;
+  if (v === true) return "oui";
+  if (v === false) return "non";
+  if (Array.isArray(v)) return v.length ? v.join(", ") : "—";
+  if (v === null || v === undefined) return "—";
+  return String(v);
 }
 
 function afficherResultats(rapport) {

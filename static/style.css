@@ -84,7 +84,7 @@ section.bloc { margin-bottom: 30px; }
 .grille-champs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
 @media (max-width: 560px) { .grille-champs { grid-template-columns: 1fr; } }
 
-.champ-saisie { display: flex; flex-direction: column; gap: 4px; }
+.champ-saisie { display: flex; flex-direction: column; gap: 4px; transition: opacity 0.15s ease; }
 .champ-saisie label { font-size: 12.5px; color: var(--ink-soft); }
 .champ-saisie input, .champ-saisie select {
   font-family: "IBM Plex Sans", sans-serif; font-size: 14px; color: var(--ink);
@@ -94,6 +94,28 @@ section.bloc { margin-bottom: 30px; }
 .champ-saisie input:focus, .champ-saisie select:focus {
   outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent);
 }
+.champ-saisie.champ-grise { opacity: 0.4; }
+.champ-saisie.champ-grise input, .champ-saisie.champ-grise select { cursor: not-allowed; }
+
+.aide-champ { font-size: 12px; color: var(--ink-soft); margin: 2px 0 0; line-height: 1.4; }
+
+.cases-a-cocher { display: flex; flex-direction: column; gap: 6px; padding-top: 2px; }
+.case-a-cocher {
+  display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--ink);
+  cursor: pointer;
+}
+.case-a-cocher input[type="checkbox"] {
+  width: 16px; height: 16px; accent-color: var(--accent); cursor: pointer; flex: none;
+}
+
+.barre-telechargements {
+  display: flex; gap: 18px; margin-top: 14px;
+}
+.bouton-lien-discret {
+  background: none; border: none; color: var(--ink-soft); font-size: 12.5px; cursor: pointer;
+  padding: 0; font-family: "IBM Plex Sans", sans-serif; text-decoration: none;
+}
+.bouton-lien-discret:hover { color: var(--accent); }
 
 .personnes { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
 .personne-carte {
@@ -155,17 +177,35 @@ section.bloc { margin-bottom: 30px; }
   text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft);
   margin: 0 0 10px;
 }
+.sous-titre-scenario {
+  font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase;
+  letter-spacing: 0.03em; margin: 14px 0 6px;
+}
+.sous-titre-scenario:first-of-type { margin-top: 4px; }
+
 .liste-aides { display: flex; flex-direction: column; gap: 8px; }
 .aide-carte {
-  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
   background: var(--paper-raised); border: 1px solid var(--line); border-left: 3px solid var(--ok);
   border-radius: 8px; padding: 12px 16px; box-shadow: var(--shadow);
+}
+.aide-carte-entete {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
 }
 .aide-carte .aide-nom { font-size: 14px; }
 .aide-carte .aide-montant {
   font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums;
   font-size: 16px; font-weight: 500; color: var(--ok); white-space: nowrap;
 }
+.aide-details {
+  margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.aide-institution {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft);
+}
+.aide-description { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.aide-lien { font-size: 12.5px; font-weight: 500; }
+.aide-lien-absent { color: var(--missing); font-weight: 400; font-style: italic; }
 .aucune-aide { color: var(--ink-soft); font-size: 13.5px; padding: 6px 0 16px; }
 .avertissement {
   display: flex; gap: 10px; background: var(--missing-tint); color: var(--ink-soft);

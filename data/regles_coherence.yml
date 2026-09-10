@@ -70,3 +70,16 @@
   message: >
     Vous indiquez un véhicule à mettre à la casse sans projet de véhicule
     électrique — la prime à la conversion suppose un achat en remplacement.
+
+- id: champs_dependants
+  champs: [voir schema_profil.DEPENDANCES]
+  description: >
+    Règle générique (une seule implémentation couvre tous les cas) : un champ
+    listé dans DEPENDANCES est renseigné alors que le champ dont il dépend
+    n'a pas la valeur qui le rend pertinent (ex : echelon_bourse renseigné
+    alors que boursier = non). C'est la même logique qui grise ces champs
+    dans le formulaire web — cette règle rattrape les cas où le YAML est
+    édité à la main plutôt que rempli via le formulaire.
+  message: >
+    « {champ} » est renseigné alors que « {parent} » ne l'indique pas comme
+    pertinent — vérifiez.

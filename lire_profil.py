@@ -12,7 +12,7 @@ from datetime import date, datetime
 
 import yaml
 
-from schema_profil import CHAMPS_PERSONNE_A_CHARGE, SCHEMA
+from schema_profil import CHAMPS_PERSONNE_A_CHARGE, DEPENDANCES, LIBELLES, SCHEMA
 
 VIDE = (None, "", "n/a", "na")
 
@@ -21,6 +21,8 @@ def est_vide(valeur):
     if valeur is None:
         return True
     if isinstance(valeur, str) and valeur.strip().lower() in VIDE:
+        return True
+    if isinstance(valeur, list) and len(valeur) == 0:
         return True
     return False
 
@@ -46,6 +48,13 @@ def parser_float(valeur):
     return float(nettoye)
 
 
+def parser_float_positif(valeur):
+    v = parser_float(valeur)
+    if v < 0:
+        raise ValueError("doit être positif ou nul")
+    return v
+
+
 def parser_bool(valeur):
     v = str(valeur).strip().lower()
     if v == "oui":
@@ -63,6 +72,21 @@ def parser_enum(valeur, choix):
     raise ValueError(f"attendu l'une des valeurs : {', '.join(choix)}")
 
 
+def parser_enum_multi(valeur, choix):
+    items = valeur if isinstance(valeur, list) else [valeur]
+    resultats, invalides = [], []
+    for item in items:
+        item_str = str(item).strip()
+        trouve = next((c for c in choix if c.lower() == item_str.lower()), None)
+        (resultats if trouve else invalides).append(trouve or item_str)
+    if invalides:
+        raise ValueError(
+            f"valeur(s) non reconnue(s) : {', '.join(invalides)} — "
+            f"attendu parmi : {', '.join(choix)}"
+        )
+    return resultats
+
+
 def parser_code_postal(valeur):
     v = str(valeur).strip()
     if not re.fullmatch(r"\d{5}", v):
@@ -73,6 +97,7 @@ def parser_code_postal(valeur):
 PARSEURS = {
     "date": parser_date,
     "float": parser_float,
+    "float_positif": parser_float_positif,
     "bool": parser_bool,
     "code_postal": parser_code_postal,
 }
@@ -80,12 +105,15 @@ PARSEURS = {
 
 def valider_champ(nom, type_, choix, valeur):
     """Retourne (etat, valeur_normalisee, erreur) avec etat dans
-    {"capture", "non_renseigne", "mal_saisi"}."""
+    {"capture", "non_renseigne", "mal_saisi"}. Pour "enum_multi",
+    valeur_normalisee est une liste (éventuellement vide -> non_renseigne)."""
     if est_vide(valeur):
         return "non_renseigne", None, None
     try:
         if type_ == "enum":
             normalisee = parser_enum(valeur, choix)
+        elif type_ == "enum_multi":
+            normalisee = parser_enum_multi(valeur, choix)
         elif type_ == "text":
             normalisee = str(valeur).strip()
         else:
@@ -238,7 +266,7 @@ def regle_boursier_sans_echelon(v, personnes):
 
 
 def regle_etudiant_sans_niveau(v, personnes):
-    if v.get("statut_professionnel") == "étudiant·e" and not v.get("niveau_etudes"):
+    if "étudiant·e" in (v.get("statut_professionnel") or []) and not v.get("niveau_etudes"):
         return "Statut \"étudiant·e\" déclaré sans niveau d'études renseigné — plusieurs dispositifs (bourses, réductions) en dépendent."
     return None
 
@@ -249,6 +277,33 @@ def regle_conversion_sans_projet_vehicule(v, personnes):
     return None
 
 
+def regle_champs_dependants(v, personnes):
+    """Un champ qui ne devrait être pertinent que si un autre champ a une
+    certaine valeur (cf. schema_profil.DEPENDANCES — c'est la même logique
+    qui grise ces champs dans le formulaire web) est renseigné alors que sa
+    condition n'est pas remplie. Peut arriver en éditant le YAML à la main
+    (le formulaire web l'empêche déjà en grisant le champ)."""
+    messages = []
+    for champ, (parent, valeurs_activantes) in DEPENDANCES.items():
+        if est_vide(v.get(champ)):
+            continue
+        valeur_parent = v.get(parent)
+        if valeur_parent is None:
+            continue
+        if isinstance(valeur_parent, list):
+            actif = any(x in valeurs_activantes for x in valeur_parent)
+        elif isinstance(valeur_parent, bool):
+            actif = valeur_parent and "oui" in valeurs_activantes
+        else:
+            actif = valeur_parent in valeurs_activantes
+        if not actif:
+            messages.append(
+                f"« {LIBELLES.get(champ, champ)} » est renseigné alors que "
+                f"« {LIBELLES.get(parent, parent)} » ne l'indique pas comme pertinent — vérifiez."
+            )
+    return messages or None
+
+
 REGLES = [
     ("parts_fiscales_incoherentes", regle_parts_fiscales),
     ("logement_loyer_vs_statut", regle_logement_loyer_vs_statut),
@@ -257,6 +312,7 @@ REGLES = [
     ("boursier_sans_echelon", regle_boursier_sans_echelon),
     ("etudiant_sans_niveau", regle_etudiant_sans_niveau),
     ("conversion_sans_projet_vehicule", regle_conversion_sans_projet_vehicule),
+    ("champs_dependants", regle_champs_dependants),
 ]
 
 

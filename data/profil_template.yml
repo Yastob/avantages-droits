@@ -9,8 +9,11 @@
 #      avez fourni assez d'informations.
 #   3. Respectez le format indiqué en commentaire (dates, oui/non...) —
 #      sinon le champ sera signalé comme "mal saisi" au lieu d'être ignoré.
-#   4. Une fois rempli, enregistrez le fichier et donnez-le-moi (dans le
-#      dossier data/ du projet, ou collé dans le chat).
+#   4. Certains champs acceptent PLUSIEURS réponses (ex : type_revenus) —
+#      ce sont des listes YAML, décommentez une ligne "- valeur" par choix.
+#   5. Une fois rempli, enregistrez le fichier et donnez-le-moi (dans le
+#      dossier data/ du projet, ou collé dans le chat) — ou utilisez le
+#      formulaire web, qui peut aussi générer ce fichier pour vous.
 # ============================================================================
 
 # ================= IDENTITÉ =================
@@ -37,16 +40,31 @@ code_postal:                        # requis pour les aides locales et les zonag
 commune:
 statut_logement:                    # locataire / propriétaire / hébergé·e à titre gratuit / sans domicile stable
 residence:                          # principale / secondaire (laisser vide si non pertinent)
-loyer_mensuel:                      # en €, si locataire — sinon laisser vide
-mensualite_pret_immobilier:         # en €, si propriétaire accédant — sinon laisser vide
-zone_faibles_emissions:             # oui/non — habitez-vous ou circulez-vous en zone ZFE ?
+loyer_mensuel:                      # en €, uniquement si locataire
+mensualite_pret_immobilier:         # en €, uniquement si propriétaire accédant
+zone_faibles_emissions:             # oui/non — laisser vide si vous ne savez pas (pas grave, c'est courant)
 
 # ================= RESSOURCES DU FOYER =================
-revenu_net_mensuel_foyer:           # en €, total du foyer, avant tout avantage
+# Net de cotisations sociales, avant impôt sur le revenu. Incluez les primes
+# régulières (13e mois lissé sur l'année), pas les primes exceptionnelles.
+revenu_net_mensuel_foyer:
 revenu_fiscal_reference:            # en €/an, tel qu'il figure sur votre avis d'imposition (si connu)
-type_revenus:                       # salaire / indépendant·e / chômage / retraite / pension / aucun revenu / plusieurs
-patrimoine_epargne:                 # en €, montant approximatif (livrets, assurance-vie...) — laisser vide si non pertinent
-autre_bien_immobilier:              # oui/non — possédez-vous un bien immobilier autre que votre résidence principale ?
+
+# Une ou plusieurs lignes parmi : salaire / chômage / retraite /
+# indépendant / auto-entrepreneur / aucun revenu. Si plusieurs sont cochées,
+# seule la principale (priorité salaire > indépendant > chômage > retraite)
+# est utilisée dans le calcul — la répartition exacte n'est pas modélisée.
+type_revenus:
+  # - salaire
+  # - chômage
+  # - retraite
+  # - indépendant / auto-entrepreneur
+  # - aucun revenu
+
+epargne_liquide:                    # en €, livrets/assurance-vie/comptes-titres — PAS votre résidence
+                                       # principale (déjà prise en compte via le logement ci-dessus). Doit être ≥ 0.
+autre_bien_immobilier:              # oui/non — un bien immobilier autre que votre résidence principale ?
+pension_alimentaire_recue:          # en €/mois — laisser vide si non concerné
 
 # Aides déjà perçues actuellement (sert à éviter les doublons / vérifier la cohérence)
 aides_deja_percues:                 # liste libre, ex: "RSA, APL" — laisser vide si aucune
@@ -54,10 +72,18 @@ aides_deja_percues:                 # liste libre, ex: "RSA, APL" — laisser vi
 # ================= DÉPENSES PARTICULIÈRES =================
 frais_garde_enfants:                 # en €/mois — laisser vide si non concerné
 pension_alimentaire_versee:          # en €/mois — laisser vide si non concerné
-pension_alimentaire_recue:           # en €/mois — laisser vide si non concerné
 
 # ================= SITUATION PROFESSIONNELLE =================
-statut_professionnel:                # salarié·e / indépendant·e-auto-entrepreneur·se / demandeur·se d'emploi / étudiant·e / apprenti·e-alternant·e / retraité·e / sans activité
+# Une ou plusieurs lignes (vous pouvez cumuler, ex. salarié·e + indépendant·e)
+statut_professionnel:
+  # - salarié·e
+  # - indépendant·e-auto-entrepreneur·se
+  # - demandeur·se d'emploi
+  # - étudiant·e
+  # - apprenti·e-alternant·e
+  # - retraité·e
+  # - sans activité
+
 anciennete_statut:                   # depuis quand, en mois ou années (approximatif)
 
 # --- si demandeur·se d'emploi ---
@@ -67,19 +93,24 @@ indemnise_chomage:                   # oui/non
 # --- si étudiant·e ---
 niveau_etudes:                       # lycée / BTS-DUT / licence / master / doctorat / formation sanitaire-sociale / autre
 boursier:                            # oui/non
-echelon_bourse:                      # si connu, sinon laisser vide
+echelon_bourse:                      # uniquement si boursier·ère
 
 # --- si apprenti·e/alternant·e ---
 entreprise_secteur:                  # public / privé — pertinent pour certaines aides logement en alternance
 
 # ================= SITUATIONS PARTICULIÈRES =================
 situation_handicap:                  # oui/non (vous-même)
-taux_incapacite:                     # en %, si connu — sinon laisser vide
+taux_incapacite:                     # en %, uniquement si situation_handicap = oui
 situation_perte_autonomie:           # oui/non — vous ou un proche à charge, pertinent pour les aides dépendance
 
 # ================= MOBILITÉ / TRANSPORT =================
 utilise_transports_commun:           # oui/non
-reseau_transport_principal:          # SNCF / réseau urbain / réseau régional / plusieurs
+# Une ou plusieurs lignes, uniquement si vous utilisez les transports en commun
+reseau_transport_principal:
+  # - SNCF (grandes lignes)
+  # - Île-de-France Mobilités (RATP / Transilien / RER)
+  # - réseau urbain hors IDF (métro/tram/bus de ma ville)
+  # - réseau régional (TER, car interurbain)
 carte_etudiante_scolaire:            # oui/non
 
 # ================= PROJETS EN COURS =================
@@ -87,20 +118,36 @@ carte_etudiante_scolaire:            # oui/non
 
 # --- véhicule électrique ---
 projet_vehicule_electrique:          # oui/non
-type_projet_vehicule:                # achat neuf / achat occasion / location longue durée — laisser vide si non concerné
+# Une ou plusieurs lignes, uniquement si projet_vehicule_electrique = oui
+type_projet_vehicule:
+  # - achat neuf
+  # - achat occasion
+  # - location longue durée
 vehicule_actuel_a_mettre_a_la_casse: # oui/non — pertinent pour la prime à la conversion
 
 # --- vélo ---
 projet_velo:                         # oui/non
-type_velo:                           # électrique / cargo / pliant / adapté handicap — laisser vide si non concerné
-etat_velo:                           # neuf / occasion — laisser vide si non concerné
+# Une ou plusieurs lignes, uniquement si projet_velo = oui — hésiter entre
+# plusieurs types/états calcule une estimation pour chaque combinaison.
+type_velo:
+  # - électrique
+  # - cargo
+  # - pliant
+  # - adapté handicap
+etat_velo:
+  # - neuf
+  # - occasion
 prix_velo:                           # en €, prix envisagé — nécessaire pour estimer le montant des aides
 
 # --- logement (achat ou rénovation) ---
 projet_achat_logement:               # oui/non
-primo_accedant:                      # oui/non — laisser vide si non concerné
+primo_accedant:                      # oui/non — uniquement si projet_achat_logement = oui
 projet_renovation_energetique:       # oui/non
-type_travaux_envisages:              # isolation / chauffage / fenêtres / plusieurs — laisser vide si non concerné
+# Une ou plusieurs lignes, uniquement si projet_renovation_energetique = oui
+type_travaux_envisages:
+  # - isolation
+  # - chauffage
+  # - fenêtres
 
 # ================= PRATIQUES (pour réductions culture/sport) =================
 pratique_sportive_reguliere:         # oui/non — pertinent pour le pass Sport
