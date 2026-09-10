@@ -249,9 +249,11 @@ function rendreAideCarte(aide, periode) {
   let details = "";
   if (aide.institution) details += `<div class="aide-institution">${aide.institution}</div>`;
   if (aide.description) details += `<div class="aide-description">${aide.description}</div>`;
-  details += aide.url
-    ? `<a class="aide-lien" href="${aide.url}" target="_blank" rel="noopener">Voir la source ↗</a>`
-    : `<span class="aide-lien aide-lien-absent">Source précise non disponible — vérifiez auprès de l'organisme.</span>`;
+  if (aide.url) {
+    const texteLien = aide.url_est_recherche ? "Rechercher cette aide ↗" : "Voir la source ↗";
+    const classe = aide.url_est_recherche ? "aide-lien aide-lien-recherche" : "aide-lien";
+    details += `<a class="${classe}" href="${aide.url}" target="_blank" rel="noopener">${texteLien}</a>`;
+  }
   carte.innerHTML = `
     <div class="aide-carte-entete">
       <span class="aide-nom">${aide.libelle}</span>

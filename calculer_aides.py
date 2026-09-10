@@ -68,6 +68,28 @@ MAPPING_TYPE_VELO = {
 }
 
 
+def premiere_url(reference):
+    """`variable.reference` d'OpenFisca est une liste qui mélange parfois un
+    intitulé de texte de loi (pas une URL) et une vraie URL (ex: Cambrai ->
+    ['Règlement relatif à...', 'https://...']) -- on ne garde que ce qui
+    ressemble vraiment à un lien, jamais reference[0] à l'aveugle."""
+    if not reference:
+        return None
+    return next((r for r in reference if r.startswith("http")), None)
+
+
+def lien_source(libelle, reference):
+    """Retourne (url, est_une_recherche). Utilise la vraie référence
+    OpenFisca quand il y en a une ; sinon renvoie un lien de recherche vers
+    service-public.fr plutôt que de fabriquer une URL qu'on ne peut pas
+    vérifier (un mauvais lien est pire qu'un lien de recherche générique)."""
+    url = premiere_url(reference)
+    if url:
+        return url, False
+    requete = urllib.parse.quote(f"{libelle} site:service-public.fr")
+    return f"https://www.google.com/search?q={requete}", True
+
+
 def tax_benefit_system():
     global _TBS, _NOMS_LOCAUX
     if _TBS is None:
@@ -250,12 +272,13 @@ def calculer_national_et_local(valeurs, personnes, localisation, avertissements)
         if valeur > 0:
             variable = tbs.variables.get(nom_var)
             reference = getattr(variable, "reference", None) if variable else None
+            url, recherche = lien_source(libelle, reference)
             nationales.append({
                 "nom": nom_var, "libelle": libelle, "montant": round(valeur, 2), "periode": periode,
                 "unite": "€",
                 "institution": "Prestation nationale (calculée avec OpenFisca-France, le même moteur "
                                 "que mes-aides.1jeune1solution.beta.gouv.fr)",
-                "url": reference[0] if reference else None,
+                "url": url, "url_est_recherche": recherche,
             })
 
     locales = []
@@ -296,12 +319,13 @@ def calculer_national_et_local(valeurs, personnes, localisation, avertissements)
             # "80,00 €" quand c'est en fait "80 %".
             unite = "%" if ("%" in libelle or "pourcentage" in libelle.lower()) else "€"
             reference = getattr(variable, "reference", None)
+            url, recherche = lien_source(libelle, reference)
             locales.append({
                 "nom": nom_var, "libelle": libelle, "montant": round(valeur, 2), "periode": periode,
                 "unite": unite,
                 "institution": institution_locale(nom_var, localisation)
                 or "Collectivité locale (calculé avec openfisca-france-local)",
-                "url": reference[0] if reference else None,
+                "url": url, "url_est_recherche": recherche,
             })
 
     return nationales, locales
@@ -366,11 +390,14 @@ def calculer_velo(valeurs, localisation, avertissements):
 
     resultats = []
     for scenario in scenarios:
-        aides = [{
-            "libelle": a["title"], "montant": round(a["amount"], 2), "unite": "€",
-            "description": a.get("description"), "url": a.get("url"),
-            "institution": a.get("institution"),
-        } for a in scenario["aides"]]
+        aides = []
+        for a in scenario["aides"]:
+            url, recherche = (a["url"], False) if a.get("url") else lien_source(a["title"], None)
+            aides.append({
+                "libelle": a["title"], "montant": round(a["amount"], 2), "unite": "€",
+                "description": a.get("description"), "url": url, "url_est_recherche": recherche,
+                "institution": a.get("institution"),
+            })
         resultats.append({"scenario": scenario["scenario"], "aides": aides})
     return resultats
 
