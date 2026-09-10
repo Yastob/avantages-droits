@@ -125,9 +125,72 @@ function formatValeur(champ) {
   return String(v);
 }
 
+function formatMontant(montant) {
+  return montant.toLocaleString("fr-FR", { maximumFractionDigits: 2 });
+}
+
+function afficherAides(aides) {
+  const groupes = [
+    ["aides_nationales", "Aides nationales"],
+    ["aides_locales", "Aides locales"],
+    ["aides_velo", "Aides vélo"],
+  ];
+  const bloc = document.getElementById("bloc-aides");
+  bloc.innerHTML = "";
+  let total = 0;
+  let nombre = 0;
+
+  for (const [cle, titre] of groupes) {
+    const liste = aides[cle] || [];
+    if (!liste.length) continue;
+    nombre += liste.length;
+    const groupe = document.createElement("div");
+    groupe.className = "groupe-aides";
+    const h3 = document.createElement("h3");
+    h3.textContent = titre;
+    groupe.appendChild(h3);
+    const conteneurListe = document.createElement("div");
+    conteneurListe.className = "liste-aides";
+    for (const aide of liste) {
+      total += aide.montant;
+      const carte = document.createElement("div");
+      carte.className = "aide-carte";
+      const periode = aide.periode === "ponctuel" ? "" : aide.periode.length === 4 ? " / an" : " / mois";
+      carte.innerHTML = `<span class="aide-nom">${aide.libelle}</span><span class="aide-montant">${formatMontant(aide.montant)} €${periode}</span>`;
+      conteneurListe.appendChild(carte);
+    }
+    groupe.appendChild(conteneurListe);
+    bloc.appendChild(groupe);
+  }
+
+  document.getElementById("sous-titre-aides").textContent = nombre
+    ? `${nombre} aide${nombre > 1 ? "s" : ""} potentielle${nombre > 1 ? "s" : ""} trouvée${nombre > 1 ? "s" : ""} — estimation totale ${formatMontant(total)} €.`
+    : "Aucune aide trouvée avec les informations saisies — complétez le formulaire pour affiner la recherche.";
+
+  if (!nombre) {
+    bloc.innerHTML = `<p class="aucune-aide">Aucun résultat pour l'instant. Plus vous renseignez de champs, plus la recherche est précise.</p>`;
+  }
+
+  const blocAvert = document.getElementById("bloc-avertissements");
+  blocAvert.innerHTML = "";
+  if (aides.avertissements && aides.avertissements.length) {
+    blocAvert.hidden = false;
+    for (const a of aides.avertissements) {
+      const d = document.createElement("div");
+      d.className = "avertissement";
+      d.innerHTML = `<span>ℹ️</span><span>${a}</span>`;
+      blocAvert.appendChild(d);
+    }
+  } else {
+    blocAvert.hidden = true;
+  }
+}
+
 function afficherResultats(rapport) {
   const r = rapport.resume;
   document.getElementById("resultats").hidden = false;
+
+  afficherAides(rapport.aides || { aides_nationales: [], aides_locales: [], aides_velo: [], avertissements: [] });
 
   const tuiles = document.getElementById("tuiles");
   tuiles.innerHTML = "";

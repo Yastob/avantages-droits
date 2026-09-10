@@ -11,6 +11,7 @@ import logging
 import yaml
 from flask import Flask, jsonify, request, send_from_directory
 
+from calculer_aides import calculer_aides
 from lire_profil import analyser_profil
 from schema_profil import CHAMPS_PERSONNE_A_CHARGE, LIBELLES, ORDRE_CATEGORIES, SCHEMA
 
@@ -35,6 +36,13 @@ def analyser_profil_endpoint():
         return jsonify({"erreur": "le profil doit être un mapping (objet YAML/JSON)"}), 400
 
     rapport = analyser_profil(profil)
+    try:
+        rapport["aides"] = calculer_aides(rapport)
+    except Exception as e:
+        rapport["aides"] = {
+            "aides_nationales": [], "aides_locales": [], "aides_velo": [],
+            "avertissements": [f"Erreur inattendue lors du calcul des aides : {e}"],
+        }
     return jsonify(rapport)
 
 

@@ -67,20 +67,21 @@ calcul OpenFisca (Python) ne peut donc pas tourner dans un Artifact partagé
 — il faut une vraie appli web autonome, hébergée en dehors de l'écosystème
 Artifact.
 
-- `app.py` — API Flask, endpoint `POST /api/analyser-profil` (accepte YAML
-  ou JSON), réutilise `analyser_profil()` de `lire_profil.py`. **Sans état** :
-  chaque requête est traitée en mémoire, rien n'est journalisé ni persisté
-  côté serveur — décision volontaire pour limiter la responsabilité sur des
-  données sensibles d'un tiers (voir "Vie privée" ci-dessous). Testé en
-  local via `app.test_client()`, pas encore déployé.
-- `Procfile` — `gunicorn app:app`, prêt pour un déploiement Render (choisi
-  comme hébergeur — palier gratuit, déploiement direct depuis GitHub, mais
-  le service gratuit se met en veille après inactivité).
-- Front-end web (formulaire de profil, affichage des résultats) : **pas
-  encore construit**. Le flux "template YAML téléchargé / édité en
-  local / uploadé" pensé pour l'usage perso solo reste à réévaluer pour des
-  amis moins techniques — probablement un vrai formulaire web à un moment,
-  pas encore tranché.
+**État : en ligne.** Dépôt public [github.com/Yastob/avantages-droits](https://github.com/Yastob/avantages-droits),
+déployé sur Render (Blueprint via `render.yaml`) à
+`https://avantages-droits.onrender.com`. Palier gratuit : le service se met
+en veille après inactivité, 30-50s de redémarrage au premier accès.
+
+- `app.py` — API Flask. `POST /api/analyser-profil` (YAML ou JSON) exécute
+  `analyser_profil()` (validation/cohérence) **puis** `calculer_aides()`
+  (éligibilité réelle), retourne les deux dans une seule réponse. `GET
+  /api/schema` expose le schéma pour que le front construise le formulaire
+  dynamiquement (une seule source de vérité : `schema_profil.py`). **Sans
+  état** : rien n'est journalisé ni persisté côté serveur.
+- `static/` — front-end (formulaire généré depuis `/api/schema`, affichage
+  des résultats). Vanilla JS, pas de framework.
+- `calculer_aides.py` — le moteur d'éligibilité, voir section dédiée
+  ci-dessous.
 
 ## Licence des dépendances — obligation AGPL active
 
@@ -99,17 +100,64 @@ donnée personnelle ne doit jamais entrer dans le dépôt :
 - Vérifier avant tout push que les logs serveur ne journalisent jamais le
   corps des requêtes (seulement méthode/route/code retour).
 
-## Prochaines étapes (non commencées)
+## Moteur d'éligibilité (`calculer_aides.py`)
 
-1. Front-end web pour remplir un profil (probablement un vrai formulaire,
-   à trancher) + afficher le récap (reprendre le design de
-   `artifact/recap_profil_gabarit.html`, adapté pour consommer l'API au
-   lieu de données injectées).
-2. Moteur de matching : orchestrer les runtimes (appel subprocess vers
-   `velo/` depuis `app.py`) + le futur catalogue Publicodes, à partir d'un
-   profil reçu par l'API.
-3. Construire le catalogue Publicodes maison (véhicule électrique en
-   premier, cf. priorités validées).
-4. Créer le dépôt GitHub public (nom à définir, cf. convention CLAUDE.md
-   global : le nom du dépôt n'a pas besoin de correspondre au dossier
-   local), pousser le code, déployer sur Render.
+Construit une simulation OpenFisca (national + local) à partir du profil,
+plus un appel au module vélo Node en subprocess. Points de conception non
+évidents, à ne pas re-découvrir à chaque session :
+
+- **Revenus étalés sur 4 mois glissants**, pas juste le mois courant. RSA/PPA
+  se basent sur une moyenne glissante ; fournir un revenu sur un seul mois
+  fausse gravement le résultat (testé : un salaire de 1800€ déclaré sur un
+  seul mois donnait un RSA de 569€, alors qu'il tombe à 0€ correctement une
+  fois le même revenu étalé sur 4 mois — l'algorithme "regarde en arrière"
+  sur des mois non renseignés, donc vides, donc sous-évalués).
+- **`type_revenus` est un champ texte libre** (pas un enum) : mappé vers la
+  bonne variable OpenFisca (`salaire_net`/`chomage_net`/`retraite_nette`/
+  `rpns_auto_entrepreneur_benefice`) par recherche de mots-clés, repli sur
+  `salaire_net` si rien ne correspond (proxy générique le plus large).
+- **Couples non modélisés individuellement** : le profil ne capture qu'une
+  personne + ses personnes à charge, pas de deuxième adulte. Pour un couple,
+  tout le revenu du foyer est attribué au déclarant — correct pour les
+  prestations dont le calcul agrège les ressources de la famille (RSA, PPA,
+  APL...), mais faussé pour les variables individuelles (AAH...). Limite
+  connue, non résolue.
+- **`code_postal` ≠ code INSEE (`depcom`)** : résolu via l'API publique
+  `geo.api.gouv.fr` (`resoudre_localisation`), qui donne aussi EPCI/
+  département/région — nécessaire à la fois pour les variables locales et
+  pour le module vélo.
+- **Les formules `openfisca-france-local` ne filtrent pas toutes par
+  territoire elles-mêmes** (constaté en test : `antony_aide_depart_...`
+  renvoyait un montant pour un profil à Bordeaux). Sans un filtrage
+  supplémentaire, on ressort des aides de communes au hasard partout en
+  France. Palliatif actuel : ne garder une variable locale que si son nom
+  contient un des "slugs" de la commune/EPCI/département/région de la
+  personne (`slugs_localisation`) — heuristique texte, pas une vraie
+  vérification géographique, donc imparfaite dans les deux sens (faux
+  négatifs si le nom de variable ne correspond pas au slug ; faux positifs
+  résiduels possibles).
+- **Distinguer un montant d'aide d'une variable intermédiaire** (plafond,
+  base de ressources, taux, éligibilité booléenne...) parmi les ~90
+  variables locales n'a pas de méthode fiable sans inspecter chaque
+  dispositif individuellement. Filtrage par mots-clés dans le nom
+  (`_MOTS_INTERMEDIAIRES`) — best-effort, à enrichir à chaque faux positif
+  repéré en usage réel.
+- **Vélo sans prix connu** : le profil ne demande pas systématiquement le
+  prix du vélo envisagé (`prix_velo`, optionnel) ; à défaut, un prix par
+  défaut (1200€) est utilisé pour l'estimation, avec avertissement explicite
+  à l'utilisateur.
+- **Libellé de périodicité approximatif** : une variable OpenFisca "month"
+  n'est pas forcément une aide versée chaque mois (ex. aide au permis,
+  modélisée en "month" mais versée une fois) — le front affiche donc les
+  montants avec un avertissement général plutôt que de prétendre à une
+  périodicité exacte par dispositif.
+
+## Prochaines étapes
+
+1. Construire le catalogue Publicodes maison pour les dispositifs hors
+   OpenFisca/aides-velo — véhicule électrique (bonus écologique, prime à la
+   conversion, leasing social) en premier, cf. priorités validées.
+2. Affiner le filtrage des dispositifs locaux (faux positifs/négatifs -
+   voir limites ci-dessus) au fil des retours d'usage réel.
+3. Modéliser un deuxième adulte (couple) dans le profil, si les retours
+   d'amis montrent que l'approximation actuelle pose problème.

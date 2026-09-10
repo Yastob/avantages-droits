@@ -93,6 +93,8 @@ vehicule_actuel_a_mettre_a_la_casse: # oui/non — pertinent pour la prime à la
 # --- vélo ---
 projet_velo:                         # oui/non
 type_velo:                           # électrique / cargo / pliant / adapté handicap — laisser vide si non concerné
+etat_velo:                           # neuf / occasion — laisser vide si non concerné
+prix_velo:                           # en €, prix envisagé — nécessaire pour estimer le montant des aides
 
 # --- logement (achat ou rénovation) ---
 projet_achat_logement:               # oui/non

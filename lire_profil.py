@@ -141,6 +141,9 @@ def analyser_profil(profil):
         "personnes_a_charge": personnes_resultats,
         "incoherences": incoherences,
         "resume": resume,
+        # Vue normalisée, réutilisée par calculer_aides.py pour ne pas reparser le profil.
+        "valeurs": valeurs_normalisees,
+        "personnes_valeurs": personnes_normalisees,
     }
 
 

@@ -133,6 +133,30 @@ section.bloc { margin-bottom: 30px; }
   border-left: 3px solid var(--warn); border-radius: 6px; padding: 10px 14px; font-size: 13.5px;
 }
 
+.groupe-aides { margin-bottom: 22px; }
+.groupe-aides h3 {
+  font-family: "IBM Plex Sans", sans-serif; font-weight: 600; font-size: 13px;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+.liste-aides { display: flex; flex-direction: column; gap: 8px; }
+.aide-carte {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  background: var(--paper-raised); border: 1px solid var(--line); border-left: 3px solid var(--ok);
+  border-radius: 8px; padding: 12px 16px; box-shadow: var(--shadow);
+}
+.aide-carte .aide-nom { font-size: 14px; }
+.aide-carte .aide-montant {
+  font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums;
+  font-size: 16px; font-weight: 500; color: var(--ok); white-space: nowrap;
+}
+.aucune-aide { color: var(--ink-soft); font-size: 13.5px; padding: 6px 0 16px; }
+.avertissement {
+  display: flex; gap: 10px; background: var(--missing-tint); color: var(--ink-soft);
+  border: 1px solid var(--line); border-radius: 6px; padding: 9px 14px; font-size: 13px;
+  margin-bottom: 6px;
+}
+
 .champ-resultat {
   display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
   padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 13.5px;
