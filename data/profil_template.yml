@@ -1,0 +1,105 @@
+# ============================================================================
+# PROFIL — modèle à remplir pour identifier vos aides, droits et réductions
+# ============================================================================
+# Comment l'utiliser :
+#   1. Remplissez ce qui vous concerne. Un champ laissé vide (rien après les
+#      deux-points) sera traité comme "non renseigné", pas comme une erreur.
+#   2. Vous pouvez ne répondre qu'à une partie des sections — la recherche
+#      se fera simplement sur les catégories d'aides pour lesquelles vous
+#      avez fourni assez d'informations.
+#   3. Respectez le format indiqué en commentaire (dates, oui/non...) —
+#      sinon le champ sera signalé comme "mal saisi" au lieu d'être ignoré.
+#   4. Une fois rempli, enregistrez le fichier et donnez-le-moi (dans le
+#      dossier data/ du projet, ou collé dans le chat).
+# ============================================================================
+
+# ================= IDENTITÉ =================
+date_naissance:                    # JJ/MM/AAAA — âge = condition de quasi tous les dispositifs
+situation_familiale:                # célibataire / concubinage / pacsé·e / marié·e / divorcé·e / veuf·ve
+
+# ================= FOYER =================
+# Une entrée par personne à charge (enfants ou autre membre du foyer). Effacez
+# les lignes d'exemple si vous n'en avez pas, dupliquez-les si vous en avez plusieurs.
+personnes_a_charge:
+  - date_naissance:                 # JJ/MM/AAAA
+    lien:                           # enfant / autre
+    scolarise:                      # oui/non
+    situation_handicap:             # oui/non
+    garde_alternee:                 # oui/non — change le calcul des parts fiscales (0,25 part au lieu de 0,5)
+
+nombre_parts_fiscales:              # tel qu'indiqué sur votre avis d'imposition — recoupé automatiquement avec
+                                       # votre situation familiale et vos personnes à charge ; en cas d'écart, une
+                                       # alerte non bloquante vous sera signalée (à vérifier, pas forcément une erreur :
+                                       # ça peut venir d'un cas particulier — invalidité, ancien combattant, veuvage...)
+
+# ================= LOGEMENT =================
+code_postal:                        # requis pour les aides locales et les zonages logement
+commune:
+statut_logement:                    # locataire / propriétaire / hébergé·e à titre gratuit / sans domicile stable
+residence:                          # principale / secondaire (laisser vide si non pertinent)
+loyer_mensuel:                      # en €, si locataire — sinon laisser vide
+mensualite_pret_immobilier:         # en €, si propriétaire accédant — sinon laisser vide
+zone_faibles_emissions:             # oui/non — habitez-vous ou circulez-vous en zone ZFE ?
+
+# ================= RESSOURCES DU FOYER =================
+revenu_net_mensuel_foyer:           # en €, total du foyer, avant tout avantage
+revenu_fiscal_reference:            # en €/an, tel qu'il figure sur votre avis d'imposition (si connu)
+type_revenus:                       # salaire / indépendant·e / chômage / retraite / pension / aucun revenu / plusieurs
+patrimoine_epargne:                 # en €, montant approximatif (livrets, assurance-vie...) — laisser vide si non pertinent
+autre_bien_immobilier:              # oui/non — possédez-vous un bien immobilier autre que votre résidence principale ?
+
+# Aides déjà perçues actuellement (sert à éviter les doublons / vérifier la cohérence)
+aides_deja_percues:                 # liste libre, ex: "RSA, APL" — laisser vide si aucune
+
+# ================= DÉPENSES PARTICULIÈRES =================
+frais_garde_enfants:                 # en €/mois — laisser vide si non concerné
+pension_alimentaire_versee:          # en €/mois — laisser vide si non concerné
+pension_alimentaire_recue:           # en €/mois — laisser vide si non concerné
+
+# ================= SITUATION PROFESSIONNELLE =================
+statut_professionnel:                # salarié·e / indépendant·e-auto-entrepreneur·se / demandeur·se d'emploi / étudiant·e / apprenti·e-alternant·e / retraité·e / sans activité
+anciennete_statut:                   # depuis quand, en mois ou années (approximatif)
+
+# --- si demandeur·se d'emploi ---
+inscrit_france_travail:              # oui/non
+indemnise_chomage:                   # oui/non
+
+# --- si étudiant·e ---
+niveau_etudes:                       # lycée / BTS-DUT / licence / master / doctorat / formation sanitaire-sociale / autre
+boursier:                            # oui/non
+echelon_bourse:                      # si connu, sinon laisser vide
+
+# --- si apprenti·e/alternant·e ---
+entreprise_secteur:                  # public / privé — pertinent pour certaines aides logement en alternance
+
+# ================= SITUATIONS PARTICULIÈRES =================
+situation_handicap:                  # oui/non (vous-même)
+taux_incapacite:                     # en %, si connu — sinon laisser vide
+situation_perte_autonomie:           # oui/non — vous ou un proche à charge, pertinent pour les aides dépendance
+
+# ================= MOBILITÉ / TRANSPORT =================
+utilise_transports_commun:           # oui/non
+reseau_transport_principal:          # SNCF / réseau urbain / réseau régional / plusieurs
+carte_etudiante_scolaire:            # oui/non
+
+# ================= PROJETS EN COURS =================
+# Ne remplissez que ce qui correspond à un projet réel ou envisagé sous 12 mois.
+
+# --- véhicule électrique ---
+projet_vehicule_electrique:          # oui/non
+type_projet_vehicule:                # achat neuf / achat occasion / location longue durée — laisser vide si non concerné
+vehicule_actuel_a_mettre_a_la_casse: # oui/non — pertinent pour la prime à la conversion
+
+# --- vélo ---
+projet_velo:                         # oui/non
+type_velo:                           # électrique / cargo / pliant / adapté handicap — laisser vide si non concerné
+
+# --- logement (achat ou rénovation) ---
+projet_achat_logement:               # oui/non
+primo_accedant:                      # oui/non — laisser vide si non concerné
+projet_renovation_energetique:       # oui/non
+type_travaux_envisages:              # isolation / chauffage / fenêtres / plusieurs — laisser vide si non concerné
+
+# ================= PRATIQUES (pour réductions culture/sport) =================
+pratique_sportive_reguliere:         # oui/non — pertinent pour le pass Sport
+frequentation_culturelle:            # oui/non — musées, cinéma, spectacles

@@ -1,0 +1,72 @@
+# ============================================================================
+# Règles de cohérence — vérifications non bloquantes appliquées au profil
+# lors de sa relecture. Chaque règle produit une alerte 🔶 dans le récap,
+# jamais un blocage. Liste vivante : à enrichir au fil de l'implémentation.
+# ============================================================================
+
+- id: parts_fiscales_incoherentes
+  champs: [nombre_parts_fiscales, situation_familiale, personnes_a_charge]
+  description: >
+    Le nombre de parts déclaré ne correspond pas à celui calculé à partir de
+    la situation familiale et des personnes à charge (1 part seul·e, 2 en
+    couple, +0,5/enfant pour les 2 premiers, +1 à partir du 3e, +0,25 au lieu
+    de 0,5 si garde alternée, +0,5 si parent isolé avec enfant(s) à charge).
+  message: >
+    Nombre de parts renseigné ({valeur_declaree}) différent du nombre
+    attendu ({valeur_calculee}) d'après votre situation familiale. Vérifiez
+    votre saisie, ou confirmez si un cas particulier s'applique (invalidité,
+    ancien combattant, veuvage récent...).
+
+- id: logement_loyer_vs_statut
+  champs: [statut_logement, loyer_mensuel, mensualite_pret_immobilier]
+  description: >
+    loyer_mensuel renseigné alors que statut_logement = propriétaire, ou
+    mensualite_pret_immobilier renseigné alors que statut_logement = locataire.
+  message: >
+    Un montant de {champ_incoherent} est renseigné alors que votre statut de
+    logement est "{statut_logement}" — vérifiez que c'est bien intentionnel.
+
+- id: personne_a_charge_age_limite
+  champs: [personnes_a_charge]
+  description: >
+    Personne à charge de plus de 21 ans (25 ans si scolarisée) sans
+    situation_handicap = oui.
+  message: >
+    La personne à charge née le {date_naissance} a {age} ans — au-delà de 21
+    ans (25 si scolarisée), elle n'est en général plus fiscalement à charge.
+    Vérifiez cette entrée.
+
+- id: revenus_ordre_grandeur
+  champs: [revenu_net_mensuel_foyer, revenu_fiscal_reference]
+  description: >
+    revenu_fiscal_reference (annuel) incohérent d'un ordre de grandeur avec
+    revenu_net_mensuel_foyer × 12 (rapport > 2x ou < 0,5x).
+  message: >
+    Le revenu fiscal de référence déclaré ({revenu_fiscal_reference} €/an) et
+    le revenu net mensuel du foyer ({revenu_net_mensuel_foyer} €/mois × 12 =
+    {revenu_annualise} €) semblent incohérents entre eux. Vérifiez ces deux
+    valeurs.
+
+- id: boursier_sans_echelon
+  champs: [boursier, echelon_bourse]
+  description: boursier = oui mais echelon_bourse non renseigné.
+  message: >
+    Vous êtes déclaré·e boursier·ère mais l'échelon n'est pas renseigné —
+    le complétez pour affiner le calcul des bourses (sinon on utilisera une
+    hypothèse basse).
+
+- id: etudiant_sans_niveau
+  champs: [statut_professionnel, niveau_etudes]
+  description: statut_professionnel = étudiant·e mais niveau_etudes non renseigné.
+  message: >
+    Statut "étudiant·e" déclaré sans niveau d'études renseigné — plusieurs
+    dispositifs (bourses, réductions) en dépendent.
+
+- id: conversion_sans_projet_vehicule
+  champs: [vehicule_actuel_a_mettre_a_la_casse, projet_vehicule_electrique]
+  description: >
+    vehicule_actuel_a_mettre_a_la_casse = oui mais projet_vehicule_electrique
+    = non.
+  message: >
+    Vous indiquez un véhicule à mettre à la casse sans projet de véhicule
+    électrique — la prime à la conversion suppose un achat en remplacement.

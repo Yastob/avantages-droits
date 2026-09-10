@@ -1,0 +1,273 @@
+<title>Récap du profil</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #F0F1EA;
+    --paper-raised: #FFFFFF;
+    --ink: #1D2420;
+    --ink-soft: #55584F;
+    --line: #D9D7CC;
+    --accent: #34506A;
+    --accent-deep: #22394C;
+    --accent-tint: #E4E9EA;
+    --ok: #2E7D5B;
+    --ok-tint: #E1EEE6;
+    --warn: #A5701F;
+    --warn-tint: #F3E7D3;
+    --error: #A73A2F;
+    --error-tint: #F3E0DC;
+    --missing: #8D8A7C;
+    --missing-tint: #E9E7DE;
+    --shadow: 0 1px 2px rgba(29,36,32,0.06), 0 8px 24px -16px rgba(29,36,32,0.25);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #171C19;
+      --paper-raised: #1F2521;
+      --ink: #ECEAE1;
+      --ink-soft: #A9AB9F;
+      --line: #333A34;
+      --accent: #7FA6C4;
+      --accent-deep: #A9C6DC;
+      --accent-tint: #23343E;
+      --ok: #7CC7A2;
+      --ok-tint: #1C3129;
+      --warn: #DEB067;
+      --warn-tint: #3A2F1B;
+      --error: #E39485;
+      --error-tint: #3B241F;
+      --missing: #96937f;
+      --missing-tint: #2A291F;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -16px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #171C19;
+    --paper-raised: #1F2521;
+    --ink: #ECEAE1;
+    --ink-soft: #A9AB9F;
+    --line: #333A34;
+    --accent: #7FA6C4;
+    --accent-deep: #A9C6DC;
+    --accent-tint: #23343E;
+    --ok: #7CC7A2;
+    --ok-tint: #1C3129;
+    --warn: #DEB067;
+    --warn-tint: #3A2F1B;
+    --error: #E39485;
+    --error-tint: #3B241F;
+    --missing: #96937f;
+    --missing-tint: #2A291F;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px -16px rgba(0,0,0,0.6);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 40px 24px 80px;
+  }
+  .page { max-width: 880px; margin: 0 auto; }
+
+  h1 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 600;
+    font-size: 34px;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 4px;
+  }
+  .sous-titre { color: var(--ink-soft); font-size: 14px; margin: 0 0 20px; }
+
+  .banniere-exemple {
+    display: flex; align-items: baseline; gap: 8px;
+    background: var(--accent-tint); color: var(--accent-deep);
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 10px 14px; font-size: 13px; margin-bottom: 28px;
+  }
+  .banniere-exemple strong { font-weight: 600; }
+
+  .tuiles {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-bottom: 32px;
+  }
+  .tuile {
+    background: var(--paper-raised); border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px 16px; box-shadow: var(--shadow);
+  }
+  .tuile .valeur {
+    font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums;
+    font-size: 26px; font-weight: 500; line-height: 1;
+  }
+  .tuile .etiquette {
+    font-size: 12px; color: var(--ink-soft); margin-top: 6px;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .tuile.capture .valeur { color: var(--ok); }
+  .tuile.non_renseigne .valeur { color: var(--missing); }
+  .tuile.mal_saisi .valeur { color: var(--error); }
+  .tuile.incoherences .valeur { color: var(--warn); }
+
+  section.bloc { margin-bottom: 32px; }
+  .titre-bloc {
+    font-family: "Source Serif 4", Georgia, serif; font-weight: 600;
+    font-size: 18px; margin: 0 0 12px; display: flex; align-items: baseline; gap: 8px;
+  }
+  .titre-bloc .compte {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-soft); font-weight: 400;
+  }
+
+  .incoherences { display: flex; flex-direction: column; gap: 8px; }
+  .incoherence {
+    display: flex; gap: 10px; background: var(--warn-tint);
+    border: 1px solid var(--line); border-left: 3px solid var(--warn);
+    border-radius: 6px; padding: 10px 14px; font-size: 13.5px;
+  }
+  .incoherence .puce { flex: none; }
+
+  .categorie { margin-bottom: 22px; }
+  .categorie h2 {
+    font-family: "IBM Plex Sans", sans-serif; font-weight: 600; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft);
+    margin: 0 0 8px; padding-bottom: 6px; border-bottom: 1px solid var(--line);
+  }
+  .champ {
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    gap: 12px; padding: 7px 0; border-bottom: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .champ:last-child { border-bottom: none; }
+  .champ .libelle { color: var(--ink); }
+  .champ .valeur-champ {
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; text-align: right;
+    color: var(--ink-soft); overflow-wrap: anywhere;
+  }
+  .champ.mal_saisi .valeur-champ { color: var(--error); }
+
+  .pastille {
+    font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 100px;
+    white-space: nowrap; letter-spacing: 0.02em;
+  }
+  .pastille.capture { background: var(--ok-tint); color: var(--ok); }
+  .pastille.non_renseigne { background: var(--missing-tint); color: var(--missing); }
+  .pastille.mal_saisi { background: var(--error-tint); color: var(--error); }
+
+  .personnes { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+  .personne {
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .personne .titre-personne { font-size: 12px; color: var(--ink-soft); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  footer.note {
+    margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-size: 12px; color: var(--ink-soft);
+  }
+</style>
+
+<div class="page">
+  <h1>Récap de votre profil</h1>
+  <p class="sous-titre">Ce que le fichier <code>profil.yml</code> a permis de comprendre — avant de chercher vos aides.</p>
+  <div id="banniere-exemple-slot"></div>
+  <div class="tuiles" id="tuiles"></div>
+  <section class="bloc" id="bloc-incoherences" hidden>
+    <div class="titre-bloc">🔶 À vérifier <span class="compte" id="compte-incoherences"></span></div>
+    <div class="incoherences" id="liste-incoherences"></div>
+  </section>
+  <section class="bloc" id="bloc-categories"></section>
+  <footer class="note">Généré à partir de <code>data/rapport_profil.json</code> — relancez <code>lire_profil.py</code> puis <code>generer_recap.py</code> après avoir modifié votre profil.</footer>
+</div>
+
+<script>
+const DONNEES = /*__DONNEES_JSON__*/;
+
+function formatValeur(champ) {
+  if (champ.etat === "non_renseigne") return "—";
+  if (champ.etat === "mal_saisi") return champ.erreur || "format invalide";
+  const v = champ.valeur;
+  if (v === true) return "oui";
+  if (v === false) return "non";
+  if (v === null || v === undefined) return "—";
+  return String(v);
+}
+
+function rendreChamp(champ, libelles) {
+  const el = document.createElement("div");
+  el.className = "champ " + champ.etat;
+  const libelle = libelles[champ.nom] || champ.nom;
+  const pastilleTexte = { capture: "renseigné", non_renseigne: "non renseigné", mal_saisi: "mal saisi" }[champ.etat];
+  el.innerHTML = `
+    <span class="libelle">${libelle}</span>
+    <span class="pastille ${champ.etat}">${pastilleTexte}</span>
+    <span class="valeur-champ">${formatValeur(champ)}</span>
+  `;
+  return el;
+}
+
+function rendre() {
+  const { rapport, libelles, ordre_categories } = DONNEES;
+  const r = rapport.resume;
+
+  document.getElementById("banniere-exemple-slot").innerHTML = `
+    <div class="banniere-exemple"><strong>Exemple</strong> — ce récap utilise un profil de test, pas vos données. Remplissez <code>data/profil.yml</code> puis relancez l'analyse pour voir le vôtre.</div>
+  `;
+
+  const tuiles = document.getElementById("tuiles");
+  const specTuiles = [
+    ["capture", "✅ capturés", r.capture],
+    ["non_renseigne", "⚠ non renseignés", r.non_renseigne],
+    ["mal_saisi", "❌ mal saisis", r.mal_saisi],
+    ["incoherences", "🔶 incohérences", r.incoherences],
+  ];
+  for (const [cle, etiquette, valeur] of specTuiles) {
+    const t = document.createElement("div");
+    t.className = "tuile " + cle;
+    t.innerHTML = `<div class="valeur">${valeur}</div><div class="etiquette">${etiquette}</div>`;
+    tuiles.appendChild(t);
+  }
+
+  if (rapport.incoherences.length) {
+    document.getElementById("bloc-incoherences").hidden = false;
+    document.getElementById("compte-incoherences").textContent = `(${rapport.incoherences.length})`;
+    const liste = document.getElementById("liste-incoherences");
+    for (const inc of rapport.incoherences) {
+      const d = document.createElement("div");
+      d.className = "incoherence";
+      d.innerHTML = `<span class="puce">🔶</span><span>${inc.message}</span>`;
+      liste.appendChild(d);
+    }
+  }
+
+  const blocCategories = document.getElementById("bloc-categories");
+  for (const cat of ordre_categories) {
+    const champsCat = rapport.champs.filter((c) => c.categorie === cat);
+    if (!champsCat.length) continue;
+    const section = document.createElement("div");
+    section.className = "categorie";
+    const h2 = document.createElement("h2");
+    h2.textContent = cat;
+    section.appendChild(h2);
+    for (const champ of champsCat) section.appendChild(rendreChamp(champ, libelles));
+
+    if (cat === "Foyer" && rapport.personnes_a_charge.length) {
+      const wrap = document.createElement("div");
+      wrap.className = "personnes";
+      rapport.personnes_a_charge.forEach((p, i) => {
+        const card = document.createElement("div");
+        card.className = "personne";
+        card.innerHTML = `<div class="titre-personne">Personne à charge ${i + 1}</div>`;
+        for (const champ of p.champs) card.appendChild(rendreChamp(champ, libelles));
+        wrap.appendChild(card);
+      });
+      section.appendChild(wrap);
+    }
+    blocCategories.appendChild(section);
+  }
+}
+
+rendre();
+</script>

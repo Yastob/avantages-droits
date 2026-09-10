@@ -1,0 +1,9 @@
+venv/
+velo/node_modules/
+__pycache__/
+*.pyc
+
+# Données personnelles - ne doit jamais être commité (fichiers dérivés inclus)
+data/profil.yml
+data/rapport_profil.json
+artifact/recap_profil.html
