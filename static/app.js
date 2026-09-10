@@ -58,6 +58,21 @@ function construireFormulaire() {
     conteneur.appendChild(section);
   }
   document.getElementById("ajouter-personne").addEventListener("click", () => ajouterPersonne());
+
+  const formulaire = document.getElementById("formulaire-profil");
+  formulaire.addEventListener("input", mettreAJourProgression);
+  formulaire.addEventListener("change", mettreAJourProgression);
+  mettreAJourProgression();
+}
+
+function mettreAJourProgression() {
+  const champs = document.querySelectorAll("#formulaire-profil input, #formulaire-profil select");
+  let remplis = 0;
+  champs.forEach((c) => { if (c.value.trim() !== "") remplis++; });
+  const total = champs.length;
+  const pourcentage = total ? Math.round((remplis / total) * 100) : 0;
+  document.getElementById("progression-remplie").style.width = pourcentage + "%";
+  document.getElementById("progression-texte").textContent = `${remplis} / ${total} champs`;
 }
 
 function ajouterPersonne() {

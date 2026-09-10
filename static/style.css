@@ -43,8 +43,24 @@ body {
   font-size: 15px; line-height: 1.5; margin: 0;
   padding: 40px 20px 100px;
 }
-.page { max-width: 760px; margin: 0 auto; }
+.page { max-width: 800px; margin: 0 auto; }
 a { color: var(--accent); }
+
+.barre-progression-flottante {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 12px;
+  background: var(--paper); border-bottom: 1px solid var(--line);
+  padding: 10px 20px; max-width: 800px; margin: 0 auto;
+  font-size: 12px; color: var(--ink-soft);
+}
+.barre-progression-piste {
+  flex: 1; height: 5px; border-radius: 100px; background: var(--line); overflow: hidden;
+}
+.barre-progression-remplie {
+  height: 100%; width: 0%; background: var(--accent); border-radius: 100px;
+  transition: width 0.25s ease;
+}
+#progression-texte { font-family: "IBM Plex Mono", monospace; white-space: nowrap; }
 
 h1 {
   font-family: "Source Serif 4", Georgia, serif; font-weight: 600;

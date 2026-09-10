@@ -261,7 +261,9 @@ def calculer_national_et_local(valeurs, personnes, localisation, avertissements)
         except Exception:
             continue
         if valeur > 0:
-            locales.append({"nom": nom_var, "libelle": nom_var.replace("_", " "), "montant": round(valeur, 2), "periode": periode})
+            libelle = nom_var.replace("_", " ")
+            libelle = libelle[0].upper() + libelle[1:]
+            locales.append({"nom": nom_var, "libelle": libelle, "montant": round(valeur, 2), "periode": periode})
 
     return nationales, locales
 
