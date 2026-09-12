@@ -41,6 +41,21 @@ def parser_date(valeur):
     raise ValueError("format attendu JJ/MM/AAAA")
 
 
+def parser_date_libre(valeur):
+    """Comme parser_date, mais autorise une date future (ex : date
+    d'emménagement à venir, nécessaire pour l'éligibilité Visale qui
+    s'applique justement avant un emménagement, pas après)."""
+    for fmt in ("%d/%m/%Y", "%Y-%m-%d"):
+        try:
+            d = datetime.strptime(str(valeur).strip(), fmt).date()
+        except ValueError:
+            continue
+        if d.year < 1900 or d.year > date.today().year + 5:
+            raise ValueError("date hors plage raisonnable")
+        return d
+    raise ValueError("format attendu JJ/MM/AAAA")
+
+
 def parser_float(valeur):
     if isinstance(valeur, (int, float)):
         return float(valeur)
@@ -96,6 +111,7 @@ def parser_code_postal(valeur):
 
 PARSEURS = {
     "date": parser_date,
+    "date_libre": parser_date_libre,
     "float": parser_float,
     "float_positif": parser_float_positif,
     "bool": parser_bool,

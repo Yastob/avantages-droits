@@ -8,6 +8,7 @@ comportement réel attendu (cf. CLAUDE.md pour les seuils trouvés).
 """
 
 import sys
+from datetime import date, timedelta
 
 sys.path.insert(0, ".")
 from lire_profil import analyser_profil
@@ -93,6 +94,30 @@ cas("cheque_energie_sans_domicile", "revenu modeste, SDF -> 0 attendu (statut ex
     {**BASE, "date_naissance": "1990-01-01", "type_revenus": ["salaire"], "revenu_net_mensuel_foyer": 900,
      "revenu_fiscal_reference": 10000, "statut_logement": "sans domicile stable"}, "cheque_energie")
 
+# ---- AEEH : enfant à charge en situation de handicap ----
+cas("aeeh_enfant_handicape", "enfant handicapé à charge -> > 0 attendu",
+    {**BASE, "date_naissance": "1990-01-01",
+     "personnes_a_charge": [{"date_naissance": "2015-01-01", "lien": "enfant", "situation_handicap": "oui"}]},
+    "aeeh")
+cas("aeeh_enfant_non_handicape", "enfant à charge sans handicap -> 0 attendu",
+    {**BASE, "date_naissance": "1990-01-01",
+     "personnes_a_charge": [{"date_naissance": "2015-01-01", "lien": "enfant", "situation_handicap": "non"}]},
+    "aeeh")
+
+# ---- AEFA (prime de Noël) : suit l'éligibilité RSA/ASS ----
+cas("aefa_rsa", "au RSA -> prime de Noël attendue",
+    {**BASE, "date_naissance": "1990-01-01"}, "aefa")
+
+# ---- Mobili-Jeune : alternant, locataire ----
+cas("mobili_jeune_eligible", "alternant, locataire, revenu modeste -> > 0 attendu",
+    {**BASE, "date_naissance": "2001-01-01", "statut_professionnel": ["apprenti·e-alternant·e"],
+     "type_revenus": ["salaire"], "revenu_net_mensuel_foyer": 900, "statut_logement": "locataire",
+     "loyer_mensuel": 400}, "mobili_jeune")
+cas("mobili_jeune_pas_alternant", "salarié classique (pas alternant) -> 0 attendu",
+    {**BASE, "date_naissance": "2001-01-01", "statut_professionnel": ["salarié·e"],
+     "type_revenus": ["salaire"], "revenu_net_mensuel_foyer": 900, "statut_logement": "locataire",
+     "loyer_mensuel": 400}, "mobili_jeune")
+
 # ---------------------------------------------------------------------------
 
 resultats = []
@@ -132,6 +157,39 @@ CAS_SANS_MONTANT = [
      {**BASE, "date_naissance": "1986-01-01", "situation_perte_autonomie": "oui", "gir": "GIR 2"}, "APA", False),
     ("cpf_toujours_present", "N'importe quel profil -> CPF toujours listé",
      {**BASE, "date_naissance": "1990-01-01"}, "CPF", True),
+    ("visale_emmenagement_futur", "locataire, emménagement dans 30 jours -> Visale listée",
+     {**BASE, "date_naissance": "2001-01-01", "statut_logement": "locataire", "loyer_mensuel": 300,
+      "date_emmenagement": (date.today() + timedelta(days=30)).isoformat()}, "Visale", True),
+    ("visale_deja_installe", "locataire depuis 2 ans -> Visale non listée (bail déjà signé)",
+     {**BASE, "date_naissance": "2001-01-01", "statut_logement": "locataire", "loyer_mensuel": 400,
+      "date_emmenagement": "2024-01-01"}, "Visale", False),
+    ("locapass_emmenagement_recent", "salarié, locataire, emménagement il y a 20 jours -> LOCA-PASS listée",
+     {**BASE, "date_naissance": "2001-01-01", "statut_professionnel": ["salarié·e"],
+      "statut_logement": "locataire", "loyer_mensuel": 300,
+      "date_emmenagement": (date.today() - timedelta(days=20)).isoformat()}, "LOCA-PASS", True),
+    ("pass_culture_16ans", "16 ans -> Pass Culture listé",
+     {**BASE, "date_naissance": "2010-01-01"}, "Pass Culture", True),
+    ("pass_culture_25ans", "25 ans -> Pass Culture non listé",
+     {**BASE, "date_naissance": "2001-01-01"}, "Pass Culture", False),
+    ("sncf_jeune_20ans", "20 ans -> Carte SNCF Jeune listée",
+     {**BASE, "date_naissance": "2006-01-01"}, "SNCF Jeune", True),
+    ("sncf_senior_65ans", "65 ans -> Carte SNCF Senior listée",
+     {**BASE, "date_naissance": "1960-01-01"}, "SNCF Senior", True),
+    ("famille_nombreuse_3enfants", "3 enfants -> Carte Familles nombreuses listée",
+     {**BASE, "date_naissance": "1985-01-01", "personnes_a_charge": [
+         {"date_naissance": "2010-01-01", "lien": "enfant"},
+         {"date_naissance": "2012-01-01", "lien": "enfant"},
+         {"date_naissance": "2015-01-01", "lien": "enfant"}]}, "Familles nombreuses", True),
+    ("famille_nombreuse_2enfants", "2 enfants -> Carte Familles nombreuses non listée",
+     {**BASE, "date_naissance": "1985-01-01", "personnes_a_charge": [
+         {"date_naissance": "2010-01-01", "lien": "enfant"},
+         {"date_naissance": "2012-01-01", "lien": "enfant"}]}, "Familles nombreuses", False),
+    ("bonus_ecologique_avec_projet", "projet véhicule électrique -> bonus écologique listé",
+     {**BASE, "date_naissance": "1990-01-01", "projet_vehicule_electrique": "oui"}, "conversion", True),
+    ("bonus_ecologique_sans_projet", "pas de projet véhicule -> bonus écologique non listé",
+     {**BASE, "date_naissance": "1990-01-01", "projet_vehicule_electrique": "non"}, "conversion", False),
+    ("aide_juridictionnelle_toujours", "N'importe quel profil -> aide juridictionnelle toujours listée",
+     {**BASE, "date_naissance": "1990-01-01"}, "juridictionnelle", True),
 ]
 for nom, description, profil, libelle, attendu in CAS_SANS_MONTANT:
     obtenu = a_le_droit(profil, libelle)

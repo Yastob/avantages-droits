@@ -1,0 +1,3800 @@
+[
+  {
+    "nom": "pensions_nettes",
+    "label": "Pensions et revenus de remplacement",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prestations_familiales",
+    "label": "Prestations familiales",
+    "entity": "famille",
+    "periode": "year"
+  },
+  {
+    "nom": "prestations_sociales",
+    "label": "Prestations sociales",
+    "entity": "famille",
+    "periode": "year"
+  },
+  {
+    "nom": "revenus_remplacement_pensions_bruts_menage",
+    "label": "Revenus de remplacement et pensions bruts du ménage",
+    "entity": "menage",
+    "periode": "year"
+  },
+  {
+    "nom": "covid_activite_partielle_montant",
+    "label": "Montant de l'indemnité salariale de chômage partiel",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "covid_aide_exceptionnelle_tpe_montant",
+    "label": "Montant de l'aide exceptionnelle pour les TPE pendant la crise sanitaire dûe au covid-19",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "covid_aide_exceptionnelle_famille_montant",
+    "label": "Montant de l'aide exceptionnelle pour les familles pendant la crise sanitaire dûe au covid-19",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_jeunes_diplomes_anciens_boursiers_base_ressources",
+    "label": "Ressources mensuelles de référence de l'aide perçue au cours de la dernière année d'étude",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_jeunes_diplomes_anciens_boursiers_montant",
+    "label": "Montant de l'aide jeunes diplômés et anciens boursiers",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "b2mt",
+    "label": "Réductions pour investissements directs dans une société",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "b2mv",
+    "label": "Réductions pour investissements par sociétés interposées, holdings",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "b2mx",
+    "label": "Réductions pour investissements par le biais de FIP",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "b2na",
+    "label": "Réductions pour investissements par le biais de FCPI ou FCPR",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "b2nc",
+    "label": "Réductions pour dons à certains organismes d'intérêt général",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "b2ne",
+    "label": "Réductions pour investissements directs dans une société",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "b2nf",
+    "label": "Réductions pour investissements par sociétés interposées, holdings",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "isf_ifi_avant_reduction",
+    "label": "ISF-IFI avant réductions et plafonnement",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f6el",
+    "label": "Autres pensions alimentaires versées à des enfants majeurs: 1er enfant",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f6em",
+    "label": "Autres pensions alimentaires versées à des enfants majeurs: 2eme enfant",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f6gi",
+    "label": "Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 1er enfant",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f6gj",
+    "label": "Pensions alimentaires versées à des enfants majeurs (décision de justice définitive avant 2006): 2eme enfant",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f6gp",
+    "label": "Autres pensions alimentaires versées décision de justice définitive avant 2006 (mineurs, ascendants)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f6gu",
+    "label": "Autres pensions alimentaires versées (mineurs, ascendants)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "pensions_alimentaires_deduites",
+    "label": "Pensions alimentaires",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "acqgpl",
+    "label": "Crédit d'impôt pour dépense d'acquisition ou de transformation d'un véhicule GPL ou mixte",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "aidmob",
+    "label": "Crédit d'impôt aide à la mobilité",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "aidper",
+    "label": "Crédits d’impôt pour dépenses d’équipement de l’habitation principale en faveur de l’aide aux personnes",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "ci_investissement_forestier",
+    "label": "Crédit d'impôt au titre des investissements forestiers",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "creimp_exc_2008",
+    "label": "Crédit d'impôt exceptionnel sur les revenus 2008",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "divide",
+    "label": "Crédit d'impôt dividendes",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "jeunes_ind",
+    "label": "Crédit d'impôt en faveur des jeunes",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "iaidrdi",
+    "label": "Impôt après imputation des réductions d'impôt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "indemnite_compensatrice_agents_assurance",
+    "label": "Taxe exceptionelle sur l'indemnité compensatrice des agents d'assurance",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "ir_plaf_qf",
+    "label": "Impôt après plafonnement du quotient familial et réduction complémentaire",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "pensions_alimentaires_versees",
+    "label": "Pensions alimentaires versées",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "ppe",
+    "label": "Prime pour l'emploi",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "ppe_brute",
+    "label": "Prime pour l'emploi brute",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "reduction_ss_condition_revenus",
+    "label": "Réduction d'impôt sous condition de revenus, s'imputant avant toutes autres réductions",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "revenu_assimile_pension",
+    "label": "Revenu imposé comme des pensions (retraites, pensions alimentaires, etc.)",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "revenu_categoriel_tspr",
+    "label": "Revenu catégoriel - Traitements, salaires, pensions et rentes",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "traitements_salaires_pensions_rentes",
+    "label": "Traitements salaires pensions et rentes individuelles",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "cappme_jei_jeir",
+    "label": "Réduction d'impôt pour souscription au capital de JEI, JEIC et JEIR (Hors plafonnement global)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "prestations_compensatoires",
+    "label": "Prestations compensatoires",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "reduction_enfants_scolarises",
+    "label": "reduction_enfants_scolarises",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "reductions_deplafonnees",
+    "label": "Réductions d'impôt sur le revenu déplafonnées",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "restauration_patrimoine_bati",
+    "label": "Réduction d'impôt au titre des dépenses de restauration immobilière - Dispositif Malraux",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "domlog",
+    "label": "Réduction d'impôt au titre des investissements outre-mer réalisés par des personnes physiques",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "domsoc",
+    "label": "Réduction d'impôt au titre de l'acquisition ou de la souscription de logements sociaux outre-mer",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "reductions_iom",
+    "label": "Réductions d'impôt sur les investissements d'outremer",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "cappme",
+    "label": "Réduction d'impôt au titre des souscriptions en numéraire au capital de PME non côtées",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "cappme_esus_sfs",
+    "label": "Réduction d'impôt au titre des souscriptions en numéraire au capital des ESUS et SFS",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "duflot_pinel_denormandie_metropole",
+    "label": "Réduction d'impôt Duflot - Pinel - Denormandie que metropole",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "duflot_pinel_denormandie_om",
+    "label": "Réduction d'impôt Duflot - Pinel - Denormandie",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "gardenf",
+    "label": "Réduction d'impôt en faveur des dépenses de frais de garde des jeunes enfants",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "invlst",
+    "label": "Réduction d'impôt en faveur des investissements dans le secteur touristique",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "invrev",
+    "label": "Réduction d'impôt en faveur des investissements dans les résidences de tourisme",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "location_meublee",
+    "label": "Réduction d'impôt en faveur de l'acquisition de logements destinés à la location meublée non professionnelle - Dispositif Censi-Bouvard",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "protection_patrimoine_naturel",
+    "label": "Réduction d'impôt en faveur des dépenses de préservation du patrimoine naturel",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "reduction_impot_exceptionnelle",
+    "label": "Réduction d'impôt exceptionnelle",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "reductions",
+    "label": "Réductions d'impôt sur le revenu",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "reductions_plafonnees",
+    "label": "Réductions d'impôt sur le revenu plafonnées",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "reductions_plafonnees_esus_sfs",
+    "label": "Réductions d'impôt sur le revenu plafonnées, ESUS et SFS",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "reductions_plafonnees_om_sofica",
+    "label": "Réductions d'impôt sur le revenu plafonnées, DOM et SOFICA",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "rehab",
+    "label": "Réduction d'impôt pour travaux de réhabilitation des résidences de tourisme",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "ri_investissement_forestier",
+    "label": "Crédit d'impôt au titre des investissements forestiers",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "ri_saldom",
+    "label": "Réduction d'impôt au titre des sommes versées pour l'emploi d'un salarié à domicile",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "scelli",
+    "label": "Réduction d'impôt au titre des investissements locatifs - Dispositif Scellier",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7cy",
+    "label": "Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7dy",
+    "label": "Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2014",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ey",
+    "label": "Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7fy",
+    "label": "Souscriptions au capital des PME non cotées, report de réduction d'impôt au titre du plafonnement global de l'année 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7fy_2011",
+    "label": "Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7gt",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7gu_2020",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7gu_2023",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements achevés en 2012 avec promesse d'achat en 2009",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7gv",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés et achevés en 2012 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7gw_2016",
+    "label": "Investissements achevés en n-2 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7gx_2016",
+    "label": "Investissements achevés en n-2 avec promesse d'achat en n-3 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna : report de 1/5 de la réduction d'impôt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7gy",
+    "label": "Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées avant l'année n-1 et ayant pris fin en année n-1",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hg_2015",
+    "label": "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hh_2015",
+    "label": "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2011 en Polynésie française, Nouvelle Calédonie, dans les îles Walllis et Futuna avec promesse d'achat en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ho",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hp",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hq",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hr",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hs",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2018",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hv_2018",
+    "label": "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hw_2018",
+    "label": "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hx_2018",
+    "label": "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 en métropole avec promesse d'achat avant le 1.1.2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hy_2011",
+    "label": "Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions signées en n-1 et n'ayant pas pris fin en n-1",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7hz_2018",
+    "label": "Investissements locatifs neufs dispositif Scellier: réductions investissements réalisés et achevés en 2010 dans les DOM COM avec promesse d'achat avant le 1.1.2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ih_2017",
+    "label": "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7is_2015",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé: année  n-4",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7it_2016",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non encore imputé",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7iu_2016",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non encore imputé",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ix_2017",
+    "label": "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2009; réalisés en 2009 et achevés en 2010; réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report du solde de réduction d'impôt de l'année 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7iz_2017",
+    "label": "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7jc_2018",
+    "label": "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report du solde de réduction d'impôt de l'année 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ji_2018",
+    "label": "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d'impôt de l'année 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7jm",
+    "label": "Pinel : investissements achevés en 2019 avec engagement de location de 6 ans : report de 1/6 de la réduction d’impôt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7js_2018",
+    "label": "Investissements destinés à la location meublée non professionnelle : Investissements réalisés et achevés en 2011 ; réalisés en 2011 et achevés en 2011 ou 2012 ; réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2012, Report du solde de réduction d’impôt de l’année 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7kb_2016",
+    "label": "Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7kc_2017",
+    "label": "Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7kd_2018",
+    "label": "Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ke_2019",
+    "label": "Dépenses de protection du patrimoine naturel (excédent de réduction d’impôt d’années antérieures qui n’a pu être imputé)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7km",
+    "label": "Pinel : investissements achevés en 2019 avec engagement de location de 9 ans : report de 1/9 de la réduction d’impôt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7kt_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7kw",
+    "label": "Malraux : Report du solde de réduction d’impôt de l’année 2020 et 2024",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7kx",
+    "label": "Malraux : Report du solde de réduction d’impôt de l’année 2019 et 2023",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ky",
+    "label": "Malraux : Report du solde de réduction d’impôt de l’année 2018 et 2022",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ky_2011",
+    "label": "Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions signées en n-1 et ayant pris fin en n-1",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7kz",
+    "label": "Malraux : Report du solde de réduction d’impôt de l’année 2017 et 2021",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7la",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2017",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7la_2016",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2009",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lb",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2017",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lb_2016",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lc",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, – Investissements réalisés en 2011 et achevés de 2011 à 2017; réalisés en 2012 avec promesse d'achat en 2011 et achevés de 2012 à 2016, Report de l'année 2017",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lc_2016",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ld",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7le",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lf",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lh_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lh_2020",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2014",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7li_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lj_2020",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés en 2012 et achevés de 2012 à 2014 : report du solde de réduction d'impôt de l'année 2014",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lm_2018",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ln",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lp_2021",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés en 2012 et achevés de 2012 à 2015 : report du solde de réduction d'impôt de l'année 2015",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lq",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lr",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ls",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lt",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 ; réalisés en 2010 et achevés en 2011 ; réalisés et achevés en 2011 avec engagement en 2010, Report de l'année 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lu",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2011 : report du solde de réduction d'impôt de l'année 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lv",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lx",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Report du solde de réduction d'impôt de l'année 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ly",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2017",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ly_2010",
+    "label": "Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés: conventions ayant pas pris fin l'année de perception des revenus déclarés",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7lz",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Report du solde de réduction d'impôt de l'année 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7mb_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7mc_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7mg",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7mh",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 : report du solde de réduction d'impôt de l'année 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ms",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2009 ou 2010 ou réalisés et achevés en 2010 avec engagement avant le 1.1.2010, Report de l'année 2018",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7mt",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2010 et achevés en 2011 avec engagement avant le 1.1.2010, Report de l'année 2018",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7mu",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, – Investissements réalisés en 2011 et achevés de 2011 à 2017; réalisés en 2012 avec promesse d'achat en 2011 et achevés de 2012 à 2016, Report de l'année 2018",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7mv",
+    "label": "Investissements locatifs neufs dispositif Scellier: Report du solde des réductions d'impôts non encore imputé, Investissements réalisés et achevés en 2012 :  Report de l'année 2018",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7my",
+    "label": "Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7my_2010",
+    "label": "Aide aux créateurs et repreneurs d'entreprises, nombre de créateurs aidés dont handicapés: conventions ayant pas pris fin l'année de perception des revenus déclarés",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7nu_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7nv_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7nx",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ny_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7oa_2021",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements réalisés et achevés en 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ob_2021",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2013 et réalisés en 2012 ou réalisés en 2013 avec promesse d'achat en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7oc_2021",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2013 et réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7od_2021",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2013 et réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7oe_2021",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2013 et réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2009",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7of_2022",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements réalisés en 2013 ou 2014 et achevés en 2014",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7og_2022",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2014 et réalisés en 2012 ou réalisés en 2013 avec promesse d'achat en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7oh",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2014 et réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7oi",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2014 et réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7oj_2022",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2014 et réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2009",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7op",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements réalisés en 2013 ou 2014 et achevés en 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7oq",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2012 ou réalisés en 2013 avec promesse d'achat en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7or",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7os",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ot",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2016 et réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2009",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7oz_2011",
+    "label": "Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-6",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pa",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pa_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pb",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pb_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pc_2011",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pc_2019",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pd_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pd_2019",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pe_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pe_2019",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2013 (investissements réalisés et achevés en 2013)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pf_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pf_2020",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2014 (investissements réalisés en 2009 et achevés de 2010 à 2015)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pg_2020",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2014 (investissements réalisés en 2010 et achevés de 2010 à 2016)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ph",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2014 (investissements réalisés en 2011 et achevés de 2012 à 2016)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ph_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pi_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pi_2020",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2014 (investissements réalisés en 2012 et achevés de 2012 à 2015)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pj_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pj_2020",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d'impôt non encore imputé 2014 (investissements réalisés et achevés de 2013 à 2015)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pk_2011",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pl_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pn_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7po_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pp",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pq",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pq_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pr",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pr_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ps",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ps_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pt",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2016",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pt_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pu",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pv",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pv_2013",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pw",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pw_2013",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7px",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7px_2013",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt  à hauteur de 52,63 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7py",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report du solde de réduction d’impôt non imputé de 2017",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7py_2013",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7pz_2013",
+    "label": "Investissements outre-mer réalisés en 2007 dans le cadre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7qz_2012",
+    "label": "Investissements outre-mer réalisés en 2008 dans le casdre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7rh_2016",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ri_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7rk_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7rl_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ro_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7rp_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7rq_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7rs_",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7rt_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ru_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7rv_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7rx_2014",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ry_2012",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7rz_2010",
+    "label": "Investissements outre-mer: report de réduction d'impôt non imputée les années antérieures année n-3",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7sa",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2017 et réalisés de 2013 à 2017",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7sb",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2017 et réalisés en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7sc",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2017 et réalisés en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7sf_2011",
+    "label": "Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7sn",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2018 et réalisés en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7so",
+    "label": "Investissements destinés à la location meublée non professionnelle : Report de 1/9 de la réduction d'impôt. Investissements achevés en 2018 et réalisés entre 2013 et 2018",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7sz_2009",
+    "label": "Investissements Outre-Mer; Report de la réduction N-1",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7tx_2012",
+    "label": "Dépenses de travaux dans l'habitation principale ouvrant droit au crédit d'impôt de 26%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ty_2012",
+    "label": "Dépenses de travaux dans l'habitation principale ouvrant droit au crédit d'impôt de 32%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ud",
+    "label": "Dons à des organismes d'aide aux personnes en difficulté",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7uh_2007",
+    "label": "Intérêts payés la première année de remboursement du prêt pour l'habitation principale",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7uq",
+    "label": "Crédit d'impôt pour investissements forestiers: contrat de gestion",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ur",
+    "label": "Investissements réalisés en n-1, total réduction d’impôt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7us",
+    "label": "Réduction d'impôt mécénat d'entreprise",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7vo_2018",
+    "label": "Nombre d'années de remboursement du prêt étudiant avant l'année de perception des revenus déclarés",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wi",
+    "label": "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements permettant l’adaptation des logements à la perte d’autonomie ou au handicap",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wi_2009",
+    "label": "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: travaux de prévention des risques technologiques ou ascenseurs électriques à traction",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wi_2012",
+    "label": "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: Ascenseurs électriques à traction",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wi_2015",
+    "label": "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: dépenses payées en 2015 de matériaux d'isolation des toitures, posés sur une partie de la toiture",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wj",
+    "label": "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: équipements spécialement conçus pour les personnes âgées ou handicapées",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wl",
+    "label": "Dépenses en faveur de l'aide aux personnes réalisées dans l'habitation principale: travaux de prévention des risques technologiques",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wm",
+    "label": "Prestations compensatoires: Capital fixé en substitution de rente",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wn",
+    "label": "Prestations compensatoires: Sommes versées l'année de perception des revenus déclarés",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wo",
+    "label": "Prestations compensatoires: Sommes totales décidées par jugement l'année de perception des revenus déclarés ou capital reconstitué",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wp",
+    "label": "Prestations compensatoires: Report des sommes décidées l'année de perception des revenus -1",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wr",
+    "label": "Dépenses en faveur de l'aide aux personnes réalisées dans des habitations données en location : travaux de prévention des risques technologiques",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wt_2024",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2016 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wu_2024",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2016 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wv_2024",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2016 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ww_2024",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2010 et achevés en 2016 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wx_2020",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2016 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wy_2020",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2016 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7wz_2020",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2016 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7xs",
+    "label": "Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -5",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7xt",
+    "label": "Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -4",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7xu",
+    "label": "Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -3",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7xw",
+    "label": "Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -2",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7xy",
+    "label": "Report des années antérieures des dons (report des réductions et crédits d'impôt): année de perception des revenus -1",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yj",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 et achevés en 2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yk",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yl",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2013 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ym_2022",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2014 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yn_2022",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2014 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yo_2022",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2014 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yp_2022",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2010 et achevés en 2014 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yq",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2014 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yr",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2014 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7ys",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2014 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yt_2023",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2015 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yu_2023",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2015 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yv_2023",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2010 ou réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2015 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yw_2023",
+    "label": "Scellier: report de 1/9 de la réduction d'impôt des investissements réalisés en 2009 ou réalisés en 2010 avec promesse d'achat en 2010 et achevés en 2015 en métropole et dans les DOM-COM",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yx_2019",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2012 ou réalisés du 1.1.2013 au 31.3.2013 avec promesse d'achat en 2012 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yy_2019",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 ou réalisés en 2012 avec promesse d'achat en 2011 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f7yz_2019",
+    "label": "Scellier: report de 1/5 de la réduction d'impôt des investissements réalisés en 2011 avec promesse d'achat en 2010 et achevés en 2015 en Polynésie, en Nouvelle Calédonie et à Wallis et Futuna ",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8la",
+    "label": "Crédit d'impôt en faveur des entreprises: Abandon de loyer",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8tb",
+    "label": "Crédit d'impôt recherche (entreprises bénéficiant de la restitution immédiate)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8tc",
+    "label": "Crédit d'impôt autres entreprises (recherche non encore remboursé (années antérieures))",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8te",
+    "label": "Crédit d'impôt: rénovation énergétique des bâtiments",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8te_2018",
+    "label": "Crédit d'impôt en faveur des entreprises: adhésion à un groupement de prévention agréé",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8tf",
+    "label": "Reprises de réductions ou de crédits d'impôt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8tl",
+    "label": "Crédit d'impôt compétitivité emploi (CICE), entreprises bénéficiant de la restitution immédiate",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8to",
+    "label": "Crédit d'impôt en faveur des entreprises: investissement en Corse, report non imputé les années antérieures",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8tp",
+    "label": "Crédit d'impôt en faveur des entreprises: investissement en Corse, reprise de crédit d'impôt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8ts",
+    "label": "Crédit d'impôt en faveur des entreprises: investissement en Corse, crédit d'impôt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8tz",
+    "label": "Crédit d'impôt en faveur des entreprises: Apprentissage",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8uw",
+    "label": "Crédit d'impôt compétitivité emploi (CICE), autres entreprises",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8uz",
+    "label": "Crédit d'impôt en faveur des entreprises: Famille",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wa",
+    "label": "Crédit d'impôt en faveur des entreprises: Agriculture biologique",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wb",
+    "label": "Crédit d'impôt en faveur des entreprises: Prospection commerciale",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wc",
+    "label": "Crédit d'impôt en faveur des entreprises: Prêts sans intérêt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wc__2008",
+    "label": "Crédit d'impôt en faveur des entreprises: Nouvelles technologies",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wd",
+    "label": "Crédit d'impôt en faveur des entreprises: Formation des chefs d'entreprise",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8we",
+    "label": "Crédit d'impôt en faveur des entreprises: Intéressement",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wg",
+    "label": "Crédit d'impôt en faveur des entreprises: Exploitation agricole n’utilisant pas de glyphosate",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wh",
+    "label": "Crédit d'impôt en faveur des entreprises: Exploitation agricole à haute valeur environnementale",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wr",
+    "label": "Crédit d'impôt en faveur des entreprises: Métiers d'art",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8ws",
+    "label": "Crédit d'impôt en faveur des entreprises: Emploi de salariés réservistes",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wt",
+    "label": "Crédit d'impôt en faveur des entreprises: Remplacement pour congé des agriculteurs",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wu",
+    "label": "Crédit d'impôt en faveur des entreprises: Maître restaurateur",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wv",
+    "label": "Crédit d'impôt en faveur des entreprises: Débitants de tabac",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8wx",
+    "label": "Crédit d'impôt en faveur des entreprises: Formation des salariés à l'économie d'entreprise",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhaa",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhab",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhad",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhae",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements dans votre entreprise avec exploitation directe montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhaf",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhag",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhai",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhaj",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2014, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhak",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhal",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhao",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhap",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhaq",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhat",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhau",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhav",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhax",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhay",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhba",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbb",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbf",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbg",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbi",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbj",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbl",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbm",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements dans votre entreprise avec exploitation directe montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbn",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbo",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbq",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbr",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2015, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbs",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2012 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbt",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2012 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbw",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2015, en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhbx",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2013 ou 2014 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhby",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2013 ou 2014 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcb",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2015, en 2013 ou 2014",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcc",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 56%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcd",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 66%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcf",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcg",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhci",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2012 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcj",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2012 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcm",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2015, en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcn",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2013 ou 2014 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhco",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012, 2013 ou 2014 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2013 ou 2014 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcr",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2015, en 2013 ou 2014",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcs",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 56%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhct",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 66%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcv",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhcw",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhkt_2015",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt, Investissements dans votre entreprise",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhlh",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhli",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhmb",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhmc",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise REPORT : Investissements réalisés en 2010, Autres investissements réalisés en 2010, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhnu",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhnv",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhny",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpa",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpb",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpd",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpe",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpf",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhph",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un accompte d'au moins 50%, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpi",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpj",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpl",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise, montant de la réduction d' impôt dont vous demandez l'imputation en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpn",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpo",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpq",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpr",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhps",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 50 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpt",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 60 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpv",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpw",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpx",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt  à hauteur de 52,63 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhpy",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhqz",
+    "label": "Investissements outre-mer réalisés en 2008 dans le casdre d'une entreprise: report de réduction d'impôt non imputée les années antérieures",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhrh",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhri",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2012, Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50%, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhrk",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhrl",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhrn",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhro",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2009 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhrp",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhrq",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhrs",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhrt",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2010 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhru",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 52,63 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhrv",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt à hauteur de 62,5 %",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhrx",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt calculée",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhry",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements ayant fait l'objet en 2011 d'une demande d'agrément, d'une déclaration d'ouverture de chantier ou d'un acompte d'au moins 50 %, investissements dans votre entreprise avec exploitation directe, montant de la réduction d'impôt dont vous demandez l'imputation en 2012",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsa",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsb",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2010 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsd",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhse",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsf",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsg",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d'impôt en 2011 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsi",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculée en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsj",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements réalisés en 2013, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsk",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsl",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2010 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhso",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2010",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsp",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsq",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2010 ou 2011 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt en 2011 à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhst",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013, en 2011",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsu",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsv",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsx",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsy",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Autres investissements, Investissements ayant fait l’objet en 2012 d’une demande d’agrément, d’une déclaration d’ouverture de chantier ou d’un acompte d’au moins 50 %, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhsz",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 52,63%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhta",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements donnés en location à une entreprise exploitante à laquelle vous rétrocédez la réduction d’impôt à hauteur de 62,5%",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhtc",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt calculé",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "fhtd",
+    "label": "Investissements outre-mer dans le cadre de l'entreprise : Investissements autres que ceux des lignes précédentes, Investissements dans votre entreprise avec exploitation directe, montant de la réduction d’impôt dont vous demandez l’imputation en 2013",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "contribution_supplementaire_apprentissage",
+    "label": "Contribution supplémentaire à l'apprentissage",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "crds",
+    "label": "Contributions au remboursement de la dette sociale",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "crds_hors_prestations",
+    "label": "Contributions au remboursement de la dette sociale (hors celles portant sur les prestations sociales)",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "assiette_csg_crds_chomage_journaliere",
+    "label": "Allocation journalière brute ARE après déduction de la complémentaire retraite",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "chomage_imposable",
+    "label": "Allocations chômage imposables",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "chomage_net",
+    "label": "Allocations chômage nettes",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "retraite_nette",
+    "label": "Pensions de retraite nettes",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_embauche_pme",
+    "label": "Aide à l'embauche TPE/PME",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_premier_salarie",
+    "label": "Aide à l'embauche du premier salarié",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "credit_impot_competitivite_emploi",
+    "label": "Crédit d'impôt pour la compétitivité et l'emploi (CICE)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "prime_apprentissage",
+    "label": "Prime d'apprentissage pour les entreprise employant un apprenti",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "ags",
+    "label": "Contribution à l'association pour la gestion du régime de garantie des créances des salariés (AGS, employeur)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "complementaire_sante_employeur",
+    "label": "Couverture complémentaire santé collective d'entreprise - part employeur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "complementaire_sante_salarie",
+    "label": "Couverture complémentaire santé collective d'entreprise - part salarié",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnite_fin_contrat",
+    "label": "Indemnité de fin de contrat",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "prevoyance_complementaire_employeur",
+    "label": "Contributions de prévoyance complémentaire",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "agepi",
+    "label": "Montant de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "agepi_hors_mayotte",
+    "label": "Montant de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI - Cas HORS MAYOTTE",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "agepi_mayotte",
+    "label": "Montant de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI - Cas MAYOTTE",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "agepi_nbenf",
+    "label": "Nombre d'enfants pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "agepi_temps_travail_en_heure",
+    "label": "Temps de travail en heures pour le calcul de l'aide à la garde des enfants de parents isolés de Pôle Emploi - AGEPI",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aides_logement_accedant_et_foyer",
+    "label": "Allocation logement pour les primo-accédants",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aides_logement_foyer_k_al",
+    "label": "Allocation logement pour les logements foyers loyer minimal",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aides_logement_foyer_k_apl",
+    "label": "Allocation logement pour les logements foyers loyer minimal",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aides_logement_k",
+    "label": "Allocation logement pour les logements foyers loyer minimal",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aides_logement_loyer_minimal",
+    "label": "Allocation logement pour les logements foyers loyer minimal",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aides_logement_loyer_minimal_al",
+    "label": "Allocation logement loyer minimal",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aides_logement_loyer_minimal_apl",
+    "label": "Allocation logement pour les logements foyers loyer minimal",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aides_logement_nb_part",
+    "label": "Nombre de parts (paramètre N) pour l'aide au logement",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aides_logement_primo_accedant_ressources",
+    "label": "Allocation logement pour les primo-accédants, plancher de ressources",
+    "entity": "menage",
+    "periode": "month"
+  },
+  {
+    "nom": "al_nb_personnes_a_charge",
+    "label": "Nombre de personne à charge au sens des allocations logement",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "alf",
+    "label": "Allocation logement familiale",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "als",
+    "label": "Allocation logement sociale",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "apl",
+    "label": "Aide personnalisée au logement",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_alimentation_etudiants_eloignes",
+    "label": "Aide financière pour les étudiants éloignés des restaurants universitaires, avec des montants majorés pour les DROM.",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_mobilite",
+    "label": "Montant de l'aide à la mobilité de Pôle emploi - AMOB",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_mobilite_duree_trajet",
+    "label": "Durée en minutes entre le lieu de l’entretien d’embauche, la reprise d’emploi, la formation, la prestation d’accompagnement, l’immersion professionnelle (PMSMP), le concours public ou l’examen certifiant et le lieu de résidence du demandeur d'emploi",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "distance_activite_domicile",
+    "label": "Distance en kilomètres entre le lieu de l’entretien d’embauche, la reprise d’emploi, la formation, la prestation d’accompagnement, l’immersion professionnelle (PMSMP), le concours public ou l’examen certifiant et le lieu de résidence du demandeur d'emploi",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "nombre_allers_retours",
+    "label": "Nombre d'aller/retour pour le calcul de l'aide à la mobilité de Pôle emploi - AMOB",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "nuitees",
+    "label": "Nombre de nuitées pour le calcul de l'aide à la mobilité de Pôle emploi - AMOB",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "repas",
+    "label": "Nombre de repas pour le calcul de l'aide à la mobilité de Pôle emploi - AMOB",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_permis_demandeur_emploi",
+    "label": "Aide à l’obtention du permis de conduire automobile pour les demandeurs d’emploi",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_permis_pro_btp",
+    "label": "Montant de l'aide au permis B PRO BTP",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "apa_domicile",
+    "label": "Allocation personalisée d'autonomie",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "apa_etablissement",
+    "label": "Allocation personalisée d'autonomie en institution",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "apa_urgence_domicile",
+    "label": "Allocation personalisée d'autonomie d'urgence à domicile",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "apa_urgence_institution",
+    "label": "Allocation personalisée d'autonomie en institution",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "dependance_plan_aide_domicile",
+    "label": "Coût du plan d'aide à domicile pour une personne dépendante",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "dependance_plan_aide_domicile_accepte",
+    "label": "Coût du plan d'aide plafonné pris en compte pour la détermination de l'APA",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_exceptionnelle_cheque_energie",
+    "label": "Aide exceptionnelle sous forme de cheque energie a partir de 2021",
+    "entity": "menage",
+    "periode": "month"
+  },
+  {
+    "nom": "cheque_energie_exceptionnel_montant",
+    "label": "Montant du chèque énergie exceptionnel",
+    "entity": "menage",
+    "periode": "month"
+  },
+  {
+    "nom": "cheque_energie_montant",
+    "label": "Montant du chèque énergie",
+    "entity": "menage",
+    "periode": "year"
+  },
+  {
+    "nom": "cheque_energie_unites_consommation",
+    "label": "Unités de consommation du ménage pour le calcul du chèque Énergie",
+    "entity": "menage",
+    "periode": "year"
+  },
+  {
+    "nom": "complement_are_brut",
+    "label": "Complément ARE brut pour reprise d'activité",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "complement_are_deductions",
+    "label": "Charges mensuelles déductives du complément ARE",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "complement_are_net",
+    "label": "Montant mensuel du complément ARE net de déductions",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "complement_are_nombre_jours_indemnisables",
+    "label": "Nombre de jours d'ARE indemnisables par le complement ARE",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "complement_are_nombre_jours_indemnises",
+    "label": "Nombre de jours d'ARE indemnisés par le Complément ARE",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "complement_are_salaire_retenu",
+    "label": "Montant de salaire retenu pour le calcul du complément ARE après déduction d'un taux",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_college",
+    "label": "Montant annuel de la bourse de collège",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_college_echelon",
+    "label": "Échelon de la bourse de collège attribuée",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_lycee",
+    "label": "Montant annuel de la bourse de lycée",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_lycee_echelon",
+    "label": "Échelon de la bourse de collège attribuée",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_lycee_nombre_parts",
+    "label": "Nombre de parts pour le calcul du montant de la bourse de lycée",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_lycee_points_de_charge",
+    "label": "Nombre de points de charge pour la bourse de lycée",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_mobilite_master",
+    "label": "Montant de l'aide à la mobilité Master",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_mobilite_parcoursup",
+    "label": "Montant de l'aide à la mobilité ParcourSup",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "mon_job_mon_logement",
+    "label": "Montant de l'aide mon job mon logement",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "reduction_loyer_solidarite",
+    "label": "Réduction du loyer de solidarité effectivement versée",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "reduction_loyer_solidarite_montant",
+    "label": "Montant de la réduction du loyer de solidarité",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_financement_permis_apprenti",
+    "label": "Montant de l'aide au financement du permis de conduire pour les apprentis",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnite_inflation",
+    "label": "Aide exceptionnelle de 100 euros pour les individus gagnant € 2000 ou moins",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_exceptionnelle_rentree_etudiant",
+    "label": "Prime exceptionnelle de rentrée pour les étudiants boursiers",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_exceptionnelle_rentree_non_etudiant",
+    "label": "Prime exceptionnelle de rentrée",
+    "entity": "famille",
+    "periode": "year"
+  },
+  {
+    "nom": "aide_formation_gen",
+    "label": "Montant de l'aide accordée aux personnes inscrites dans une formation labellisée par la Grande Ecole du numérique",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_merite_montant",
+    "label": "Montant de l'aide au mérite pour l'année universitaire",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aide_mobilite_internationale",
+    "label": "Montant de l'aide à la mobilité internationale (AMI)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux",
+    "label": "Montant de la bourse sur critères sociaux (BCS) de l'enseignement supérieur perçue",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux_base_ressources",
+    "label": "Ressources prise en compte pour la bourse sur critères sociaux de l'enseignement supérieur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux_base_ressources_parentale",
+    "label": "Ressources parentales prises en compte pour la bourse sur critères sociaux de l'enseignement supérieur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux_echelon",
+    "label": "Échelon de la bourse sur critères sociaux de l'enseignement supérieur en prenant uniquement en compte les critères de ressources et de points de charge",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux_etudiant_autonome_ressource_mensuelle",
+    "label": "Ressources mensuelle prise en compte pour déterminer l'autonomie financière de l'étudiant pour la bourse sur critères sociaux de l'enseignement supérieur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux_nombre_enfants_a_charge",
+    "label": "Nombre total d'enfants à la charge de la famille pour le calcul de la bourse sur critères sociaux de l'enseignement supérieur",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux_nombre_enfants_a_charge_dans_enseignement_superieur",
+    "label": "Nombre total d'enfants à la charge de la famille et étudiants dans l'enseignement supérieur pour le calcul la bourse sur critères sociaux de l'enseignement supérieur",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux_nombre_enfants_parent_etudiant",
+    "label": "Nombre d'enfants de l'étudiant pour le calcul de la bourse sur critères sociaux de l'enseignement supérieur",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux_points_de_charge",
+    "label": "Nombre de points de charge pour la bourse sur critères sociaux de l'enseignement supérieur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux_points_de_charge_charges_familiale",
+    "label": "Points de charge associés aux charges de la famille pour le alcul la bourse sur critères sociaux de l'enseignement supérieur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_criteres_sociaux_points_de_charge_distance_domicile_familial",
+    "label": "Distance entre le lieu d'étude et le domicile familial pour le calcul la bourse sur critères sociaux de l'enseignement supérieur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "allocation_annuelle_etudiant",
+    "label": "Allocation annuelle (type d'aide spécifique aux étudiants à difficultés pérennes)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "contrat_engagement_jeune_montant_forfaitaire",
+    "label": "Montant maximal de l'allocation Contrat d'Engagement Jeune",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "garantie_jeunes",
+    "label": "Montant de la Garantie Jeune",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "garantie_jeunes_montant",
+    "label": "Montant maximal de l'allocation Garantie Jeune",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "mobili_jeune",
+    "label": "Montant de l'aide au logement mobili-jeune",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aah_base",
+    "label": "Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aah_base_non_cumulable",
+    "label": "Montant de l'Allocation adulte handicapé (hors complément) pour un individu, mensualisée",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "caah",
+    "label": "Complément d'allocation adulte handicapé (mensualisé)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "complement_ressources_aah",
+    "label": "Le complément de ressources",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "eligibilite_caah",
+    "label": "Eligibilité aux compléments à l'aah",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "pch",
+    "label": "Prestation de compensation du handicap",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "ada",
+    "label": "Montant mensuel  de l'aide pour demandeur d'asile",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aefa",
+    "label": "Aide exceptionelle de fin d'année (prime de Noël)",
+    "entity": "famille",
+    "periode": "year"
+  },
+  {
+    "nom": "api",
+    "label": "Allocation de parent isolé",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "psa",
+    "label": "Prime de solidarité active",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "asi",
+    "label": "Allocation supplémentaire d'invalidité (ASI)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "ppa_base_ressources_prestations_familiales",
+    "label": "Prestations familiales prises en compte dans le calcul de la PPA",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "ppa_fictive",
+    "label": "Prime pour l'activité fictive pour un mois",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "ppa_fictive_montant_forfaitaire",
+    "label": "Montant forfaitaire de la prime pour l'activité fictive",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "ppa_fictive_ressource_activite",
+    "label": "Proportion de ressources provenant de l'activité prise en compte pour la prime d'activité fictive",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "ppa_forfait_logement",
+    "label": "Forfait logement intervenant dans le calcul de la prime pour l'activité",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "ppa_indice_du_mois_trimestre_reference",
+    "label": "Nombre de mois par rapport au mois de du précédent recalcul de la prime pour l'activité",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "ppa_versee",
+    "label": "Prime pour l'activité versée en prenant en compte la date de la demande",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "rsa_base_ressources_prestations_familiales",
+    "label": "Prestations familiales inclues dans la base ressource RSA/RMI",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "rsa_forfait_asf",
+    "label": "Allocation de soutien familial forfaitisée pour le RSA",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "rsa_indemnites_journalieres_activite",
+    "label": "Indemnités journalières prises en compte comme revenu d'activité",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "rsa_indemnites_journalieres_hors_activite",
+    "label": "Indemnités journalières prises en compte comme revenu de remplacement",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "css_cmu_forfait_logement_al",
+    "label": "Forfait logement applicable en cas d'aide au logement, pour la métropole",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aeeh",
+    "label": "Allocation d'éducation de l'enfant handicapé",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "aes",
+    "label": "Allocation d'éducation spéciale",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "af_age_aine",
+    "label": "Allocations familiales - Âge de l'aîné des enfants éligibles",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "af_allocation_forfaitaire",
+    "label": "Allocations familiales - forfait",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "af_allocation_forfaitaire_nb_enfants",
+    "label": "Nombre d'enfants ouvrant droit à l'allocation forfaitaire des AF",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "af_base",
+    "label": "Allocations familiales - allocation de base",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "af_majoration",
+    "label": "Allocations familiales - majoration pour âge",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "af_majoration_enfant",
+    "label": "Allocations familiales - Majoration pour âge applicable à l'enfant",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "af_nbenf",
+    "label": "Nombre d'enfants dans la famille au sens des allocations familiales",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "asf",
+    "label": "Allocation de soutien familial (ASF)",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "asf_montant",
+    "label": "Montant de l'allocation de soutien familial (ASF)",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "prestations_familiales_base_ressources",
+    "label": "Base ressource des prestations familiales",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "prestations_familiales_base_ressources_communes",
+    "label": "Ressources non individualisables prises en compte pour les prestations familiales",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "prestations_familiales_base_ressources_individu",
+    "label": "Base ressource individuelle des prestations familiales",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "rev_coll",
+    "label": "Revenus perçus par le foyer fiscal à prendre en compte dans la base ressource des prestations familiales",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "cf_base_ressources_individu",
+    "label": "Complément familial - Ressources de l'individu prises en compte",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "cf_majore_avant_cumul",
+    "label": "Complément familial majoré avant cumul",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "cf_montant",
+    "label": "Montant du complément familial, avant prise en compte d'éventuels cumuls",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "cf_non_majore_avant_cumul",
+    "label": "Complément familial non majoré avant cumul",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "ape",
+    "label": "Allocation parentale d'éducation",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "ape_avant_cumul",
+    "label": "Allocation parentale d'éducation, avant prise en compte de la non-cumulabilité avec le CF et l'APJE",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "apje",
+    "label": "Allocation pour le jeune enfant",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "apje_avant_cumul",
+    "label": "Allocation pour le jeune enfant, avant prise en compte de la non-cumulabilité avec le CF et l'APE",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "paje",
+    "label": "PAJE - Ensemble des prestations",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "paje_adoption",
+    "label": "Allocation d'adoption de la PAJE",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "paje_base",
+    "label": "Allocation de base de la PAJE",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "paje_clca",
+    "label": "PAJE - Complément de libre choix d'activité - remplacée par paje_prepare à partir de 04/2017",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "paje_cmg",
+    "label": "PAJE - Complément de libre choix du mode de garde",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "paje_colca",
+    "label": "PAJE - Complément optionnel de libre choix d'activité",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "paje_naissance",
+    "label": "Allocation de naissance de la PAJE",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "paje_prepare",
+    "label": "Prestation Partagée d’éducation de l’Enfant (PreParE)",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "seances_sante_psy_etudiant",
+    "label": "Nombre de séances prises en charge par l'Aide Santé Psy Étudiant",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "allocation_securisation_professionnelle",
+    "label": "Allocation de sécurisation professionnelle",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_enseignement_sup",
+    "label": "Toute bourse de l'enseignement supérieur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "f8uy",
+    "label": "Auto-entrepreneur : versements libératoires d’impôt sur le revenu dont le remboursement est demandé",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8vl",
+    "label": "Impôt payé à l'étranger sur revenus de capitaux mobiliers et plus-values ouvrant droit à un crédit d'impôt",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "f8vm",
+    "label": "Impôt payé à l'étranger sur revenus de capitaux mobiliers et plus-values ouvrant droit à un crédit d'impôt",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "indemnites_volontariat",
+    "label": "Indemnités de volontariat",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "pensions_alimentaires_percues",
+    "label": "Pensions alimentaires perçues",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "pensions_alimentaires_versees_individu",
+    "label": "Pensions alimentaires versées pour un individu",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "pensions_invalidite",
+    "label": "Pensions d'invalidité",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "prestation_compensatoire",
+    "label": "Prestation compensatoire",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "prime_forfaitaire_mensuelle_reprise_activite",
+    "label": "Prime forfaitaire mensuelle pour la reprise d'activité",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "ebic_imps",
+    "label": "Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime auto-entrepreneur ayant opté pour le versement libératoire)",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "f5qm",
+    "label": "Agents généraux d’assurances: indemnités de cessation d’activité",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "macc_imps",
+    "label": "Revenus industriels et commerciaux non professionnels imposables: prestations de services (régime micro entreprise)",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "mbic_imps",
+    "label": "Revenus industriels et commerciaux professionnels imposables: prestations de services et locations meublées (régime micro entreprise)",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "ppe_du_ns",
+    "label": "Prime pour l'emploi des non-salariés: nombre de jours travaillés dans l'année",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "rpns_auto_entrepreneur_CA_bic",
+    "label": "Chiffre d'affaires en tant qu'auto-entrepreneur avec versement libératoire domaine prestations de service et locations meublées ",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "af_nbenf_fonc",
+    "label": "Nombre d'enfants dans la famille au sens des allocations familiales pour les fonctionnaires",
+    "entity": "famille",
+    "periode": "month"
+  },
+  {
+    "nom": "bourse_recherche",
+    "label": "Bourse de recherche",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "complementaire_sante_montant",
+    "label": "Montant de la complémentaire santé obligatoire retenue par l'employeur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "complementaire_sante_part_employeur",
+    "label": "Part de la complémentaire santé obligatoire payée par l'employeur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "gipa",
+    "label": "Indemnité de garantie individuelle du pouvoir d'achat",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "hsup",
+    "label": "Heures supplémentaires : revenus exonérés connus",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnite_residence",
+    "label": "Indemnité de résidence des fonctionnaires",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_compensatrices_conges_payes",
+    "label": "Indemnités compensatrices de congés payés",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_forfaitaires",
+    "label": "Indemnités forfaitaires (transport, nourriture)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_stage",
+    "label": "Indemnités de stage",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "ppe_du_sa",
+    "label": "Prime pour l'emploi des salariés: nombre d'heures payées",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "ppv_eligibilite_exceptionnelle",
+    "label": "Eligibilité aux exonérations complémentaires pour la PPV",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_exceptionnelle_pouvoir_achat",
+    "label": "Prime exceptionnelle de pouvoir d'achat (prime Macron)",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_exceptionnelle_pouvoir_achat_exoneree",
+    "label": "Prime exceptionnelle de pouvoir d'achat (prime Macron), partie exonérée",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_exceptionnelle_pouvoir_achat_non_exoneree",
+    "label": "Prime exceptionnelle de pouvoir d'achat (prime Macron), partie non exonérée",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_partage_valeur",
+    "label": "Prime pérenne de partage de la valeur (PPV)",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_partage_valeur_exceptionnelle",
+    "label": "Prime exceptionnelle de partage de la valeur (PPV)",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_partage_valeur_exoneree",
+    "label": "Prime pérenne de partage de la valeur (PPV), partie exonérée",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_partage_valeur_exoneree_exceptionnelle",
+    "label": "Prime exceptionnelle de partage de la valeur (PPV), partie exonérée",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_partage_valeur_non_exoneree",
+    "label": "Prime pérenne de partage de la valeur (PPV), partie non exonérée",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "prime_partage_valeur_non_exoneree_exceptionnelle",
+    "label": "Prime exceptionnelle de partage de la valeur (PPV), partie non exonérée",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "primes_salaires",
+    "label": "Indemnités, primes et avantages en argent (brut)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "primes_salaires_non_exonerees",
+    "label": "Indemnités, primes et avantages en argent non exonérés (brut)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "remboursement_transport",
+    "label": "Remboursement partiel des frais de transport par l'employeur",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "remboursement_transport_base",
+    "label": "Base pour le calcul du remboursement des frais de transport",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "sal_pen_exo_etr",
+    "label": "Salaires et pensions exonérés de source étrangère retenus pour le calcul du taux effectif",
+    "entity": "individu",
+    "periode": "year"
+  },
+  {
+    "nom": "supplement_familial_traitement",
+    "label": "Supplément familial de traitement",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "f2gr",
+    "label": "Revenus distribués dans le PEA (pour le calcul du crédit d'impôt de 50 %)",
+    "entity": "foyer_fiscal",
+    "periode": "year"
+  },
+  {
+    "nom": "allocation_retour_emploi",
+    "label": "Allocation chômage d'aide au retour à l'emploi (ARE) mensuelle brute",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "allocation_retour_emploi_journaliere",
+    "label": "Allocation chômage d'aide au retour à l'emploi (ARE) brute journalière au sens Pôle Emploi",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "allocation_retour_emploi_journaliere_taux_plein",
+    "label": "Allocation journalière ARE brute taux plein",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "allocation_retour_emploi_montant",
+    "label": "Montant de l'allocation chômage d'aide au retour à l'emploi (ARE) mensuelle brute",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "allocation_travailleur_independant",
+    "label": "Allocation des travailleurs indépendants (ATI)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "are_salaire_journalier_reference",
+    "label": "Salaire journalier de référence (SJR) au sens des allocations chômage",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_chomage_partiel",
+    "label": "Indemnités de chômage partiel",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_journalieres",
+    "label": "Total des indemnités journalières",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_journalieres_accident_travail",
+    "label": "Indemnités journalières d'accident du travail",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_journalieres_adoption",
+    "label": "Indemnités journalières d'adoption",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_journalieres_atexa",
+    "label": "Indemnités de l'assurance Accident du Travail des Exploitants Agricoles",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_journalieres_imposables",
+    "label": "Total des indemnités journalières imposables",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_journalieres_maladie",
+    "label": "Indemnités journalières de maladie",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_journalieres_maladie_professionnelle",
+    "label": "Indemnités journalières de maladie professionnelle",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_journalieres_maternite",
+    "label": "Indemnités journalières de maternité",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnites_journalieres_paternite",
+    "label": "Indemnités journalières de paternité",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "indemnite_accident_travail",
+    "label": "Indemnité selon le taux d'incapacité",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "pcrtp",
+    "label": "Prestation complémentaire pour recours à tierce personne (PCRTP)",
+    "entity": "individu",
+    "periode": "month"
+  },
+  {
+    "nom": "aer",
+    "label": "Allocation équivalent retraite (AER)",
+    "entity": "individu",
+    "periode": "month"
+  }
+]

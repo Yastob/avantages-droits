@@ -294,6 +294,109 @@ plutôt candidat à des fiches-annuaire (même format que
 `DROITS_TOUJOURS_AFFICHES`) orientant selon le statut de la personne. Pas
 commencé.
 
+## Audit exhaustif des variables OpenFisca nationales et nouveaux dispositifs
+
+Suite à la question "quels autres avantages pourrait-on rajouter, hors des
+sources déjà identifiées ?", deux pistes ont été suivies : (1) explorer si
+notre installation `openfisca-france` contenait déjà des variables non
+câblées (elle en contenait), (2) auditer tout le catalogue national pour ne
+rien manquer d'autre (`tests/auditer_openfisca_national.py`, 633 candidats
+sur ~3142 variables).
+
+**5 nouveaux dispositifs câblés dans `NATIONAL_VARIABLES`/`DROITS_SANS_MONTANT`**
+(trouvés sans écrire une seule ligne de règle métier — ils existaient déjà
+dans `openfisca-france`, juste jamais appelés) :
+- **AEEH** (allocation d'éducation de l'enfant handicapé) — nécessite un
+  enfant à charge avec `situation_handicap`.
+- **AEFA** (prime de Noël) — suit l'éligibilité RSA/ASS, aucune donnée
+  supplémentaire à collecter.
+- **Mobili-Jeune** (aide au logement en alternance, Action Logement) —
+  nécessite `alternant=True` (déduit de `statut_professionnel`) ; on
+  suppose par défaut `peec_employeur=True` (l'employeur cotise à la PEEC),
+  simplification documentée car on ne demande pas le secteur/la taille de
+  l'employeur.
+- **Visale** (garantie de loyer Action Logement, `droits_sans_montant`) —
+  nécessite une date d'emménagement **future** (`date_entree_logement >
+  period.start`) : c'est une garantie avant signature de bail, pas après.
+  Le "montant" exposé par OpenFisca (`visale_montant_max`) est un
+  **plafond de loyer garanti**, pas une somme versée — jamais affiché comme
+  un montant en €, seulement comme un droit à vérifier. Condition réelle de
+  la loi : le loyer doit être **sous ce plafond** (dépend de la localisation
+  — sans commune renseignée, un plafond par défaut plus bas s'applique).
+- **LOCA-PASS** (avance du dépôt de garantie, `droits_sans_montant`) —
+  nécessite une date d'emménagement **récente** (dans les `delai_max` mois
+  passés) et une éligibilité individuelle (salarié actif, chômeur/alternant
+  jeune, ou étudiant boursier/en contrat) ; on suppose par défaut
+  `ressortissant_eee=True` pour tout locataire, simplification documentée
+  car on ne demande pas la nationalité.
+
+Nouveau champ de profil : `date_emmenagement` (type `date_libre`, nouveau
+type dans `schema_profil.py` — comme `date` mais **autorise une date
+future**, contrairement à `date_naissance` qui reste strictement passée).
+`lire_profil.py` a un parseur dédié, `parser_date_libre`.
+
+**Mécanisme `DROITS_CONDITIONNELS_HORS_OPENFISCA`** (`calculer_aides.py`) :
+pour des dispositifs dont la condition d'éligibilité est simple (âge,
+nombre d'enfants, projet déclaré) mais qui ne sont **pas** dans OpenFisca
+du tout (pas un cas d'école social/fiscal, ou barème trop volatil pour être
+fiable à long terme) — liste de `(lambda_condition, libellé, description,
+url)`, évaluée en pur Python sur le profil, sans passer par une simulation.
+Dispositifs traités ainsi (tous en `droits_sans_montant`, jamais un montant
+chiffré) :
+- **Pass Culture** (15-18 ans), **carte SNCF Jeune** (12-27 ans), **carte
+  SNCF Senior** (60 ans+), **carte Familles nombreuses SNCF** (3 enfants ou
+  plus) — réductions/dispositifs dont le barème réel dépend d'un simulateur
+  officiel, pas d'une formule stable qu'on veut recoder et risquer de voir
+  devenir obsolète silencieusement.
+- **Bonus écologique / prime à la conversion** — condition : projet de
+  véhicule électrique déclaré. Barème très volatil (revu quasi chaque
+  année selon le budget de l'État) : afficher un montant serait un chiffre
+  daté et potentiellement faux, donc lien vers le simulateur officiel
+  uniquement.
+- **Aide juridictionnelle** — toujours affichée (n'importe quel profil peut
+  y avoir droit selon ses ressources), barème par seuil de revenu non
+  modélisé ici pour la même raison (chiffre non vérifiable en direct).
+
+Ce choix (condition simple + lien officiel, jamais de montant/barème
+recodé à la main) prolonge le principe déjà établi pour APA/CPF/PCH : ne
+jamais fabriquer un chiffre qu'on ne peut pas garantir exact et à jour.
+
+**Reste du catalogue des 633 candidats — triage** : au-delà des 5
+dispositifs ci-dessus, une grande partie a été identifiée mais **pas**
+câblée, pour des raisons différentes selon le cas (pas simplement "pas eu
+le temps") :
+- **Bourses CROUS** (`bourse_criteres_sociaux`, `bourse_college`,
+  `bourse_lycee`) — formule à "points de charge" complexe (distance
+  domicile-établissement, nombre d'enfants à charge dans le foyer fiscal,
+  échelon...), nécessiterait plusieurs nouveaux champs de profil. Pas
+  câblé, complexité jugée trop élevée pour ce tour.
+- **ARE** (allocation de retour à l'emploi, France Travail) — dépend d'un
+  historique de salaire journalier de référence (SJR) sur les 24 mois
+  précédents, donnée qu'on ne collecte pas du tout. Pas câblé : trop
+  gourmand en données pour un profil déclaratif simple.
+- **Aides Pôle Emploi discrétionnaires** (AGEPI — aide à la garde d'enfants
+  pour demandeur d'emploi, aides à la mobilité/au permis pour demandeur
+  d'emploi) — décisions au cas par cas par un conseiller, pas une règle
+  automatique fiable. Pas câblé, même logique que APA (montant non
+  calculable a priori).
+- **ASI** (allocation supplémentaire d'invalidité) — pas encore triée en
+  détail, candidat pour une session future.
+- **Variables historiques/superseded** (`ape`, `apje` — allocations
+  parentales d'avant la PAJE, remplacées depuis) — laissées de côté,
+  probablement obsolètes dans la loi actuelle malgré leur présence dans le
+  code OpenFisca.
+- **Crédits d'impôt liés à l'investissement** (`b2mt`, `b2mv`, `cappme`,
+  `ci_investissement_forestier`...) — hors périmètre volontairement : ce
+  sont des dispositifs pour investisseurs, pas pour le grand public visé
+  par cet outil.
+
+**Non traité dans ce tour, à statuer explicitement avec l'utilisateur** :
+le catalogue "aides-jeunes" (dépôt JS distinct, ~431 dispositifs locaux),
+identifié comme piste "confiance moyenne/élevée" mais d'une ampleur
+comparable à l'audit local déjà fait sur les 171 variables
+`openfisca-france-local` — mérite son propre cadrage plutôt qu'une
+intégration silencieuse.
+
 ## Ambiguïtés de format/périodicité clarifiées dans l'aide contextuelle
 
 Retour d'usage : plusieurs champs ne précisaient pas leur unité, source de
@@ -334,8 +437,10 @@ Composition :
   maison (`variable_correspond_localisation`) inclut chaque variable sur
   son propre territoire et l'exclut de tous les autres. Pur test de texte,
   aucun appel OpenFisca, quelques secondes d'exécution.
-- `tests/test_national.py` — 19 cas de sensibilité sur les 9 variables
-  nationales (âge, revenu, enfants, handicap, logement...).
+- `tests/test_national.py` — cas de sensibilité sur les variables
+  nationales (âge, revenu, enfants, handicap, logement...) **et** sur les
+  droits sans montant calculable (`CAS_SANS_MONTANT`, cf. section dédiée
+  plus bas).
 - `tests/test_calcul_reel_par_territoire.py` — un calcul réel (pas juste du
   filtrage texte) par territoire, pour vérifier qu'aucune exception n'est
   levée sur l'ensemble des 37 territoires réels.
@@ -343,10 +448,24 @@ Composition :
 - `velo/test_idf.mjs` — **exhaustif** sur les 1266 communes d'Île-de-France
   (un seul processus Node, pas 1266 lancements séparés) : vérifie l'absence
   d'erreur et que l'aide régionale IDF Mobilités ressort partout.
+- `tests/auditer_openfisca_national.py` — audit systématique des ~3142
+  variables nationales OpenFisca (pas seulement celles déjà câblées) : filtre
+  par entité (individu/famille/foyer_fiscal/menage), type de valeur
+  (float/int), période (month/year), puis par mots-clés **positifs** dans
+  `variable.label` (allocation, aide, prime, indemnité, prestation, chèque,
+  bourse, complément, pension, dotation, secours, subvention, garantie,
+  réduction, crédit d'impôt...) moins des mots-clés **négatifs** (plafond,
+  seuil, abattement, coefficient, barème, base ressources, assiette,
+  cotisation, csg, crds, prélèvement, taux de, éligibilité, décote...) — pas
+  un name-guessing sur les noms de variables, un vrai passage en revue de
+  tout le catalogue. Résultat écrit dans
+  `tests/candidats_openfisca_national.json` (633 candidats sur 3142). A
+  permis de découvrir des dispositifs déjà présents dans notre installation
+  `openfisca-france` mais jamais câblés (voir section dédiée plus bas).
 
 **Résultat au moment de la rédaction** : filtrage géographique 48/51 (3
-variables MSA volontairement non couvertes, cf. ci-dessous) ; national
-19/19 ; calcul réel 37/37 sans erreur ; vélo IDF 1266/1266 sans erreur.
+variables MSA volontairement non couvertes, cf. ci-dessous) ; national OK ;
+calcul réel 37/37 sans erreur ; vélo IDF 1266/1266 sans erreur.
 
 ### Bugs réels trouvés et corrigés grâce à ce cahier de test
 

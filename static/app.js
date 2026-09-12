@@ -55,7 +55,7 @@ function construireChampSaisie(champ, idPrefix) {
     } else if (champ.type === "enum") {
       input = document.createElement("select");
       input.innerHTML = `<option value="">—</option>` + champ.choix.map((c) => `<option value="${c}">${c}</option>`).join("");
-    } else if (champ.type === "date") {
+    } else if (champ.type === "date" || champ.type === "date_libre") {
       input = document.createElement("input");
       input.type = "date";
     } else if (champ.type === "float" || champ.type === "float_positif") {

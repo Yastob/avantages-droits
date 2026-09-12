@@ -29,6 +29,7 @@ SCHEMA = [
      ["locataire", "propriétaire", "hébergé·e à titre gratuit", "sans domicile stable"], "Logement"),
     ("residence", "enum", ["principale", "secondaire"], "Logement"),
     ("loyer_mensuel", "float", None, "Logement"),
+    ("date_emmenagement", "date_libre", None, "Logement"),
     ("mensualite_pret_immobilier", "float", None, "Logement"),
     ("zone_faibles_emissions", "bool", None, "Logement"),
 
@@ -99,6 +100,7 @@ LIBELLES = {
     "statut_logement": "Statut du logement",
     "residence": "Résidence principale ou secondaire",
     "loyer_mensuel": "Loyer mensuel",
+    "date_emmenagement": "Date d'emménagement dans ce logement",
     "mensualite_pret_immobilier": "Mensualité de prêt immobilier",
     "zone_faibles_emissions": "En zone à faibles émissions (ZFE)",
     "revenu_net_mensuel_foyer": "Revenu net mensuel du foyer",
@@ -146,6 +148,7 @@ LIBELLES = {
 # Texte d'aide affiché sous certains champs, quand le libellé seul ne suffit
 # pas à lever une ambiguïté (retours d'usage réel).
 AIDE = {
+    "date_emmenagement": "Nécessaire pour la caution Visale et l'avance LOCA-PASS (conditions de délai).",
     "revenu_net_mensuel_foyer": (
         "Net de cotisations sociales, avant impôt sur le revenu. Incluez les primes "
         "régulières (ex : 13e mois lissé sur l'année), pas les primes exceptionnelles ponctuelles."
@@ -182,6 +185,7 @@ AIDE = {
 # sélectionnées est dans la liste.
 DEPENDANCES = {
     "loyer_mensuel": ("statut_logement", ["locataire"]),
+    "date_emmenagement": ("statut_logement", ["locataire"]),
     "mensualite_pret_immobilier": ("statut_logement", ["propriétaire"]),
     "inscrit_france_travail": ("statut_professionnel", ["demandeur·se d'emploi"]),
     "indemnise_chomage": ("statut_professionnel", ["demandeur·se d'emploi"]),

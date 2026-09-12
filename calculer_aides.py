@@ -36,6 +36,9 @@ NATIONAL_VARIABLES = [
     ("aspa", "Allocation de solidarité aux personnes âgées (ASPA)", "month"),
     ("ars", "Allocation de rentrée scolaire", "year"),
     ("cheque_energie", "Chèque énergie", "year"),
+    ("aefa", "Prime de Noël", "year"),
+    ("aeeh", "Allocation d'éducation de l'enfant handicapé (AEEH)", "month"),
+    ("mobili_jeune", "Mobili-Jeune (aide au logement en alternance)", "month"),
 ]
 
 # Dispositifs dont l'ÉLIGIBILITÉ est calculable mais dont le MONTANT ne
@@ -51,6 +54,65 @@ DROITS_SANS_MONTANT = [
      "Le montant exact dépend d'un plan d'aide évalué par votre conseil "
      "départemental selon vos besoins réels — pas calculable à partir d'un simple profil.",
      "https://www.service-public.fr/particuliers/vosdroits/F10009"),
+    ("visale_eligibilite", "month", "Caution Visale (garantie de loyer)",
+     "Garantie de loyer gratuite d'Action Logement, pas un versement en euros — "
+     "le \"montant\" est un plafond de loyer garanti, pas une somme reçue. "
+     "Pertinent avant de signer un nouveau bail (date d'emménagement à venir).",
+     "https://www.visale.fr"),
+    ("locapass_eligibilite", "month", "Avance LOCA-PASS (dépôt de garantie)",
+     "Avance sans intérêt du dépôt de garantie. Pertinent peu après un "
+     "emménagement récent (pas si vous êtes dans ce logement depuis longtemps).",
+     "https://www.actionlogement.fr/l-avance-loca-pass"),
+]
+
+# Dispositifs hors OpenFisca (pas de source programmatique fiable), dont la
+# condition d'affichage est un calcul Python simple (âge, nombre d'enfants)
+# -- PAS de montant en €, pour la même raison que APA/CPF : soit ce n'est
+# pas un montant en cash (réduction en %), soit le barème (aide
+# juridictionnelle) dépend d'un revenu/seuil qu'on préfère faire vérifier
+# sur le simulateur officiel plutôt que de risquer un chiffre obsolète non
+# vérifiable en direct. Format : (fonction_condition, libelle, description, url).
+def _age_actuel(valeurs):
+    naissance = valeurs.get("date_naissance")
+    if not naissance:
+        return None
+    aujourdhui = date.today()
+    return aujourdhui.year - naissance.year - ((aujourdhui.month, aujourdhui.day) < (naissance.month, naissance.day))
+
+
+DROITS_CONDITIONNELS_HORS_OPENFISCA = [
+    (lambda v, p: (lambda a: a is not None and 15 <= a <= 18)(_age_actuel(v)),
+     "Pass Culture",
+     "Crédit culturel selon l'âge (15 à 18 ans) — montant exact et conditions à "
+     "vérifier sur le site officiel, pas modélisé ici (aucune source OpenFisca).",
+     "https://pass.culture.fr"),
+    (lambda v, p: (lambda a: a is not None and 12 <= a <= 27)(_age_actuel(v)),
+     "Carte avantage SNCF Jeune",
+     "Réduction sur les billets SNCF (pas un montant en €) — tarif et conditions "
+     "sur le site officiel.",
+     "https://www.sncf-connect.com/cartes-tarifs-reduction/carte-avantage"),
+    (lambda v, p: (lambda a: a is not None and a >= 60)(_age_actuel(v)),
+     "Carte avantage SNCF Senior",
+     "Réduction sur les billets SNCF (pas un montant en €) — tarif et conditions "
+     "sur le site officiel.",
+     "https://www.sncf-connect.com/cartes-tarifs-reduction/carte-avantage"),
+    (lambda v, p: len(p or []) >= 3,
+     "Carte Familles nombreuses (SNCF)",
+     "Réduction sur les billets SNCF pour les familles de 3 enfants ou plus.",
+     "https://www.familles-nombreuses.sncf.com"),
+    (lambda v, p: bool(v.get("projet_vehicule_electrique")),
+     "Bonus écologique / prime à la conversion",
+     "Barème qui change souvent (refonte mi-2025 par exemple) et dépend du prix du "
+     "véhicule, du revenu et d'une éventuelle mise à la casse — pas modélisé ici, "
+     "se tromper sur un achat de plusieurs milliers d'euros serait plus grave "
+     "qu'ailleurs : utilisez le simulateur officiel.",
+     "https://www.primealaconversion.gouv.fr"),
+    (lambda v, p: True,
+     "Aide juridictionnelle",
+     "Prise en charge totale ou partielle des frais de justice selon vos ressources "
+     "— barème par seuil de revenu non modélisé ici (risque de chiffre obsolète non "
+     "vérifiable en direct) : utilisez le simulateur officiel.",
+     "https://www.justice.fr/aide-juridictionnelle"),
 ]
 
 # Droits non liés à une condition d'éligibilité calculable (compte personnel
@@ -346,6 +408,12 @@ def construire_situation(valeurs, personnes, depcom, mois_ref, avertissements=No
     activite = variable_activite(valeurs.get("statut_professionnel"))
     if activite:
         individus["declarant"]["activite"] = {m: activite for m in fenetre}
+    if "apprenti·e-alternant·e" in (valeurs.get("statut_professionnel") or []):
+        # Mobili-Jeune a aussi un critère secteur_activite_employeur
+        # (agricole/non agricole, montant différent) qu'on ne demande pas
+        # dans le profil -> laissé à sa valeur par défaut (non_renseigne),
+        # ce qui correspond au cas le plus fréquent (secteur non agricole).
+        individus["declarant"]["alternant"] = {m: True for m in fenetre}
     statut_marital = MAPPING_STATUT_MARITAL.get(valeurs.get("situation_familiale"))
     if statut_marital:
         individus["declarant"]["statut_marital"] = {m: statut_marital for m in fenetre}
@@ -392,6 +460,21 @@ def construire_situation(valeurs, personnes, depcom, mois_ref, avertissements=No
         menage["statut_occupation_logement"] = {m: statut for m in fenetre}
     if valeurs.get("loyer_mensuel"):
         menage["loyer"] = {m: valeurs["loyer_mensuel"] for m in fenetre}
+    if valeurs.get("date_emmenagement"):
+        menage["date_entree_logement"] = {m: str(valeurs["date_emmenagement"]) for m in fenetre}
+    if statut in ("locataire_vide", "locataire_hlm", "locataire_meuble"):
+        # Visale/LocaPass sont réservés aux ressortissants EEE (ou étudiant·e·s
+        # hors UE avec titre de séjour, ou nationalité d'un pays éligible) --
+        # on ne demande pas la nationalité dans le profil, donc hypothèse par
+        # défaut : ressortissant EEE (couvre la grande majorité des cas ;
+        # ce sont des droits "à vérifier", pas un montant, donc le risque
+        # d'un faux positif est limité).
+        individus["declarant"]["ressortissant_eee"] = {m: True for m in fenetre}
+        if "apprenti·e-alternant·e" in (valeurs.get("statut_professionnel") or []):
+            # Mobili-Jeune suppose un employeur cotisant au 1% logement (PEEC)
+            # -- pas demandé dans le profil, hypothèse par défaut : oui
+            # (le cas le plus fréquent pour un contrat d'alternance classique).
+            individus["declarant"]["peec_employeur"] = {m: True for m in fenetre}
     return situation, mois_courant
 
 
@@ -580,6 +663,13 @@ def calculer_aides(rapport):
 
     nationales, locales, sans_montant = calculer_national_et_local(valeurs, personnes, localisation, avertissements)
     velo = calculer_velo(valeurs, localisation, avertissements)
+
+    for condition, libelle, description, url in DROITS_CONDITIONNELS_HORS_OPENFISCA:
+        try:
+            if condition(valeurs, personnes):
+                sans_montant.append({"libelle": libelle, "description": description, "url": url})
+        except Exception:
+            continue
 
     return {
         "aides_nationales": nationales,
