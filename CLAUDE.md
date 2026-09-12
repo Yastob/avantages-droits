@@ -259,6 +259,57 @@ aux autres champs de cette liste, ce n'est pas juste "pas encore fait", il
 faudrait d'abord clarifier comment OpenFisca attend cette donnée avant de
 pouvoir la câbler correctement.
 
+## Droits sans montant calculable (`droits_sans_montant`, APA/CPF)
+
+Certains droits ont une **éligibilité** calculable mais un **montant** qui
+ne l'est pas à partir d'un simple profil déclaratif :
+- **APA** (`gir` + `situation_perte_autonomie` dans le profil) : l'âge et le
+  GIR (Groupe Iso-Ressources, 1-6, classification officielle du degré de
+  dépendance) suffisent à calculer `apa_eligibilite`, mais le montant réel
+  dépend d'un "plan d'aide" évalué au cas par cas par le conseil
+  départemental (`dependance_plan_aide_domicile_accepte`, une donnée qu'on
+  n'a pas et ne peut pas demander). Afficher un montant ici serait trompeur.
+- **CPF** : aucune variable dans OpenFisca — le CPF est un vrai compte
+  individuel alimenté par l'historique d'emploi réel, pas une règle
+  calculable. Toujours affiché (`DROITS_TOUJOURS_AFFICHES`), avec un lien
+  vers moncompteformation.gouv.fr plutôt qu'une estimation (choix
+  utilisateur : lien seul, pas d'estimation du taux d'acquisition annuel).
+- **PCH** : variable présente dans OpenFisca mais son propre commentaire
+  dit littéralement `# inutilisée pour l'instant` — formule non
+  implémentée côté OpenFisca lui-même. Pas exploitable, à traiter un jour
+  via un lien externe si besoin (comme le CPF), pas via OpenFisca.
+
+Mécanisme (`calculer_aides.py`) : `DROITS_SANS_MONTANT` (variable
+d'éligibilité + libellé + description + lien, vérifiée par simulation) et
+`DROITS_TOUJOURS_AFFICHES` (toujours inclus, sans condition). Résultat
+exposé dans une 4e clé `droits_sans_montant` (à côté de
+`aides_nationales`/`aides_locales`/`aides_velo`), rendu par le front dans
+une section visuellement distincte ("Droits à vérifier (montant non
+calculable)", bordure de couleur différente) — jamais mélangé au total en
+€ des aides chiffrées.
+
+**Formations gratuites** (France Travail, régions, VAE, Transitions Pro...)
+— pas encore traité : trop hétérogène pour un calcul d'éligibilité unique,
+plutôt candidat à des fiches-annuaire (même format que
+`DROITS_TOUJOURS_AFFICHES`) orientant selon le statut de la personne. Pas
+commencé.
+
+## Ambiguïtés de format/périodicité clarifiées dans l'aide contextuelle
+
+Retour d'usage : plusieurs champs ne précisaient pas leur unité, source de
+confusion. Clarifié via `AIDE` (`schema_profil.py`) plutôt que renommer les
+champs :
+- `pension_alimentaire_recue`/`pension_alimentaire_versee` : montant
+  **mensuel**, pas annuel (aucune indication avant).
+- `aides_deja_percues` : texte libre (ex. "RSA, APL"), purement informatif
+  pour l'instant — ne modifie pas le calcul (aucune règle de cohérence ne
+  le lit encore).
+- Confirmé à l'utilisateur : les APL/ALF/ALS sont bien couvertes, via la
+  variable OpenFisca unique `aide_logement` qui choisit automatiquement la
+  bonne prestation selon la situation (déjà dans `NATIONAL_VARIABLES`
+  depuis le début, mais pas explicitement documenté comme réponse à "est-ce
+  que les APL sont gérées ?").
+
 ## Cahier de test (`tests/`)
 
 Suite à un signalement ("le RSA n'est pas trouvé pour un profil sans

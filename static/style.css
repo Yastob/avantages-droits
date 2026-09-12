@@ -188,6 +188,7 @@ section.bloc { margin-bottom: 30px; }
   background: var(--paper-raised); border: 1px solid var(--line); border-left: 3px solid var(--ok);
   border-radius: 8px; padding: 12px 16px; box-shadow: var(--shadow);
 }
+.aide-carte-sans-montant { border-left-color: var(--accent); }
 .aide-carte-entete {
   display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
 }

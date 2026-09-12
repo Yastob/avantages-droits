@@ -42,7 +42,7 @@ def analyser_profil_endpoint():
         rapport["aides"] = calculer_aides(rapport)
     except Exception as e:
         rapport["aides"] = {
-            "aides_nationales": [], "aides_locales": [], "aides_velo": [],
+            "aides_nationales": [], "aides_locales": [], "aides_velo": [], "droits_sans_montant": [],
             "avertissements": [f"Erreur inattendue lors du calcul des aides : {e}"],
         }
     return jsonify(rapport)

@@ -111,3 +111,28 @@ for nom, description, m in resultats:
 import json
 with open("tests/rapport_national.json", "w", encoding="utf-8") as f:
     json.dump([{"cas": n, "description": d, "montant": m} for n, d, m in resultats], f, ensure_ascii=False, indent=2)
+
+
+# ---- Droits sans montant calculable (APA, CPF) : présence/absence dans
+# droits_sans_montant plutôt qu'un montant dans aides_nationales ----
+def a_le_droit(profil, libelle_partiel):
+    rapport = analyser_profil(profil)
+    resultat = calculer_aides(rapport)
+    return any(libelle_partiel in d["libelle"] for d in resultat["droits_sans_montant"])
+
+
+print(f"\n{'cas':45} {'attendu':45} {'obtenu'}")
+print("-" * 110)
+CAS_SANS_MONTANT = [
+    ("apa_eligible", "76 ans, GIR 2 -> APA listée",
+     {**BASE, "date_naissance": "1950-01-01", "situation_perte_autonomie": "oui", "gir": "GIR 2"}, "APA", True),
+    ("apa_gir_autonome", "76 ans, GIR 6 (autonome) -> APA non listée",
+     {**BASE, "date_naissance": "1950-01-01", "situation_perte_autonomie": "oui", "gir": "GIR 6"}, "APA", False),
+    ("apa_trop_jeune", "40 ans, GIR 2 -> APA non listée (âge)",
+     {**BASE, "date_naissance": "1986-01-01", "situation_perte_autonomie": "oui", "gir": "GIR 2"}, "APA", False),
+    ("cpf_toujours_present", "N'importe quel profil -> CPF toujours listé",
+     {**BASE, "date_naissance": "1990-01-01"}, "CPF", True),
+]
+for nom, description, profil, libelle, attendu in CAS_SANS_MONTANT:
+    obtenu = a_le_droit(profil, libelle)
+    print(f"{nom:45} {description:45} {obtenu} {'OK' if obtenu == attendu else 'ÉCHEC'}")

@@ -38,6 +38,31 @@ NATIONAL_VARIABLES = [
     ("cheque_energie", "Chèque énergie", "year"),
 ]
 
+# Dispositifs dont l'ÉLIGIBILITÉ est calculable mais dont le MONTANT ne
+# l'est pas à partir d'un simple profil -- typiquement quand la loi prévoit
+# un montant décidé au cas par cas par un professionnel (ex : l'APA dépend
+# d'un "plan d'aide" évalué par le conseil départemental selon les besoins
+# réels de la personne, pas juste son GIR/âge/ressources). Afficher un faux
+# montant ici serait trompeur ; on affiche donc juste "vous y avez
+# probablement droit" + un lien, jamais un chiffre.
+# Format : (variable_eligibilite, periode, libelle, description, url).
+DROITS_SANS_MONTANT = [
+    ("apa_eligibilite", "month", "Allocation personnalisée d'autonomie (APA)",
+     "Le montant exact dépend d'un plan d'aide évalué par votre conseil "
+     "départemental selon vos besoins réels — pas calculable à partir d'un simple profil.",
+     "https://www.service-public.fr/particuliers/vosdroits/F10009"),
+]
+
+# Droits non liés à une condition d'éligibilité calculable (compte personnel
+# réel, pas une règle) -- toujours affichés à titre informatif, avec un lien
+# vers l'endroit officiel où vérifier sa situation réelle.
+DROITS_TOUJOURS_AFFICHES = [
+    ("Compte personnel de formation (CPF)",
+     "Le CPF est un compte réel alimenté par votre historique d'emploi — impossible "
+     "à calculer à partir d'un profil déclaratif. Vérifiez votre solde réel sur le site officiel.",
+     "https://www.moncompteformation.gouv.fr"),
+]
+
 MOIS_FENETRE = 13  # RSA/PPA utilisent une moyenne glissante sur plusieurs mois :
 # fournir un revenu sur un seul mois fausserait le calcul (voir CLAUDE.md).
 # 13 (pas 4) pour aussi couvrir janvier de l'année en cours -- certaines
@@ -138,6 +163,8 @@ MAPPING_STATUT_MARITAL = {
     "divorcé·e": "divorce",
     "veuf·ve": "veuf",
 }
+
+MAPPING_GIR = {f"GIR {i}": f"gir_{i}" for i in range(1, 7)}
 
 
 def variable_activite(statuts):
@@ -305,6 +332,9 @@ def construire_situation(valeurs, personnes, depcom, mois_ref, avertissements=No
         individus["declarant"]["handicap"] = {m: True for m in fenetre}
     if valeurs.get("taux_incapacite"):
         individus["declarant"]["taux_incapacite"] = {m: valeurs["taux_incapacite"] for m in fenetre}
+    gir = MAPPING_GIR.get(valeurs.get("gir"))
+    if gir:
+        individus["declarant"]["gir"] = {m: gir for m in fenetre}
     if valeurs.get("pension_alimentaire_recue"):
         individus["declarant"]["pensions_alimentaires_percues"] = {
             m: valeurs["pension_alimentaire_recue"] for m in fenetre
@@ -366,11 +396,16 @@ def construire_situation(valeurs, personnes, depcom, mois_ref, avertissements=No
 
 
 def calculer_national_et_local(valeurs, personnes, localisation, avertissements):
+    sans_montant = [
+        {"libelle": libelle, "description": description, "url": url}
+        for libelle, description, url in DROITS_TOUJOURS_AFFICHES
+    ]
+
     if not valeurs.get("date_naissance"):
         avertissements.append(
             "Date de naissance manquante : impossible de calculer les aides sociales/fiscales."
         )
-        return [], []
+        return [], [], sans_montant
 
     depcom = localisation["depcom"] if localisation else None
     tbs, noms_locaux = tax_benefit_system()
@@ -382,7 +417,16 @@ def calculer_national_et_local(valeurs, personnes, localisation, avertissements)
         simulation = SimulationBuilder().build_from_entities(tbs, situation)
     except Exception as e:
         avertissements.append(f"Impossible de construire la simulation OpenFisca : {e}")
-        return [], []
+        return [], [], sans_montant
+
+    for nom_var, type_periode, libelle, description, url in DROITS_SANS_MONTANT:
+        periode = mois_courant if type_periode == "month" else annee_courante
+        try:
+            eligible = bool(simulation.calculate(nom_var, periode)[0])
+        except Exception:
+            continue
+        if eligible:
+            sans_montant.append({"libelle": libelle, "description": description, "url": url})
 
     nationales = []
     for nom_var, libelle, type_periode in NATIONAL_VARIABLES:
@@ -408,7 +452,7 @@ def calculer_national_et_local(valeurs, personnes, localisation, avertissements)
         # Sans commune résolue, les formules locales ne filtrent pas
         # correctement par territoire -> les calculer produirait des faux
         # positifs (aides d'autres communes). On les saute entièrement.
-        return nationales, locales
+        return nationales, locales, sans_montant
 
     slugs = slugs_localisation(localisation)
     for nom_var in sorted(noms_locaux):
@@ -450,7 +494,7 @@ def calculer_national_et_local(valeurs, personnes, localisation, avertissements)
                 "url": url, "url_est_recherche": recherche,
             })
 
-    return nationales, locales
+    return nationales, locales, sans_montant
 
 
 def institution_locale(nom_var, localisation):
@@ -534,12 +578,13 @@ def calculer_aides(rapport):
     if valeurs.get("code_postal") and not localisation:
         avertissements.append("Code postal non reconnu : les aides locales et vélo n'ont pas pu être calculées.")
 
-    nationales, locales = calculer_national_et_local(valeurs, personnes, localisation, avertissements)
+    nationales, locales, sans_montant = calculer_national_et_local(valeurs, personnes, localisation, avertissements)
     velo = calculer_velo(valeurs, localisation, avertissements)
 
     return {
         "aides_nationales": nationales,
         "aides_locales": locales,
         "aides_velo": velo,
+        "droits_sans_montant": sans_montant,
         "avertissements": avertissements,
     }

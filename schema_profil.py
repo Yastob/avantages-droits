@@ -61,6 +61,7 @@ SCHEMA = [
     ("situation_handicap", "bool", None, "Situations particulières"),
     ("taux_incapacite", "float", None, "Situations particulières"),
     ("situation_perte_autonomie", "bool", None, "Situations particulières"),
+    ("gir", "enum", ["GIR 1", "GIR 2", "GIR 3", "GIR 4", "GIR 5", "GIR 6"], "Situations particulières"),
 
     ("utilise_transports_commun", "bool", None, "Mobilité"),
     ("reseau_transport_principal", "enum_multi", [
@@ -139,6 +140,7 @@ LIBELLES = {
     "lien": "Lien",
     "scolarise": "Scolarisé·e",
     "garde_alternee": "Garde alternée",
+    "gir": "GIR (degré de dépendance)",
 }
 
 # Texte d'aide affiché sous certains champs, quand le libellé seul ne suffit
@@ -156,6 +158,19 @@ AIDE = {
         "Si plusieurs cases sont cochées, le calcul retient le type principal "
         "(salaire > indépendant > chômage > retraite) — la répartition exacte entre "
         "plusieurs revenus n'est pas encore modélisée."
+    ),
+    "pension_alimentaire_recue": "Montant MENSUEL (pas annuel).",
+    "pension_alimentaire_versee": "Montant MENSUEL (pas annuel).",
+    "aides_deja_percues": (
+        "Texte libre, ex : \"RSA, APL\". Informatif uniquement pour l'instant — "
+        "ne modifie pas encore le calcul, sert juste de repère pour vous "
+        "(et pour nous, si un jour on ajoute une vérification de cohérence dessus)."
+    ),
+    "gir": (
+        "Groupe Iso-Ressources : classification officielle du degré de dépendance "
+        "(1 = dépendance la plus forte, 6 = autonome), évaluée par une équipe "
+        "médico-sociale (conseil départemental, médecin). Si vous ne le connaissez "
+        "pas, un travailleur social ou votre conseil départemental peut vous orienter."
     ),
 }
 
@@ -175,6 +190,7 @@ DEPENDANCES = {
     "echelon_bourse": ("boursier", ["oui"]),
     "entreprise_secteur": ("statut_professionnel", ["apprenti·e-alternant·e"]),
     "taux_incapacite": ("situation_handicap", ["oui"]),
+    "gir": ("situation_perte_autonomie", ["oui"]),
     "reseau_transport_principal": ("utilise_transports_commun", ["oui"]),
     "type_projet_vehicule": ("projet_vehicule_electrique", ["oui"]),
     "vehicule_actuel_a_mettre_a_la_casse": ("projet_vehicule_electrique", ["oui"]),

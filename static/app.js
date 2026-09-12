@@ -324,6 +324,21 @@ function rendreAideCarte(aide, periode) {
   return carte;
 }
 
+function rendreDroitSansMontantCarte(droit) {
+  const carte = document.createElement("div");
+  carte.className = "aide-carte aide-carte-sans-montant";
+  carte.innerHTML = `
+    <div class="aide-carte-entete">
+      <span class="aide-nom">${droit.libelle}</span>
+    </div>
+    <div class="aide-details">
+      <div class="aide-description">${droit.description}</div>
+      <a class="aide-lien" href="${droit.url}" target="_blank" rel="noopener">Vérifier ma situation réelle ↗</a>
+    </div>
+  `;
+  return carte;
+}
+
 function afficherAides(aides) {
   const bloc = document.getElementById("bloc-aides");
   bloc.innerHTML = "";
@@ -373,11 +388,28 @@ function afficherAides(aides) {
     bloc.appendChild(groupe);
   }
 
-  document.getElementById("sous-titre-aides").textContent = nombre
-    ? `${nombre} aide${nombre > 1 ? "s" : ""} potentielle${nombre > 1 ? "s" : ""} trouvée${nombre > 1 ? "s" : ""} — estimation totale ${formatMontant(total)} €.`
-    : "Aucune aide trouvée avec les informations saisies — complétez le formulaire pour affiner la recherche.";
+  const droitsSansMontant = aides.droits_sans_montant || [];
+  if (droitsSansMontant.length) {
+    const groupe = document.createElement("div");
+    groupe.className = "groupe-aides";
+    groupe.innerHTML = `<h3>Droits à vérifier (montant non calculable)</h3>`;
+    const conteneurListe = document.createElement("div");
+    conteneurListe.className = "liste-aides";
+    for (const droit of droitsSansMontant) conteneurListe.appendChild(rendreDroitSansMontantCarte(droit));
+    groupe.appendChild(conteneurListe);
+    bloc.appendChild(groupe);
+  }
 
-  if (!nombre) {
+  const suffixeDroits = droitsSansMontant.length
+    ? ` + ${droitsSansMontant.length} droit${droitsSansMontant.length > 1 ? "s" : ""} à vérifier séparément (montant non calculable).`
+    : "";
+  document.getElementById("sous-titre-aides").textContent = nombre
+    ? `${nombre} aide${nombre > 1 ? "s" : ""} potentielle${nombre > 1 ? "s" : ""} trouvée${nombre > 1 ? "s" : ""} — estimation totale ${formatMontant(total)} €.${suffixeDroits}`
+    : (droitsSansMontant.length
+      ? `Aucun montant calculé, mais ${droitsSansMontant.length} droit${droitsSansMontant.length > 1 ? "s" : ""} à vérifier ci-dessous.`
+      : "Aucune aide trouvée avec les informations saisies — complétez le formulaire pour affiner la recherche.");
+
+  if (!nombre && !droitsSansMontant.length) {
     bloc.innerHTML = `<p class="aucune-aide">Aucun résultat pour l'instant. Plus vous renseignez de champs, plus la recherche est précise.</p>`;
   }
 
@@ -411,7 +443,7 @@ function afficherResultats(rapport) {
   const r = rapport.resume;
   document.getElementById("resultats").hidden = false;
 
-  afficherAides(rapport.aides || { aides_nationales: [], aides_locales: [], aides_velo: [], avertissements: [] });
+  afficherAides(rapport.aides || { aides_nationales: [], aides_locales: [], aides_velo: [], droits_sans_montant: [], avertissements: [] });
 
   const tuiles = document.getElementById("tuiles");
   tuiles.innerHTML = "";

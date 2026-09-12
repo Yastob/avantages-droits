@@ -42,7 +42,7 @@ for cle, loc in localisations.items():
     rapport = analyser_profil(profil)
     avertissements = []
     try:
-        nationales, locales = calculer_national_et_local(
+        nationales, locales, sans_montant = calculer_national_et_local(
             rapport["valeurs"], rapport["personnes_valeurs"], loc, avertissements
         )
         resultats.append({
