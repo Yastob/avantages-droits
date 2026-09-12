@@ -1,0 +1,650 @@
+{
+  "commune:nantes": {
+    "type": "commune",
+    "slug": "nantes",
+    "variables": [
+      "aide_carte_blanche"
+    ],
+    "depcom": "44109",
+    "commune_nom": "Nantes",
+    "epci_nom": "Nantes Métropole",
+    "departement_code": "44",
+    "departement_nom": "Loire-Atlantique",
+    "region_code": "52",
+    "region_nom": "Pays de la Loire"
+  },
+  "departement:eure_et_loir": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "variables": [
+      "aide_menagere_fournie_caisse_retraite",
+      "apatride",
+      "beneficiaire_acfp",
+      "beneficiaire_actp",
+      "beneficiaire_complement_aeeh",
+      "eure_et_loir_adefip_versee",
+      "eure_et_loir_eligibilite_adefip",
+      "eure_et_loir_eligibilite_aep",
+      "eure_et_loir_eligibilite_aide_menagere_personne_agee",
+      "eure_et_loir_eligibilite_aide_menagere_personne_handicap",
+      "eure_et_loir_eligibilite_ash_personne_agee",
+      "eure_et_loir_eligibilite_ash_personne_handicap",
+      "eure_et_loir_eligibilite_cmi_invalidite",
+      "eure_et_loir_eligibilite_cmi_priorite",
+      "eure_et_loir_eligibilite_cmi_stationnement",
+      "eure_et_loir_eligibilite_faj",
+      "eure_et_loir_eligibilite_fsl_acces_logement",
+      "eure_et_loir_eligibilite_pch_domicile",
+      "eure_et_loir_eligibilite_pch_etablissement",
+      "eure_et_loir_eligibilite_pret_vehicule",
+      "eure_et_loir_eligibilite_repas_foyer_personne_agee",
+      "eure_et_loir_eligibilite_repas_foyer_personne_handicapee",
+      "eure_et_loir_eligibilite_residence",
+      "eure_et_loir_eligibilite_transport_eleves_etudiants",
+      "eure_et_loir_eligibilite_transport_social",
+      "eure_et_loir_fsl_base_ressources",
+      "eure_et_loir_fsl_eligibilite_installation_logement",
+      "eure_et_loir_fsl_eligibilite_maintien_fourniture",
+      "eure_et_loir_fsl_eligibilite_maintien_logement",
+      "eure_et_loir_revenus_nets_du_travail",
+      "mtp",
+      "refugie",
+      "station_debout_penible",
+      "titre_sejour"
+    ],
+    "depcom": "28001",
+    "commune_nom": "Abondant",
+    "epci_nom": "CA Agglo du Pays de Dreux",
+    "departement_code": "28",
+    "departement_nom": "Eure-et-Loir",
+    "region_code": "24",
+    "region_nom": "Centre-Val de Loire"
+  },
+  "commune:alfortville": {
+    "type": "commune",
+    "slug": "alfortville",
+    "variables": [
+      "alfortville_eligibilite_residence",
+      "alfortville_noel_enfants",
+      "alfortville_noel_enfants_base_ressources",
+      "alfortville_noel_enfants_eligibilite_financiere",
+      "alfortville_noel_enfants_eligibilite_jeune"
+    ],
+    "depcom": "94002",
+    "commune_nom": "Alfortville",
+    "epci_nom": "Métropole du Grand Paris",
+    "departement_code": "94",
+    "departement_nom": "Val-de-Marne",
+    "region_code": "11",
+    "region_nom": "Île-de-France"
+  },
+  "commune:antony": {
+    "type": "commune",
+    "slug": "antony",
+    "variables": [
+      "antony_aide_depart_sejour_adapte",
+      "antony_aide_depart_sejour_adapte_montant_individuel",
+      "antony_base_ressources",
+      "antony_bourse_communale",
+      "antony_bourse_conservatoire",
+      "antony_bourse_famille_nombreuse",
+      "antony_eligibilite_residence",
+      "antony_eligibilite_ressources",
+      "antony_noel_pour_tous"
+    ],
+    "depcom": "92002",
+    "commune_nom": "Antony",
+    "epci_nom": "Métropole du Grand Paris",
+    "departement_code": "92",
+    "departement_nom": "Hauts-de-Seine",
+    "region_code": "11",
+    "region_nom": "Île-de-France"
+  },
+  "region:auvergne_rhone_alpes": {
+    "type": "region",
+    "slug": "auvergne_rhone_alpes",
+    "variables": [
+      "auvergne_mutuelle_communale",
+      "auvergne_mutuelle_communale_base",
+      "auvergne_mutuelle_communale_etudiant",
+      "auvergne_rhone_alpes_aide_permis"
+    ],
+    "depcom": "01001",
+    "commune_nom": "L'Abergement-Clémenciat",
+    "epci_nom": "CC de la Dombes",
+    "departement_code": "01",
+    "departement_nom": "Ain",
+    "region_code": "84",
+    "region_nom": "Auvergne-Rhône-Alpes"
+  },
+  "metropole:bordeaux": {
+    "type": "metropole",
+    "slug": "bordeaux",
+    "variables": [
+      "bordeaux_metropole_aide_tarification_solidaire_transport",
+      "bordeaux_metropole_aide_tarification_solidaire_transport_eligibilite_geographique"
+    ],
+    "depcom": "33063",
+    "commune_nom": "Bordeaux",
+    "epci_nom": "Bordeaux Métropole",
+    "departement_code": "33",
+    "departement_nom": "Gironde",
+    "region_code": "75",
+    "region_nom": "Nouvelle-Aquitaine"
+  },
+  "metropole:brest": {
+    "type": "metropole",
+    "slug": "brest",
+    "variables": [
+      "brest_metropole_transport",
+      "brest_metropole_transport_montant",
+      "quotient_familial_caf",
+      "quotient_familial_caf_parts",
+      "residence_brest_metropole"
+    ],
+    "depcom": "29019",
+    "commune_nom": "Brest",
+    "epci_nom": "Brest Métropole",
+    "departement_code": "29",
+    "departement_nom": "Finistère",
+    "region_code": "53",
+    "region_nom": "Bretagne"
+  },
+  "commune:cambrai": {
+    "type": "commune",
+    "slug": "cambrai",
+    "variables": [
+      "cambrai_aide_mobilite_permis_b"
+    ],
+    "depcom": "59122",
+    "commune_nom": "Cambrai",
+    "epci_nom": "CA de Cambrai",
+    "departement_code": "59",
+    "departement_nom": "Nord",
+    "region_code": "32",
+    "region_nom": "Hauts-de-France"
+  },
+  "commune:carcassonne": {
+    "type": "commune",
+    "slug": "carcassonne",
+    "variables": [
+      "carcassonne_aide_permis",
+      "carcassonne_eligibilite_residence"
+    ],
+    "depcom": "11069",
+    "commune_nom": "Carcassonne",
+    "epci_nom": "CA Carcassonne Agglo",
+    "departement_code": "11",
+    "departement_nom": "Aude",
+    "region_code": "76",
+    "region_nom": "Occitanie"
+  },
+  "departement:cotes_d_armor": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "variables": [
+      "cotes_d_armor_eligibilite_residence",
+      "cotes_d_armor_fonds_solidarite_logement_acces_eligibilite",
+      "cotes_d_armor_fonds_solidarite_logement_acces_maintien_eligibilite",
+      "cotes_d_armor_fonds_solidarite_logement_acces_maintien_eligibilite_financiere",
+      "cotes_d_armor_fonds_solidarite_logement_acces_maintien_loyer_adapte",
+      "cotes_d_armor_fonds_solidarite_logement_acces_maintien_plafond",
+      "cotes_d_armor_fonds_solidarite_logement_acces_maintien_taux_effort",
+      "cotes_d_armor_fonds_solidarite_logement_assurance_locative_eligibilite",
+      "cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_eligibilite",
+      "cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_eligibilite_financiere",
+      "cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_plafond",
+      "cotes_d_armor_fonds_solidarite_logement_base_ressource_mensuelle",
+      "cotes_d_armor_fonds_solidarite_logement_base_ressource_moyennee",
+      "cotes_d_armor_fonds_solidarite_logement_energie_eligibilite",
+      "cotes_d_armor_fonds_solidarite_logement_maintien_eligibilite"
+    ],
+    "depcom": "22001",
+    "commune_nom": "Allineuc",
+    "epci_nom": "CC Loudéac Communauté - Bretagne Centre",
+    "departement_code": "22",
+    "departement_nom": "Côtes-d'Armor",
+    "region_code": "53",
+    "region_nom": "Bretagne"
+  },
+  "region:hauts_de_france": {
+    "type": "region",
+    "slug": "hauts_de_france",
+    "variables": [
+      "crous_aide_100_repas_gratuits",
+      "hauts_de_france_aide_garde_enfant",
+      "hauts_de_france_aide_permis",
+      "hauts_de_france_aide_permis_eligibilite",
+      "msa_nord_pas_de_calais_aide_permis"
+    ],
+    "depcom": "02001",
+    "commune_nom": "Abbécourt",
+    "epci_nom": "CA Chauny Tergnier La Fère",
+    "departement_code": "02",
+    "departement_nom": "Aisne",
+    "region_code": "32",
+    "region_nom": "Hauts-de-France"
+  },
+  "region:nouvelle-aquitaine": {
+    "type": "region",
+    "slug": "nouvelle-aquitaine",
+    "variables": [
+      "eligibilite_age_nouvelle_aquitaine_aide_permis",
+      "eligibilite_profile_nouvelle_aquitaine_aide_permis",
+      "montant_nouvelle_aquitaine_aide_permis",
+      "nouvelle_aquitaine_aide_permis",
+      "nouvelle_aquitaine_carte_solidaire",
+      "nouvelle_aquitaine_carte_solidaire_eligibilite",
+      "nouvelle_aquitaine_carte_solidaire_eligibilite_financiere",
+      "nouvelle_aquitaine_carte_solidaire_quotient_familial"
+    ],
+    "depcom": "16001",
+    "commune_nom": "Abzac",
+    "epci_nom": "CC de Charente Limousine",
+    "departement_code": "16",
+    "departement_nom": "Charente",
+    "region_code": "75",
+    "region_nom": "Nouvelle-Aquitaine"
+  },
+  "departement:meurthe_et_moselle": {
+    "type": "departement",
+    "slug": "meurthe_et_moselle",
+    "variables": [
+      "eligibilite_age_pass_jeune_54",
+      "meurthe_et_moselle_eligibilite_residence",
+      "pass_jeune_54",
+      "quotient_familial_pass_jeune_54"
+    ],
+    "depcom": "54001",
+    "commune_nom": "Abaucourt",
+    "epci_nom": "CC de Seille et Grand Couronné",
+    "departement_code": "54",
+    "departement_nom": "Meurthe-et-Moselle",
+    "region_code": "44",
+    "region_nom": "Grand Est"
+  },
+  "metropole:strasbourg": {
+    "type": "metropole",
+    "slug": "strasbourg",
+    "variables": [
+      "eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique",
+      "eurometropole_strasbourg_tarification_solidaire_transport_eligible_tarif_reduit",
+      "eurometropole_strasbourg_tarification_solidaire_transport_montant",
+      "eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial",
+      "eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_de_base",
+      "eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_etudiant",
+      "strasbourg_metropole_quotient_familial",
+      "strasbourg_metropole_tarification_solidaire_periscolaire"
+    ],
+    "depcom": "67482",
+    "commune_nom": "Strasbourg",
+    "epci_nom": "Eurométropole de Strasbourg",
+    "departement_code": "67",
+    "departement_nom": "Bas-Rhin",
+    "region_code": "44",
+    "region_nom": "Grand Est"
+  },
+  "region:grand_est": {
+    "type": "region",
+    "slug": "grand_est",
+    "variables": [
+      "grand_est_fluo_67_eligible_gratuite",
+      "grand_est_fluo_67_pertinence_geographique",
+      "grand_est_fluo_67_tarification_solidaire"
+    ],
+    "depcom": "08001",
+    "commune_nom": "Acy-Romance",
+    "epci_nom": "CC du Pays Rethélois",
+    "departement_code": "08",
+    "departement_nom": "Ardennes",
+    "region_code": "44",
+    "region_nom": "Grand Est"
+  },
+  "departement:haute_saone": {
+    "type": "departement",
+    "slug": "haute_saone",
+    "variables": [
+      "haute_saone_aide_permis",
+      "haute_saone_eligibilite_residence"
+    ],
+    "depcom": "70001",
+    "commune_nom": "Abelcourt",
+    "epci_nom": "CC du Triangle Vert",
+    "departement_code": "70",
+    "departement_nom": "Haute-Saône",
+    "region_code": "27",
+    "region_nom": "Bourgogne-Franche-Comté"
+  },
+  "departement:haute_vienne": {
+    "type": "departement",
+    "slug": "haute_vienne",
+    "variables": [
+      "haute_vienne_aide_permis",
+      "haute_vienne_eligibilite_residence"
+    ],
+    "depcom": "87001",
+    "commune_nom": "Aixe-sur-Vienne",
+    "epci_nom": "CC du Val de Vienne",
+    "departement_code": "87",
+    "departement_nom": "Haute-Vienne",
+    "region_code": "75",
+    "region_nom": "Nouvelle-Aquitaine"
+  },
+  "region:ile_de_france": {
+    "type": "region",
+    "slug": "ile_de_france",
+    "variables": [
+      "ile_de_france_aide_achat_voiture_electrique"
+    ],
+    "depcom": "75056",
+    "commune_nom": "Paris",
+    "epci_nom": "Métropole du Grand Paris",
+    "departement_code": "75",
+    "departement_nom": "Paris",
+    "region_code": "11",
+    "region_nom": "Île-de-France"
+  },
+  "commune:illkirch_graffenstaden": {
+    "type": "commune",
+    "slug": "illkirch_graffenstaden",
+    "variables": [
+      "illkirch_graffenstaden_coupon_arts_et_sports",
+      "illkirch_graffenstaden_coupon_arts_et_sports_eligibilite_enfant",
+      "illkirch_graffenstaden_coupon_arts_et_sports_eligibilite_famille",
+      "illkirch_graffenstaden_coupon_arts_et_sports_montant",
+      "illkirch_graffenstaden_coupon_arts_et_sports_quotient_familial",
+      "illkirch_graffenstaden_eligibilite_residence"
+    ],
+    "depcom": "67218",
+    "commune_nom": "Illkirch-Graffenstaden",
+    "epci_nom": "Eurométropole de Strasbourg",
+    "departement_code": "67",
+    "departement_nom": "Bas-Rhin",
+    "region_code": "44",
+    "region_nom": "Grand Est"
+  },
+  "commune:iwuy": {
+    "type": "commune",
+    "slug": "iwuy",
+    "variables": [
+      "iwuy_aide_mobilite_permis"
+    ],
+    "depcom": "59322",
+    "commune_nom": "Iwuy",
+    "epci_nom": "CA de Cambrai",
+    "departement_code": "59",
+    "departement_nom": "Nord",
+    "region_code": "32",
+    "region_nom": "Hauts-de-France"
+  },
+  "commune:le_cateau": {
+    "type": "commune",
+    "slug": "le_cateau",
+    "variables": [
+      "le_cateau_aide_mobilite_permis"
+    ],
+    "depcom": "59136",
+    "commune_nom": "Le Cateau-Cambrésis",
+    "epci_nom": "CA du Caudrésis et du Catésis",
+    "departement_code": "59",
+    "departement_nom": "Nord",
+    "region_code": "32",
+    "region_nom": "Hauts-de-France"
+  },
+  "commune:les_rues_des_vignes": {
+    "type": "commune",
+    "slug": "les_rues_des_vignes",
+    "variables": [
+      "les_rues_des_vignes_aide_mobilite_permis"
+    ],
+    "depcom": "59517",
+    "commune_nom": "Les Rues-des-Vignes",
+    "epci_nom": "CA de Cambrai",
+    "departement_code": "59",
+    "departement_nom": "Nord",
+    "region_code": "32",
+    "region_nom": "Hauts-de-France"
+  },
+  "departement:loire_atlantique": {
+    "type": "departement",
+    "slug": "loire_atlantique",
+    "variables": [
+      "loire_atlantique_aide_mobilite_eligibilite_age",
+      "loire_atlantique_aide_mobilite_permis_am",
+      "loire_atlantique_aide_mobilite_permis_b",
+      "loire_atlantique_eligibilite_residence",
+      "loire_atlantique_quotient_familial"
+    ],
+    "depcom": "44001",
+    "commune_nom": "Abbaretz",
+    "epci_nom": "CC de Nozay",
+    "departement_code": "44",
+    "departement_nom": "Loire-Atlantique",
+    "region_code": "52",
+    "region_nom": "Pays de la Loire"
+  },
+  "metropole:lyon": {
+    "type": "metropole",
+    "slug": "lyon",
+    "variables": [
+      "lyon_metropole_eligibilite_geographique",
+      "revenu_solidaire_jeune",
+      "sous_contrat_engagement_jeune"
+    ],
+    "depcom": "69123",
+    "commune_nom": "Lyon",
+    "epci_nom": "Métropole de Lyon",
+    "departement_code": "69",
+    "departement_nom": "Rhône",
+    "region_code": "84",
+    "region_nom": "Auvergne-Rhône-Alpes"
+  },
+  "commune:montpellier": {
+    "type": "commune",
+    "slug": "montpellier",
+    "variables": [
+      "montpellier_eligibilite_residence",
+      "montpellier_mutuelle_communale"
+    ],
+    "depcom": "34172",
+    "commune_nom": "Montpellier",
+    "epci_nom": "Montpellier Méditerranée Métropole",
+    "departement_code": "34",
+    "departement_nom": "Hérault",
+    "region_code": "76",
+    "region_nom": "Occitanie"
+  },
+  "region:bretagne": {
+    "type": "region",
+    "slug": "bretagne",
+    "variables": [
+      "msa_armorique_aide_permis",
+      "msa_portes_de_bretagne_aide_permis"
+    ],
+    "depcom": "22001",
+    "commune_nom": "Allineuc",
+    "epci_nom": "CC Loudéac Communauté - Bretagne Centre",
+    "departement_code": "22",
+    "departement_nom": "Côtes-d'Armor",
+    "region_code": "53",
+    "region_nom": "Bretagne"
+  },
+  "region:normandie": {
+    "type": "region",
+    "slug": "normandie",
+    "variables": [
+      "msa_haute_normandie_aide_permis"
+    ],
+    "depcom": "14001",
+    "commune_nom": "Ablon",
+    "epci_nom": "CC du Pays de Honfleur-Beuzeville",
+    "departement_code": "14",
+    "departement_nom": "Calvados",
+    "region_code": "28",
+    "region_nom": "Normandie"
+  },
+  "region:occitanie": {
+    "type": "region",
+    "slug": "occitanie",
+    "variables": [
+      "msa_midi_pyrenees_sud_aide_permis",
+      "occitanie_carte_jeune_region",
+      "occitanie_carte_transport_scolaire_lio"
+    ],
+    "depcom": "09001",
+    "commune_nom": "Aigues-Juntes",
+    "epci_nom": "CC Couserans-Pyrénées",
+    "departement_code": "09",
+    "departement_nom": "Ariège",
+    "region_code": "76",
+    "region_nom": "Occitanie"
+  },
+  "metropole:nantes": {
+    "type": "metropole",
+    "slug": "nantes",
+    "variables": [
+      "nantes_metropole_tarification_solidaire_transport",
+      "nantes_metropole_tarification_solidaire_transport_eligibilite_geographique",
+      "nantes_metropole_tarification_solidaire_transport_montant",
+      "nantes_metropole_tarification_solidaire_transport_quotient_familial"
+    ],
+    "depcom": "44109",
+    "commune_nom": "Nantes",
+    "epci_nom": "Nantes Métropole",
+    "departement_code": "44",
+    "departement_nom": "Loire-Atlantique",
+    "region_code": "52",
+    "region_nom": "Pays de la Loire"
+  },
+  "departement:nord": {
+    "type": "departement",
+    "slug": "nord",
+    "variables": [
+      "nord_activ_emploi_eligibilite",
+      "nord_activ_emploi_maximum",
+      "nord_eligibilite_residence"
+    ],
+    "depcom": "59001",
+    "commune_nom": "Abancourt",
+    "epci_nom": "CA de Cambrai",
+    "departement_code": "59",
+    "departement_nom": "Nord",
+    "region_code": "32",
+    "region_nom": "Hauts-de-France"
+  },
+  "region:pays_de_la_loire": {
+    "type": "region",
+    "slug": "pays_de_la_loire",
+    "variables": [
+      "pays_de_la_loire_epass_jeunes_culture_sport",
+      "pays_de_la_loire_epass_jeunes_eligibilite"
+    ],
+    "depcom": "44001",
+    "commune_nom": "Abbaretz",
+    "epci_nom": "CC de Nozay",
+    "departement_code": "44",
+    "departement_nom": "Loire-Atlantique",
+    "region_code": "52",
+    "region_nom": "Pays de la Loire"
+  },
+  "metropole:rennes": {
+    "type": "metropole",
+    "slug": "rennes",
+    "variables": [
+      "rennes_metropole_transport",
+      "rennes_metropole_transport_base_ressource",
+      "residence_rennes_metropole"
+    ],
+    "depcom": "35238",
+    "commune_nom": "Rennes",
+    "epci_nom": "Rennes Métropole",
+    "departement_code": "35",
+    "departement_nom": "Ille-et-Vilaine",
+    "region_code": "53",
+    "region_nom": "Bretagne"
+  },
+  "commune:saint_louis": {
+    "type": "commune",
+    "slug": "saint_louis",
+    "variables": [
+      "saint_louis_eligibilite_residence"
+    ],
+    "depcom": "97414",
+    "commune_nom": "Saint-Louis",
+    "epci_nom": "CA CIVIS (Communauté Intercommunale des Villes Solidaires)",
+    "departement_code": "974",
+    "departement_nom": "La Réunion",
+    "region_code": "04",
+    "region_nom": "La Réunion"
+  },
+  "departement:seine_saint_denis": {
+    "type": "departement",
+    "slug": "seine_saint_denis",
+    "variables": [
+      "seine_saint_denis_cheque_reussite",
+      "seine_saint_denis_cheque_reussite_eligibilite",
+      "seine_saint_denis_cheque_reussite_eligibilite_classe",
+      "seine_saint_denis_cheque_reussite_montant",
+      "seine_saint_denis_eligibilite_residence"
+    ],
+    "depcom": "93001",
+    "commune_nom": "Aubervilliers",
+    "epci_nom": "Métropole du Grand Paris",
+    "departement_code": "93",
+    "departement_nom": "Seine-Saint-Denis",
+    "region_code": "11",
+    "region_nom": "Île-de-France"
+  },
+  "metropole:toulouse": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "variables": [
+      "tisseo_ressort_territorial",
+      "tisseo_transport_demandeur_emploi_indemnise_reduction",
+      "tisseo_transport_demandeur_emploi_non_indemnise_reduction",
+      "tisseo_transport_etudiant_reduction",
+      "tisseo_transport_invalide_reduction",
+      "tisseo_transport_jeune_reduction",
+      "tisseo_transport_reduction",
+      "tisseo_transport_reduction_plafond_smic_net",
+      "tisseo_transport_reduction_ressources_fiscales",
+      "tisseo_transport_retraite_reduction"
+    ],
+    "depcom": "31555",
+    "commune_nom": "Toulouse",
+    "epci_nom": "Toulouse Métropole",
+    "departement_code": "31",
+    "departement_nom": "Haute-Garonne",
+    "region_code": "76",
+    "region_nom": "Occitanie"
+  },
+  "departement:vendee": {
+    "type": "departement",
+    "slug": "vendee",
+    "variables": [
+      "vendee_bourses_jeunes_benevoles_montant_max"
+    ],
+    "depcom": "85001",
+    "commune_nom": "L'Aiguillon-la-Presqu'île",
+    "epci_nom": "CC Sud Vendée Littoral",
+    "departement_code": "85",
+    "departement_nom": "Vendée",
+    "region_code": "52",
+    "region_nom": "Pays de la Loire"
+  },
+  "departement:yvelines": {
+    "type": "departement",
+    "slug": "yvelines",
+    "variables": [
+      "yvelines_aide_permis",
+      "yvelines_eligibilite_residence"
+    ],
+    "depcom": "78003",
+    "commune_nom": "Ablis",
+    "epci_nom": "CA Rambouillet Territoires",
+    "departement_code": "78",
+    "departement_nom": "Yvelines",
+    "region_code": "11",
+    "region_nom": "Île-de-France"
+  }
+}

@@ -7,3 +7,9 @@ __pycache__/
 data/profil.yml
 data/rapport_profil.json
 artifact/recap_profil.html
+
+# Rapports de test régénérés à chaque exécution (pas les fixtures d'entrée,
+# celles-là sont commitées pour que les tests soient reproductibles sans
+# refaire d'appels à geo.api.gouv.fr)
+tests/rapport_*.json
+tests/idf_communes.json

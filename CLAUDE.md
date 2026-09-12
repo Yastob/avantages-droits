@@ -259,6 +259,87 @@ aux autres champs de cette liste, ce n'est pas juste "pas encore fait", il
 faudrait d'abord clarifier comment OpenFisca attend cette donnée avant de
 pouvoir la câbler correctement.
 
+## Cahier de test (`tests/`)
+
+Suite à un signalement ("le RSA n'est pas trouvé pour un profil sans
+enfant" — en fait le comportement correct : RSA réservé aux 25 ans+ sauf
+enfant à charge, cf. discussion), une vraie campagne de test a été montée.
+Méthode : **utiliser OpenFisca lui-même comme oracle** (analyse de
+sensibilité — faire varier une variable à la fois et observer le seuil de
+bascule) plutôt que de relire le code source à la main pour deviner les
+conditions d'éligibilité.
+
+Composition :
+- `tests/extraire_territoires.py` — cartographie chacune des ~171 variables
+  locales vers son territoire cible (commune/département/région/métropole),
+  lu directement depuis `variable.introspection_data[0]` (le chemin du
+  fichier source dans le paquet installé) — pas une déduction depuis le nom
+  de variable, une vraie source de vérité.
+- `tests/resoudre_territoires.py` — trouve une commune réelle représentative
+  de chacun des territoires distincts (via geo.api.gouv.fr).
+- `tests/test_filtrage_geographique.py` — **exhaustif** sur les 171
+  variables locales (51 candidates réellement affichables une fois les
+  variables intermédiaires exclues) : teste que le filtrage géographique
+  maison (`variable_correspond_localisation`) inclut chaque variable sur
+  son propre territoire et l'exclut de tous les autres. Pur test de texte,
+  aucun appel OpenFisca, quelques secondes d'exécution.
+- `tests/test_national.py` — 19 cas de sensibilité sur les 9 variables
+  nationales (âge, revenu, enfants, handicap, logement...).
+- `tests/test_calcul_reel_par_territoire.py` — un calcul réel (pas juste du
+  filtrage texte) par territoire, pour vérifier qu'aucune exception n'est
+  levée sur l'ensemble des 37 territoires réels.
+- `tests/executer_tous_les_tests.py` — lance tout, bilan consolidé.
+- `velo/test_idf.mjs` — **exhaustif** sur les 1266 communes d'Île-de-France
+  (un seul processus Node, pas 1266 lancements séparés) : vérifie l'absence
+  d'erreur et que l'aide régionale IDF Mobilités ressort partout.
+
+**Résultat au moment de la rédaction** : filtrage géographique 48/51 (3
+variables MSA volontairement non couvertes, cf. ci-dessous) ; national
+19/19 ; calcul réel 37/37 sans erreur ; vélo IDF 1266/1266 sans erreur.
+
+### Bugs réels trouvés et corrigés grâce à ce cahier de test
+
+1. **Faux positifs par sous-chaîne courte** : le département "Ain" (slug
+   `ain`) matchait à tort n'importe quelle variable contenant "s**ain**t"
+   ou "aquit**ain**e" — `nouvelle_aquitaine_aide_permis` ressortait pour un
+   profil dans l'Ain. Corrigé : `slug_correspond` compare des **mots
+   entiers** (séquence de tokens snake_case), plus jamais une sous-chaîne
+   brute.
+2. **RFR (revenu fiscal de référence) jamais transmis à OpenFisca** :
+   `revenu_fiscal_reference` n'était utilisé que par le module vélo ;
+   `cheque_energie` (et d'autres dispositifs basés sur le RFR) restaient à
+   0 car OpenFisca le recalculait lui-même à partir d'un revenu mensuel
+   incomplet (fenêtre glissante, pas l'année entière). Corrigé : le RFR
+   déclaré écrase directement `foyers_fiscaux.foyer.rfr`.
+3. **`cheque_energie_montant` lit le RFR de l'année N-2** (`rfr(period.n_2)`),
+   pas l'année en cours — découvert en lisant le code source de la formule
+   via `variable.introspection_data[1]` (OpenFisca expose le code source
+   complet, pas juste les métadonnées). Corrigé : le RFR déclaré est
+   renseigné à la fois pour l'année en cours et l'année N-2.
+4. **Désalignement de période** : `statut_occupation_logement`/`depcom`/
+   `loyer` n'étaient renseignés que pour le mois courant, mais certaines
+   formules annuelles (ex. `cheque_energie_eligibilite_logement`) lisent
+   spécifiquement `period.first_month` (= janvier) — invisible si le mois
+   courant est différent de janvier. Corrigé : `MOIS_FENETRE` passé de 4 à
+   13 mois, et tous les champs mensuels (revenus, logement, activité,
+   statut marital, handicap...) suivent désormais cette même fenêtre
+   étendue plutôt que le seul mois courant.
+
+### Limites connues restant après ce cahier de test
+
+- **3 aides au permis MSA** (Armorique / Midi-Pyrénées Sud / Nord-Pas-de-
+  Calais) non détectées : les caisses MSA ont leurs propres découpages
+  territoriaux, différents des départements/régions INSEE — deviner leur
+  périmètre exact risquerait d'afficher l'aide aux mauvaises personnes,
+  jugé pire que ne pas la détecter du tout.
+- Le calcul réel par territoire vérifie l'absence de crash, pas que
+  chaque dispositif se déclenche pour un profil donné (une valeur à 0 peut
+  être une vraie inéligibilité du profil de test, pas un bug) — c'est le
+  test de filtrage géographique qui garantit l'exhaustivité proprement dite.
+- "RSA jeune actif" (dérogation d'âge par activité professionnelle passée,
+  pas seulement par enfant à charge) non modélisé — nécessiterait de
+  collecter un historique d'emploi qu'on ne demande pas actuellement.
+
 ## Prochaines étapes
 
 1. Construire le catalogue Publicodes maison pour les dispositifs hors

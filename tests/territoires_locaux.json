@@ -1,0 +1,837 @@
+{
+  "aide_carte_blanche": {
+    "type": "commune",
+    "slug": "nantes",
+    "fichier": "openfisca_france_local\\communes\\nantes\\aide_carte_blanche.py"
+  },
+  "aide_menagere_fournie_caisse_retraite": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\aide-menagere.py"
+  },
+  "alfortville_eligibilite_residence": {
+    "type": "commune",
+    "slug": "alfortville",
+    "fichier": "openfisca_france_local\\communes\\alfortville\\eligibilite.py"
+  },
+  "alfortville_noel_enfants": {
+    "type": "commune",
+    "slug": "alfortville",
+    "fichier": "openfisca_france_local\\communes\\alfortville\\noel_enfants.py"
+  },
+  "alfortville_noel_enfants_base_ressources": {
+    "type": "commune",
+    "slug": "alfortville",
+    "fichier": "openfisca_france_local\\communes\\alfortville\\noel_enfants.py"
+  },
+  "alfortville_noel_enfants_eligibilite_financiere": {
+    "type": "commune",
+    "slug": "alfortville",
+    "fichier": "openfisca_france_local\\communes\\alfortville\\noel_enfants.py"
+  },
+  "alfortville_noel_enfants_eligibilite_jeune": {
+    "type": "commune",
+    "slug": "alfortville",
+    "fichier": "openfisca_france_local\\communes\\alfortville\\noel_enfants.py"
+  },
+  "antony_aide_depart_sejour_adapte": {
+    "type": "commune",
+    "slug": "antony",
+    "fichier": "openfisca_france_local\\communes\\antony\\antony_aide_depart_sejour_adapte.py"
+  },
+  "antony_aide_depart_sejour_adapte_montant_individuel": {
+    "type": "commune",
+    "slug": "antony",
+    "fichier": "openfisca_france_local\\communes\\antony\\antony_aide_depart_sejour_adapte.py"
+  },
+  "antony_base_ressources": {
+    "type": "commune",
+    "slug": "antony",
+    "fichier": "openfisca_france_local\\communes\\antony\\base_ressources.py"
+  },
+  "antony_bourse_communale": {
+    "type": "commune",
+    "slug": "antony",
+    "fichier": "openfisca_france_local\\communes\\antony\\antony_bourse_communale.py"
+  },
+  "antony_bourse_conservatoire": {
+    "type": "commune",
+    "slug": "antony",
+    "fichier": "openfisca_france_local\\communes\\antony\\antony_bourse_conservatoire.py"
+  },
+  "antony_bourse_famille_nombreuse": {
+    "type": "commune",
+    "slug": "antony",
+    "fichier": "openfisca_france_local\\communes\\antony\\antony_bourse_famille_nombreuse.py"
+  },
+  "antony_eligibilite_residence": {
+    "type": "commune",
+    "slug": "antony",
+    "fichier": "openfisca_france_local\\communes\\antony\\eligibilite.py"
+  },
+  "antony_eligibilite_ressources": {
+    "type": "commune",
+    "slug": "antony",
+    "fichier": "openfisca_france_local\\communes\\antony\\base_ressources.py"
+  },
+  "antony_noel_pour_tous": {
+    "type": "commune",
+    "slug": "antony",
+    "fichier": "openfisca_france_local\\communes\\antony\\antony_noel_pour_tous.py"
+  },
+  "apatride": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\caracteristiques_socio_demographiques.py"
+  },
+  "auvergne_mutuelle_communale": {
+    "type": "region",
+    "slug": "auvergne_rhone_alpes",
+    "fichier": "openfisca_france_local\\regions\\auvergne_rhone_alpes\\auvergne_mutuelle_communale.py"
+  },
+  "auvergne_mutuelle_communale_base": {
+    "type": "region",
+    "slug": "auvergne_rhone_alpes",
+    "fichier": "openfisca_france_local\\regions\\auvergne_rhone_alpes\\auvergne_mutuelle_communale.py"
+  },
+  "auvergne_mutuelle_communale_etudiant": {
+    "type": "region",
+    "slug": "auvergne_rhone_alpes",
+    "fichier": "openfisca_france_local\\regions\\auvergne_rhone_alpes\\auvergne_mutuelle_communale_etudiant.py"
+  },
+  "auvergne_rhone_alpes_aide_permis": {
+    "type": "region",
+    "slug": "auvergne_rhone_alpes",
+    "fichier": "openfisca_france_local\\regions\\auvergne_rhone_alpes\\aide_permis.py"
+  },
+  "beneficiaire_acfp": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\caracteristiques_socio_demographiques.py"
+  },
+  "beneficiaire_actp": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\caracteristiques_socio_demographiques.py"
+  },
+  "beneficiaire_complement_aeeh": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\caracteristiques_socio_demographiques.py"
+  },
+  "bordeaux_metropole_aide_tarification_solidaire_transport": {
+    "type": "metropole",
+    "slug": "bordeaux",
+    "fichier": "openfisca_france_local\\metropoles\\bordeaux\\aide_tarification_solidaire_transport.py"
+  },
+  "bordeaux_metropole_aide_tarification_solidaire_transport_eligibilite_geographique": {
+    "type": "metropole",
+    "slug": "bordeaux",
+    "fichier": "openfisca_france_local\\metropoles\\bordeaux\\aide_tarification_solidaire_transport.py"
+  },
+  "brest_metropole_transport": {
+    "type": "metropole",
+    "slug": "brest",
+    "fichier": "openfisca_france_local\\metropoles\\brest\\transport.py"
+  },
+  "brest_metropole_transport_montant": {
+    "type": "metropole",
+    "slug": "brest",
+    "fichier": "openfisca_france_local\\metropoles\\brest\\transport.py"
+  },
+  "cambrai_aide_mobilite_permis_b": {
+    "type": "commune",
+    "slug": "cambrai",
+    "fichier": "openfisca_france_local\\communes\\cambrai\\aide_permis.py"
+  },
+  "carcassonne_aide_permis": {
+    "type": "commune",
+    "slug": "carcassonne",
+    "fichier": "openfisca_france_local\\communes\\carcassonne\\aide_permis.py"
+  },
+  "carcassonne_eligibilite_residence": {
+    "type": "commune",
+    "slug": "carcassonne",
+    "fichier": "openfisca_france_local\\communes\\carcassonne\\eligibilite.py"
+  },
+  "cotes_d_armor_eligibilite_residence": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\eligibilite.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_acces_eligibilite": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\acces_maintien.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_acces_maintien_eligibilite": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\acces_maintien.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_acces_maintien_eligibilite_financiere": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\acces_maintien.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_acces_maintien_loyer_adapte": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\acces_maintien.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_acces_maintien_plafond": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\acces_maintien.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_acces_maintien_taux_effort": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\acces_maintien.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_assurance_locative_eligibilite": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\assurance_locative_energie.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_eligibilite": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\assurance_locative_energie.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_eligibilite_financiere": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\assurance_locative_energie.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_assurance_locative_energie_plafond": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\assurance_locative_energie.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_base_ressource_mensuelle": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\base_ressource.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_base_ressource_moyennee": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\base_ressource.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_energie_eligibilite": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\assurance_locative_energie.py"
+  },
+  "cotes_d_armor_fonds_solidarite_logement_maintien_eligibilite": {
+    "type": "departement",
+    "slug": "cotes_d_armor",
+    "fichier": "openfisca_france_local\\departements\\cotes_d_armor\\fonds_solidarite_logement\\acces_maintien.py"
+  },
+  "crous_aide_100_repas_gratuits": {
+    "type": "region",
+    "slug": "hauts_de_france",
+    "fichier": "openfisca_france_local\\regions\\hauts_de_france\\crous\\aide_100_repas_gratuits.py"
+  },
+  "eligibilite_age_nouvelle_aquitaine_aide_permis": {
+    "type": "region",
+    "slug": "nouvelle-aquitaine",
+    "fichier": "openfisca_france_local\\regions\\nouvelle-aquitaine\\aide_permis.py"
+  },
+  "eligibilite_age_pass_jeune_54": {
+    "type": "departement",
+    "slug": "meurthe_et_moselle",
+    "fichier": "openfisca_france_local\\departements\\meurthe_et_moselle\\pass_jeune_54.py"
+  },
+  "eligibilite_profile_nouvelle_aquitaine_aide_permis": {
+    "type": "region",
+    "slug": "nouvelle-aquitaine",
+    "fichier": "openfisca_france_local\\regions\\nouvelle-aquitaine\\aide_permis.py"
+  },
+  "eure_et_loir_adefip_versee": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\adefip.py"
+  },
+  "eure_et_loir_eligibilite_adefip": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\adefip.py"
+  },
+  "eure_et_loir_eligibilite_aep": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\aep.py"
+  },
+  "eure_et_loir_eligibilite_aide_menagere_personne_agee": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\aide-menagere.py"
+  },
+  "eure_et_loir_eligibilite_aide_menagere_personne_handicap": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\aide-menagere.py"
+  },
+  "eure_et_loir_eligibilite_ash_personne_agee": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\ash.py"
+  },
+  "eure_et_loir_eligibilite_ash_personne_handicap": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\ash.py"
+  },
+  "eure_et_loir_eligibilite_cmi_invalidite": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\cmi_invalidite.py"
+  },
+  "eure_et_loir_eligibilite_cmi_priorite": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\cmi_priorite.py"
+  },
+  "eure_et_loir_eligibilite_cmi_stationnement": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\cmi_stationnement.py"
+  },
+  "eure_et_loir_eligibilite_faj": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\fonds_aide_jeunes.py"
+  },
+  "eure_et_loir_eligibilite_fsl_acces_logement": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\fsl.py"
+  },
+  "eure_et_loir_eligibilite_pch_domicile": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\pch.py"
+  },
+  "eure_et_loir_eligibilite_pch_etablissement": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\pch.py"
+  },
+  "eure_et_loir_eligibilite_pret_vehicule": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\pret_vehicule.py"
+  },
+  "eure_et_loir_eligibilite_repas_foyer_personne_agee": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\repas_foyer.py"
+  },
+  "eure_et_loir_eligibilite_repas_foyer_personne_handicapee": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\repas_foyer.py"
+  },
+  "eure_et_loir_eligibilite_residence": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\eligibilite.py"
+  },
+  "eure_et_loir_eligibilite_transport_eleves_etudiants": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\transport_eleves_etudiants.py"
+  },
+  "eure_et_loir_eligibilite_transport_social": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\transport_social.py"
+  },
+  "eure_et_loir_fsl_base_ressources": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\fsl.py"
+  },
+  "eure_et_loir_fsl_eligibilite_installation_logement": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\fsl.py"
+  },
+  "eure_et_loir_fsl_eligibilite_maintien_fourniture": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\fsl.py"
+  },
+  "eure_et_loir_fsl_eligibilite_maintien_logement": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\fsl.py"
+  },
+  "eure_et_loir_revenus_nets_du_travail": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\caracteristiques_socio_demographiques.py"
+  },
+  "eurometropole_strasbourg_tarification_solidaire_transport_eligibilite_geographique": {
+    "type": "metropole",
+    "slug": "strasbourg",
+    "fichier": "openfisca_france_local\\metropoles\\strasbourg\\tarification_solidaire_transports.py"
+  },
+  "eurometropole_strasbourg_tarification_solidaire_transport_eligible_tarif_reduit": {
+    "type": "metropole",
+    "slug": "strasbourg",
+    "fichier": "openfisca_france_local\\metropoles\\strasbourg\\tarification_solidaire_transports.py"
+  },
+  "eurometropole_strasbourg_tarification_solidaire_transport_montant": {
+    "type": "metropole",
+    "slug": "strasbourg",
+    "fichier": "openfisca_france_local\\metropoles\\strasbourg\\tarification_solidaire_transports.py"
+  },
+  "eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial": {
+    "type": "metropole",
+    "slug": "strasbourg",
+    "fichier": "openfisca_france_local\\metropoles\\strasbourg\\tarification_solidaire_transports.py"
+  },
+  "eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_de_base": {
+    "type": "metropole",
+    "slug": "strasbourg",
+    "fichier": "openfisca_france_local\\metropoles\\strasbourg\\tarification_solidaire_transports.py"
+  },
+  "eurometropole_strasbourg_tarification_solidaire_transport_quotient_familial_etudiant": {
+    "type": "metropole",
+    "slug": "strasbourg",
+    "fichier": "openfisca_france_local\\metropoles\\strasbourg\\tarification_solidaire_transports.py"
+  },
+  "grand_est_fluo_67_eligible_gratuite": {
+    "type": "region",
+    "slug": "grand_est",
+    "fichier": "openfisca_france_local\\regions\\grand_est\\transport.py"
+  },
+  "grand_est_fluo_67_pertinence_geographique": {
+    "type": "region",
+    "slug": "grand_est",
+    "fichier": "openfisca_france_local\\regions\\grand_est\\transport.py"
+  },
+  "grand_est_fluo_67_tarification_solidaire": {
+    "type": "region",
+    "slug": "grand_est",
+    "fichier": "openfisca_france_local\\regions\\grand_est\\transport.py"
+  },
+  "haute_saone_aide_permis": {
+    "type": "departement",
+    "slug": "haute_saone",
+    "fichier": "openfisca_france_local\\departements\\haute_saone\\aide_permis.py"
+  },
+  "haute_saone_eligibilite_residence": {
+    "type": "departement",
+    "slug": "haute_saone",
+    "fichier": "openfisca_france_local\\departements\\haute_saone\\eligibilite.py"
+  },
+  "haute_vienne_aide_permis": {
+    "type": "departement",
+    "slug": "haute_vienne",
+    "fichier": "openfisca_france_local\\departements\\haute_vienne\\aide_permis.py"
+  },
+  "haute_vienne_eligibilite_residence": {
+    "type": "departement",
+    "slug": "haute_vienne",
+    "fichier": "openfisca_france_local\\departements\\haute_vienne\\eligibilite.py"
+  },
+  "hauts_de_france_aide_garde_enfant": {
+    "type": "region",
+    "slug": "hauts_de_france",
+    "fichier": "openfisca_france_local\\regions\\hauts_de_france\\aide_garde_enfant.py"
+  },
+  "hauts_de_france_aide_permis": {
+    "type": "region",
+    "slug": "hauts_de_france",
+    "fichier": "openfisca_france_local\\regions\\hauts_de_france\\permis.py"
+  },
+  "hauts_de_france_aide_permis_eligibilite": {
+    "type": "region",
+    "slug": "hauts_de_france",
+    "fichier": "openfisca_france_local\\regions\\hauts_de_france\\permis.py"
+  },
+  "ile_de_france_aide_achat_voiture_electrique": {
+    "type": "region",
+    "slug": "ile_de_france",
+    "fichier": "openfisca_france_local\\regions\\ile_de_france\\aide_achat_voiture_electrique.py"
+  },
+  "illkirch_graffenstaden_coupon_arts_et_sports": {
+    "type": "commune",
+    "slug": "illkirch_graffenstaden",
+    "fichier": "openfisca_france_local\\communes\\illkirch_graffenstaden\\base.py"
+  },
+  "illkirch_graffenstaden_coupon_arts_et_sports_eligibilite_enfant": {
+    "type": "commune",
+    "slug": "illkirch_graffenstaden",
+    "fichier": "openfisca_france_local\\communes\\illkirch_graffenstaden\\base.py"
+  },
+  "illkirch_graffenstaden_coupon_arts_et_sports_eligibilite_famille": {
+    "type": "commune",
+    "slug": "illkirch_graffenstaden",
+    "fichier": "openfisca_france_local\\communes\\illkirch_graffenstaden\\base.py"
+  },
+  "illkirch_graffenstaden_coupon_arts_et_sports_montant": {
+    "type": "commune",
+    "slug": "illkirch_graffenstaden",
+    "fichier": "openfisca_france_local\\communes\\illkirch_graffenstaden\\base.py"
+  },
+  "illkirch_graffenstaden_coupon_arts_et_sports_quotient_familial": {
+    "type": "commune",
+    "slug": "illkirch_graffenstaden",
+    "fichier": "openfisca_france_local\\communes\\illkirch_graffenstaden\\base.py"
+  },
+  "illkirch_graffenstaden_eligibilite_residence": {
+    "type": "commune",
+    "slug": "illkirch_graffenstaden",
+    "fichier": "openfisca_france_local\\communes\\illkirch_graffenstaden\\base.py"
+  },
+  "iwuy_aide_mobilite_permis": {
+    "type": "commune",
+    "slug": "iwuy",
+    "fichier": "openfisca_france_local\\communes\\iwuy\\aide_permis.py"
+  },
+  "le_cateau_aide_mobilite_permis": {
+    "type": "commune",
+    "slug": "le_cateau",
+    "fichier": "openfisca_france_local\\communes\\le_cateau\\aide_permis.py"
+  },
+  "les_rues_des_vignes_aide_mobilite_permis": {
+    "type": "commune",
+    "slug": "les_rues_des_vignes",
+    "fichier": "openfisca_france_local\\communes\\les_rues_des_vignes\\aide_permis.py"
+  },
+  "loire_atlantique_aide_mobilite_eligibilite_age": {
+    "type": "departement",
+    "slug": "loire_atlantique",
+    "fichier": "openfisca_france_local\\departements\\loire_atlantique\\aide_mobilite.py"
+  },
+  "loire_atlantique_aide_mobilite_permis_am": {
+    "type": "departement",
+    "slug": "loire_atlantique",
+    "fichier": "openfisca_france_local\\departements\\loire_atlantique\\aide_mobilite.py"
+  },
+  "loire_atlantique_aide_mobilite_permis_b": {
+    "type": "departement",
+    "slug": "loire_atlantique",
+    "fichier": "openfisca_france_local\\departements\\loire_atlantique\\aide_mobilite.py"
+  },
+  "loire_atlantique_eligibilite_residence": {
+    "type": "departement",
+    "slug": "loire_atlantique",
+    "fichier": "openfisca_france_local\\departements\\loire_atlantique\\eligibilite.py"
+  },
+  "loire_atlantique_quotient_familial": {
+    "type": "departement",
+    "slug": "loire_atlantique",
+    "fichier": "openfisca_france_local\\departements\\loire_atlantique\\aide_mobilite.py"
+  },
+  "lyon_metropole_eligibilite_geographique": {
+    "type": "metropole",
+    "slug": "lyon",
+    "fichier": "openfisca_france_local\\metropoles\\lyon\\eligibilite.py"
+  },
+  "meurthe_et_moselle_eligibilite_residence": {
+    "type": "departement",
+    "slug": "meurthe_et_moselle",
+    "fichier": "openfisca_france_local\\departements\\meurthe_et_moselle\\eligibilite.py"
+  },
+  "montant_nouvelle_aquitaine_aide_permis": {
+    "type": "region",
+    "slug": "nouvelle-aquitaine",
+    "fichier": "openfisca_france_local\\regions\\nouvelle-aquitaine\\aide_permis.py"
+  },
+  "montpellier_eligibilite_residence": {
+    "type": "commune",
+    "slug": "montpellier",
+    "fichier": "openfisca_france_local\\communes\\montpellier\\eligibilite.py"
+  },
+  "montpellier_mutuelle_communale": {
+    "type": "commune",
+    "slug": "montpellier",
+    "fichier": "openfisca_france_local\\communes\\montpellier\\montpellier_mutuelle_communale.py"
+  },
+  "msa_armorique_aide_permis": {
+    "type": "region",
+    "slug": "bretagne",
+    "fichier": "openfisca_france_local\\regions\\bretagne\\msa_armorique\\aide_permis.py"
+  },
+  "msa_haute_normandie_aide_permis": {
+    "type": "region",
+    "slug": "normandie",
+    "fichier": "openfisca_france_local\\regions\\normandie\\msa_haute_normandie\\aides_permis.py"
+  },
+  "msa_midi_pyrenees_sud_aide_permis": {
+    "type": "region",
+    "slug": "occitanie",
+    "fichier": "openfisca_france_local\\regions\\occitanie\\msa_midi_pyrenees_sud\\aide_permis.py"
+  },
+  "msa_nord_pas_de_calais_aide_permis": {
+    "type": "region",
+    "slug": "hauts_de_france",
+    "fichier": "openfisca_france_local\\regions\\hauts_de_france\\msa_nord_pas_de_calais\\aide_permis.py"
+  },
+  "msa_portes_de_bretagne_aide_permis": {
+    "type": "region",
+    "slug": "bretagne",
+    "fichier": "openfisca_france_local\\regions\\bretagne\\msa_portes_de_bretagne\\aide_permis.py"
+  },
+  "mtp": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\caracteristiques_socio_demographiques.py"
+  },
+  "nantes_metropole_tarification_solidaire_transport": {
+    "type": "metropole",
+    "slug": "nantes",
+    "fichier": "openfisca_france_local\\metropoles\\nantes\\tarification_solidaire_transports.py"
+  },
+  "nantes_metropole_tarification_solidaire_transport_eligibilite_geographique": {
+    "type": "metropole",
+    "slug": "nantes",
+    "fichier": "openfisca_france_local\\metropoles\\nantes\\tarification_solidaire_transports.py"
+  },
+  "nantes_metropole_tarification_solidaire_transport_montant": {
+    "type": "metropole",
+    "slug": "nantes",
+    "fichier": "openfisca_france_local\\metropoles\\nantes\\tarification_solidaire_transports.py"
+  },
+  "nantes_metropole_tarification_solidaire_transport_quotient_familial": {
+    "type": "metropole",
+    "slug": "nantes",
+    "fichier": "openfisca_france_local\\metropoles\\nantes\\tarification_solidaire_transports.py"
+  },
+  "nord_activ_emploi_eligibilite": {
+    "type": "departement",
+    "slug": "nord",
+    "fichier": "openfisca_france_local\\departements\\nord\\activ_emploi.py"
+  },
+  "nord_activ_emploi_maximum": {
+    "type": "departement",
+    "slug": "nord",
+    "fichier": "openfisca_france_local\\departements\\nord\\activ_emploi.py"
+  },
+  "nord_eligibilite_residence": {
+    "type": "departement",
+    "slug": "nord",
+    "fichier": "openfisca_france_local\\departements\\nord\\activ_emploi.py"
+  },
+  "nouvelle_aquitaine_aide_permis": {
+    "type": "region",
+    "slug": "nouvelle-aquitaine",
+    "fichier": "openfisca_france_local\\regions\\nouvelle-aquitaine\\aide_permis.py"
+  },
+  "nouvelle_aquitaine_carte_solidaire": {
+    "type": "region",
+    "slug": "nouvelle-aquitaine",
+    "fichier": "openfisca_france_local\\regions\\nouvelle-aquitaine\\carte_solidaire.py"
+  },
+  "nouvelle_aquitaine_carte_solidaire_eligibilite": {
+    "type": "region",
+    "slug": "nouvelle-aquitaine",
+    "fichier": "openfisca_france_local\\regions\\nouvelle-aquitaine\\carte_solidaire.py"
+  },
+  "nouvelle_aquitaine_carte_solidaire_eligibilite_financiere": {
+    "type": "region",
+    "slug": "nouvelle-aquitaine",
+    "fichier": "openfisca_france_local\\regions\\nouvelle-aquitaine\\carte_solidaire.py"
+  },
+  "nouvelle_aquitaine_carte_solidaire_quotient_familial": {
+    "type": "region",
+    "slug": "nouvelle-aquitaine",
+    "fichier": "openfisca_france_local\\regions\\nouvelle-aquitaine\\carte_solidaire.py"
+  },
+  "occitanie_carte_jeune_region": {
+    "type": "region",
+    "slug": "occitanie",
+    "fichier": "openfisca_france_local\\regions\\occitanie\\carte_jeune_region.py"
+  },
+  "occitanie_carte_transport_scolaire_lio": {
+    "type": "region",
+    "slug": "occitanie",
+    "fichier": "openfisca_france_local\\regions\\occitanie\\carte_transport_scolaire.py"
+  },
+  "pass_jeune_54": {
+    "type": "departement",
+    "slug": "meurthe_et_moselle",
+    "fichier": "openfisca_france_local\\departements\\meurthe_et_moselle\\pass_jeune_54.py"
+  },
+  "pays_de_la_loire_epass_jeunes_culture_sport": {
+    "type": "region",
+    "slug": "pays_de_la_loire",
+    "fichier": "openfisca_france_local\\regions\\pays_de_la_loire\\epass_jeunes_culture_sport.py"
+  },
+  "pays_de_la_loire_epass_jeunes_eligibilite": {
+    "type": "region",
+    "slug": "pays_de_la_loire",
+    "fichier": "openfisca_france_local\\regions\\pays_de_la_loire\\epass_jeunes_culture_sport.py"
+  },
+  "quotient_familial_caf": {
+    "type": "metropole",
+    "slug": "brest",
+    "fichier": "openfisca_france_local\\metropoles\\brest\\quotient_familial_caf.py"
+  },
+  "quotient_familial_caf_parts": {
+    "type": "metropole",
+    "slug": "brest",
+    "fichier": "openfisca_france_local\\metropoles\\brest\\quotient_familial_caf.py"
+  },
+  "quotient_familial_pass_jeune_54": {
+    "type": "departement",
+    "slug": "meurthe_et_moselle",
+    "fichier": "openfisca_france_local\\departements\\meurthe_et_moselle\\pass_jeune_54.py"
+  },
+  "refugie": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\caracteristiques_socio_demographiques.py"
+  },
+  "rennes_metropole_transport": {
+    "type": "metropole",
+    "slug": "rennes",
+    "fichier": "openfisca_france_local\\metropoles\\rennes\\mon_aide.py"
+  },
+  "rennes_metropole_transport_base_ressource": {
+    "type": "metropole",
+    "slug": "rennes",
+    "fichier": "openfisca_france_local\\metropoles\\rennes\\mon_aide.py"
+  },
+  "residence_brest_metropole": {
+    "type": "metropole",
+    "slug": "brest",
+    "fichier": "openfisca_france_local\\metropoles\\brest\\transport.py"
+  },
+  "residence_rennes_metropole": {
+    "type": "metropole",
+    "slug": "rennes",
+    "fichier": "openfisca_france_local\\metropoles\\rennes\\mon_aide.py"
+  },
+  "revenu_solidaire_jeune": {
+    "type": "metropole",
+    "slug": "lyon",
+    "fichier": "openfisca_france_local\\metropoles\\lyon\\revenu_solidaire_jeune.py"
+  },
+  "saint_louis_eligibilite_residence": {
+    "type": "commune",
+    "slug": "saint_louis",
+    "fichier": "openfisca_france_local\\communes\\saint_louis\\eligibilite.py"
+  },
+  "seine_saint_denis_cheque_reussite": {
+    "type": "departement",
+    "slug": "seine_saint_denis",
+    "fichier": "openfisca_france_local\\departements\\seine_saint_denis\\cheque_reussite.py"
+  },
+  "seine_saint_denis_cheque_reussite_eligibilite": {
+    "type": "departement",
+    "slug": "seine_saint_denis",
+    "fichier": "openfisca_france_local\\departements\\seine_saint_denis\\cheque_reussite.py"
+  },
+  "seine_saint_denis_cheque_reussite_eligibilite_classe": {
+    "type": "departement",
+    "slug": "seine_saint_denis",
+    "fichier": "openfisca_france_local\\departements\\seine_saint_denis\\cheque_reussite.py"
+  },
+  "seine_saint_denis_cheque_reussite_montant": {
+    "type": "departement",
+    "slug": "seine_saint_denis",
+    "fichier": "openfisca_france_local\\departements\\seine_saint_denis\\cheque_reussite.py"
+  },
+  "seine_saint_denis_eligibilite_residence": {
+    "type": "departement",
+    "slug": "seine_saint_denis",
+    "fichier": "openfisca_france_local\\departements\\seine_saint_denis\\eligibilite.py"
+  },
+  "sous_contrat_engagement_jeune": {
+    "type": "metropole",
+    "slug": "lyon",
+    "fichier": "openfisca_france_local\\metropoles\\lyon\\revenu_solidaire_jeune.py"
+  },
+  "station_debout_penible": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\caracteristiques_socio_demographiques.py"
+  },
+  "strasbourg_metropole_quotient_familial": {
+    "type": "metropole",
+    "slug": "strasbourg",
+    "fichier": "openfisca_france_local\\metropoles\\strasbourg\\tarification_solidaire_periscolaire.py"
+  },
+  "strasbourg_metropole_tarification_solidaire_periscolaire": {
+    "type": "metropole",
+    "slug": "strasbourg",
+    "fichier": "openfisca_france_local\\metropoles\\strasbourg\\tarification_solidaire_periscolaire.py"
+  },
+  "tisseo_ressort_territorial": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "fichier": "openfisca_france_local\\metropoles\\toulouse\\tisseo\\ressort_territorial.py"
+  },
+  "tisseo_transport_demandeur_emploi_indemnise_reduction": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "fichier": "openfisca_france_local\\metropoles\\toulouse\\tisseo\\demandeur_emploi.py"
+  },
+  "tisseo_transport_demandeur_emploi_non_indemnise_reduction": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "fichier": "openfisca_france_local\\metropoles\\toulouse\\tisseo\\demandeur_emploi.py"
+  },
+  "tisseo_transport_etudiant_reduction": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "fichier": "openfisca_france_local\\metropoles\\toulouse\\tisseo\\jeunes.py"
+  },
+  "tisseo_transport_invalide_reduction": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "fichier": "openfisca_france_local\\metropoles\\toulouse\\tisseo\\invalide.py"
+  },
+  "tisseo_transport_jeune_reduction": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "fichier": "openfisca_france_local\\metropoles\\toulouse\\tisseo\\jeunes.py"
+  },
+  "tisseo_transport_reduction": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "fichier": "openfisca_france_local\\metropoles\\toulouse\\tisseo\\transport_reduction.py"
+  },
+  "tisseo_transport_reduction_plafond_smic_net": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "fichier": "openfisca_france_local\\metropoles\\toulouse\\tisseo\\ressources.py"
+  },
+  "tisseo_transport_reduction_ressources_fiscales": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "fichier": "openfisca_france_local\\metropoles\\toulouse\\tisseo\\ressources.py"
+  },
+  "tisseo_transport_retraite_reduction": {
+    "type": "metropole",
+    "slug": "toulouse",
+    "fichier": "openfisca_france_local\\metropoles\\toulouse\\tisseo\\retraites.py"
+  },
+  "titre_sejour": {
+    "type": "departement",
+    "slug": "eure_et_loir",
+    "fichier": "openfisca_france_local\\departements\\eure_et_loir\\caracteristiques_socio_demographiques.py"
+  },
+  "vendee_bourses_jeunes_benevoles_montant_max": {
+    "type": "departement",
+    "slug": "vendee",
+    "fichier": "openfisca_france_local\\departements\\vendee\\bourses_jeunes_benevoles.py"
+  },
+  "yvelines_aide_permis": {
+    "type": "departement",
+    "slug": "yvelines",
+    "fichier": "openfisca_france_local\\departements\\yvelines\\aide_permis.py"
+  },
+  "yvelines_eligibilite_residence": {
+    "type": "departement",
+    "slug": "yvelines",
+    "fichier": "openfisca_france_local\\departements\\yvelines\\eligibilite.py"
+  }
+}

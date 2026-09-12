@@ -38,8 +38,13 @@ NATIONAL_VARIABLES = [
     ("cheque_energie", "Chèque énergie", "year"),
 ]
 
-MOIS_FENETRE = 4  # RSA/PPA utilisent une moyenne glissante sur plusieurs mois :
+MOIS_FENETRE = 13  # RSA/PPA utilisent une moyenne glissante sur plusieurs mois :
 # fournir un revenu sur un seul mois fausserait le calcul (voir CLAUDE.md).
+# 13 (pas 4) pour aussi couvrir janvier de l'année en cours -- certaines
+# variables annuelles (ex. cheque_energie_eligibilite_logement) lisent
+# spécifiquement period.first_month (= janvier), pas le mois courant ;
+# sans ça, un statut de logement renseigné "seulement" pour le mois en cours
+# restait invisible pour ces formules-là (trouvé en testant, cf. CLAUDE.md).
 
 # type_revenus est un champ à choix multiples (on peut cocher plusieurs
 # sources) mais revenu_net_mensuel_foyer reste un montant total unique -> on
@@ -209,13 +214,61 @@ def _slugifier(texte):
     return "_".join(sans_accents.lower().split())
 
 
+# Variables dont le nom ne mentionne pas du tout leur territoire (marque de
+# l'opérateur, code département au lieu du nom, forme tronquée...) -> aucun
+# slug automatique ne peut les rattacher. Identifié en testant exhaustivement
+# les 171 variables locales contre 37 territoires réels
+# (tests/test_filtrage_geographique.py) : liste des "slugs déclencheurs" à
+# accepter en plus de la correspondance normale. Volontairement absent : les
+# 3 variables d'aide au permis MSA (Armorique / Midi-Pyrénées Sud / Nord-Pas-
+# de-Calais) -- les caisses MSA ont leurs propres découpages territoriaux
+# qui ne correspondent pas exactement aux départements/régions INSEE, et une
+# mauvaise supposition serait pire qu'une absence de détection.
+CORRESPONDANCES_MANUELLES = {
+    "crous_aide_100_repas_gratuits": ["hauts_de_france"],
+    "le_cateau_aide_mobilite_permis": ["le_cateau_cambresis"],
+    "pass_jeune_54": ["meurthe_et_moselle"],
+    "revenu_solidaire_jeune": ["lyon", "metropole_de_lyon"],
+    "tisseo_transport_demandeur_emploi_indemnise_reduction": ["toulouse", "toulouse_metropole", "haute_garonne"],
+    "tisseo_transport_demandeur_emploi_non_indemnise_reduction": ["toulouse", "toulouse_metropole", "haute_garonne"],
+    "tisseo_transport_etudiant_reduction": ["toulouse", "toulouse_metropole", "haute_garonne"],
+    "tisseo_transport_invalide_reduction": ["toulouse", "toulouse_metropole", "haute_garonne"],
+    "tisseo_transport_jeune_reduction": ["toulouse", "toulouse_metropole", "haute_garonne"],
+    "tisseo_transport_reduction": ["toulouse", "toulouse_metropole", "haute_garonne"],
+    "tisseo_transport_retraite_reduction": ["toulouse", "toulouse_metropole", "haute_garonne"],
+}
+
+
+def variable_correspond_localisation(nom_var, slugs):
+    if any(slug_correspond(slug, nom_var) for slug in slugs):
+        return True
+    declencheurs = CORRESPONDANCES_MANUELLES.get(nom_var)
+    return bool(declencheurs) and any(d in slugs for d in declencheurs)
+
+
+def slug_correspond(slug, nom_var):
+    """Vrai si `slug` apparaît comme séquence de mots complets dans
+    nom_var (les deux étant des identifiants en snake_case), jamais comme
+    simple sous-chaîne brute. Sans ça, un département au nom court comme
+    "Ain" (slug "ain") matcherait à tort n'importe quelle variable
+    contenant "saint" (s-AIN-t), "aquitaine" (aquit-AIN-e), etc. -- trouvé
+    en testant exhaustivement les ~171 variables locales contre les 37
+    territoires de test (cf. tests/test_filtrage_geographique.py)."""
+    mots_slug = slug.split("_")
+    mots_var = nom_var.split("_")
+    n = len(mots_slug)
+    return any(mots_var[i:i + n] == mots_slug for i in range(len(mots_var) - n + 1))
+
+
 def slugs_localisation(localisation):
     """Fragments de nom (commune, EPCI, département, région) utilisés pour
     ne garder que les dispositifs locaux dont le nom de variable correspond
     réellement à l'endroit où vit la personne — nécessaire car les formules
     openfisca-france-local ne filtrent pas toutes par territoire elles-mêmes
     (constaté en test : certaines renvoient un montant sans vérifier le
-    depcom). Best-effort par correspondance de texte, pas garanti exhaustif."""
+    depcom). Best-effort par correspondance de mots entiers, pas garanti
+    exhaustif (cf. CLAUDE.md pour les cas structurellement non détectables :
+    MSA, Tisséo, CROUS...)."""
     if not localisation:
         return set()
     slugs = set()
@@ -249,9 +302,9 @@ def construire_situation(valeurs, personnes, depcom, mois_ref, avertissements=No
         }
     }
     if valeurs.get("situation_handicap"):
-        individus["declarant"]["handicap"] = {mois_courant: True}
+        individus["declarant"]["handicap"] = {m: True for m in fenetre}
     if valeurs.get("taux_incapacite"):
-        individus["declarant"]["taux_incapacite"] = {mois_courant: valeurs["taux_incapacite"]}
+        individus["declarant"]["taux_incapacite"] = {m: valeurs["taux_incapacite"] for m in fenetre}
     if valeurs.get("pension_alimentaire_recue"):
         individus["declarant"]["pensions_alimentaires_percues"] = {
             m: valeurs["pension_alimentaire_recue"] for m in fenetre
@@ -262,10 +315,10 @@ def construire_situation(valeurs, personnes, depcom, mois_ref, avertissements=No
         }
     activite = variable_activite(valeurs.get("statut_professionnel"))
     if activite:
-        individus["declarant"]["activite"] = {mois_courant: activite}
+        individus["declarant"]["activite"] = {m: activite for m in fenetre}
     statut_marital = MAPPING_STATUT_MARITAL.get(valeurs.get("situation_familiale"))
     if statut_marital:
-        individus["declarant"]["statut_marital"] = {mois_courant: statut_marital}
+        individus["declarant"]["statut_marital"] = {m: statut_marital for m in fenetre}
 
     enfants = []
     for i, p in enumerate(personnes):
@@ -275,7 +328,7 @@ def construire_situation(valeurs, personnes, depcom, mois_ref, avertissements=No
         nom = f"enfant_{i}"
         individus[nom] = {"date_naissance": {"ETERNITY": str(naissance)}}
         if p.get("situation_handicap"):
-            individus[nom]["handicap"] = {mois_courant: True}
+            individus[nom]["handicap"] = {m: True for m in fenetre}
         enfants.append(nom)
 
     situation = {
@@ -284,14 +337,31 @@ def construire_situation(valeurs, personnes, depcom, mois_ref, avertissements=No
         "foyers_fiscaux": {"foyer": {"declarants": ["declarant"], "personnes_a_charge": enfants}},
         "menages": {"menage": {"personne_de_reference": ["declarant"], "enfants": enfants}},
     }
+    if valeurs.get("revenu_fiscal_reference"):
+        # rfr (foyer_fiscal, annuel) a une formule qui le recalcule à partir du
+        # revenu déclaré sur l'année entière -- mais on ne fournit le revenu
+        # que sur une fenêtre de 4 mois glissants (voir plus haut), donc le
+        # calcul automatique sous-évalue largement le RFR annuel réel. On
+        # écrase directement avec la valeur déclarée par la personne (déjà
+        # collectée, jusqu'ici seulement transmise au module vélo -- trouvé
+        # en testant : cheque_energie restait à 0 malgré un revenu modeste).
+        # cheque_energie_montant lit spécifiquement le RFR de l'année N-2
+        # (rfr(period.n_2)) -- pas celui de l'année en cours -- donc on le
+        # renseigne aussi pour cette année-là, avec la même valeur déclarée
+        # faute de mieux (on ne demande qu'un seul RFR à l'utilisateur).
+        rfr_valeur = valeurs["revenu_fiscal_reference"]
+        situation["foyers_fiscaux"]["foyer"]["rfr"] = {
+            str(mois_ref.year): rfr_valeur,
+            str(mois_ref.year - 2): rfr_valeur,
+        }
     menage = situation["menages"]["menage"]
     if depcom:
-        menage["depcom"] = {mois_courant: depcom}
+        menage["depcom"] = {m: depcom for m in fenetre}
     statut = MAPPING_STATUT_LOGEMENT.get(valeurs.get("statut_logement"))
     if statut:
-        menage["statut_occupation_logement"] = {mois_courant: statut}
+        menage["statut_occupation_logement"] = {m: statut for m in fenetre}
     if valeurs.get("loyer_mensuel"):
-        menage["loyer"] = {mois_courant: valeurs["loyer_mensuel"]}
+        menage["loyer"] = {m: valeurs["loyer_mensuel"] for m in fenetre}
     return situation, mois_courant
 
 
@@ -349,7 +419,7 @@ def calculer_national_et_local(valeurs, personnes, localisation, avertissements)
         # variables dont le nom correspond à la commune/EPCI/département/
         # région de la personne, sinon ça ressort les aides de communes au
         # hasard partout en France.
-        if not any(slug in nom_var for slug in slugs):
+        if not variable_correspond_localisation(nom_var, slugs):
             continue
         variable = tbs.variables.get(nom_var)
         if variable is None or variable.value_type not in (float, int):
@@ -394,7 +464,7 @@ def institution_locale(nom_var, localisation):
         ("departement_nom", "Département"), ("region_nom", "Région"),
     ):
         valeur = localisation.get(cle)
-        if valeur and _slugifier(valeur) in nom_var:
+        if valeur and slug_correspond(_slugifier(valeur), nom_var):
             return f"{etiquette} : {valeur}"
     return None
 
